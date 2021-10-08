@@ -1,0 +1,18 @@
+
+
+<div class="task-item" [formGroup]="taskForm" >
+  <span class="task-item__title">{{data.title}}</span>
+  <span class="task-item__desc">{{data.description}}</span>
+  <span class="task-item__field">
+    <label class="task-item__field--label">Estimate:</label>
+    <input type="text" class="task-item__field--input" formControlName="estimate"/>
+  </span>
+  <span class="task-item__field">
+    <label class="task-item__field--label">Remaining:</label>
+    <input type="text" class="task-item__field--input" formControlName="remaining"/>
+  </span>
+  <span class="task-item__field">
+    <label class="task-item__field--label">Complete:</label>
+    <input type="text" class="task-item__field--input" formControlName="complete"/>
+  </span>
+</div>

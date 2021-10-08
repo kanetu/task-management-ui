@@ -1,0 +1,44 @@
+.user-item{
+  @apply w-full;
+  @apply shadow-lg;
+  @apply bg-white;
+  @apply p-4;
+  @apply rounded-lg;
+  @apply flex;
+  @apply flex-col;
+  @apply items-center;
+  &__logo{
+    & img{
+      @apply rounded-full;
+      @apply w-20;
+      @apply h-20;
+      @apply object-cover;
+    }
+  }
+  &__name{
+    @apply text-xl;
+    @apply my-2;
+  }
+  &__actions{
+    @apply flex;
+    @apply items-center;
+    @apply justify-between;
+    @apply w-full;
+    @apply mt-2;
+  }
+  &__btn{
+    @apply text-sm;
+    @apply rounded;
+    @apply text-white;
+    @apply shadow;
+    @apply p-1;
+    @apply hover:shadow-lg;
+    & img {
+      @apply w-6;
+      @apply h-6;
+    }
+    &--edit{
+      @apply mr-4;
+    }
+  }
+}

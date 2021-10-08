@@ -1,0 +1,49 @@
+
+.task-board{
+  & h3{
+    @apply text-2xl;
+    @apply my-4;
+  }
+  &__wrapper{
+    @apply grid;
+    @apply grid-cols-5;
+    @apply gap-4;
+  }
+  &__col{
+    @apply h-96;
+    @apply flex;
+    @apply flex-col;
+
+    & h4{
+      @apply text-center;
+      @apply text-white;
+      @apply rounded;
+      @apply py-1;
+    }
+    &--new{
+      & h4{
+        @apply bg-gray-700
+      }
+    }
+    &--in-processing{
+      & h4{
+        @apply bg-blue-700;
+      }
+    }
+    &--resolve{
+      & h4{
+        @apply bg-indigo-700;
+      }
+    }
+    &--ready-for-test{
+      & h4{
+        @apply bg-yellow-700;
+      }
+    }
+    &--close{
+      & h4{
+        @apply bg-green-700;
+      }
+    }
+  }
+}

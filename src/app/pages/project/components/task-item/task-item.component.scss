@@ -1,0 +1,47 @@
+
+
+.task-item{
+  @apply flex;
+  @apply flex-col;
+  @apply shadow-md;
+  @apply p-2;
+  @apply my-2;
+  @apply rounded-md;
+  @apply bg-white;
+  &__title{
+    @apply text-lg;
+    @apply font-semibold;
+  }
+  &__desc{
+    @apply text-sm;
+    @apply text-gray-500;
+    @apply my-2;
+  }
+  &__field{
+    @apply text-sm;
+    @apply relative;
+    @apply flex;
+    @apply items-center;
+    @apply justify-end;
+    @apply my-1;
+    &--label{
+      @apply text-sm;
+      @apply absolute;
+      @apply w-min;
+      @apply left-0;
+    }
+    &--input {
+      @apply focus:ring-indigo-500;
+      @apply focus:border-indigo-500;
+      @apply block;
+      @apply w-full;
+      @apply pl-2;
+      @apply pr-2;
+      @apply py-1;
+      @apply ml-20;
+      @apply text-xs;
+      @apply border-none;
+      @apply rounded-sm;
+    }
+  }
+}
