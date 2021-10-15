@@ -1,0 +1,14 @@
+.schedule-table{
+  & ::ng-deep{
+    & .ant-table-thead{
+      & tr > th > span {
+        @apply flex;
+        @apply items-center;
+        & img {
+          @apply w-4;
+          @apply mr-2;
+        }
+      }
+    }
+  }
+}

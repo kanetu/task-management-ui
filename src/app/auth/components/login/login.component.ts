@@ -1,26 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  destroyed$ = new Subject();
+
   constructor(
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   loginForm = this.formBuilder.group({
-    email: [""],
-    password: [""]
-  })
+    email: [''],
+    password: [''],
+  });
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
+  ngOnDestroy(): void {
+    this.destroyed$.complete();
   }
 
   handleLogin(): void {
-    console.log(this.loginForm.value);
+    this.authService
+      .login(this.loginForm.value)
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((data: any) => {
+        if (data?.message === 'success') {
+          this.router.navigate(['/project']);
+        }
+      });
   }
 }

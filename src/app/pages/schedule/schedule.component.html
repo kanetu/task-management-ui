@@ -1,1 +1,18 @@
-<p>schedule works!</p>
+
+
+
+<div clsas="schedule">
+  <div class="schedule__wrapper">
+    <h3>Schedule
+    <button class="btn-add-schedule" (click)="openAddSchedule()">
+    <img src="assets/icons/Add.svg" alt="add-schedule">
+    <span>Add Schedule</span>
+  </button>  
+    </h3>
+  
+    <div class="schedule__table" >
+        <app-schedule-table  [data$]="schedules$" [scheduleEditData$]="scheduleEditData$" [openEditSchedule$]="openModal$"> </app-schedule-table>
+    </div>
+    <app-schedule-detail-modal [open$]="openModal$" [scheduleEditData$]="scheduleEditData$" [processState$]="processState$" ></app-schedule-detail-modal>
+  </div>
+</div>

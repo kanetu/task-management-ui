@@ -1,0 +1,45 @@
+.register{
+ 
+   @apply flex;
+   @apply h-screen;
+   @apply w-full;
+   @apply my-auto;
+   @apply mx-auto;
+                                                          
+    &__wrapper{
+        @apply shadow-md;
+        @apply max-w-sm;
+        @apply mx-auto;
+        @apply my-auto;
+        @apply px-4;
+        @apply py-4;
+        @apply rounded-lg;
+
+        & h3{
+            @apply mb-4;
+            @apply text-xl;
+        }
+
+    }
+    &__field{
+        @apply block;
+        @apply text-sm;
+        @apply text-black;
+        @apply placeholder-gray-500;
+        @apply border;
+        @apply border-gray-200;
+        @apply rounded-md;
+        @apply py-2;
+        @apply pl-5; 
+        @apply w-72;
+        @apply mx-auto;
+        @apply mb-2;
+      
+    }
+    &__actions{
+        @apply flex;
+        @apply justify-between;
+        @apply items-center;
+        @apply mt-4;
+    }
+}

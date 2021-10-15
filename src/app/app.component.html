@@ -1,5 +1,5 @@
 
-<app-one-column></app-one-column>
-<div class="container mx-auto">
+<app-one-column *ngIf="showLayout"></app-one-column>
+<div class="container mx-auto px-16">
   <router-outlet></router-outlet>
 </div>

@@ -1,0 +1,33 @@
+ <nz-modal [nzVisible]="open" [nzTitle]="scheduleTitle"(nzOnCancel)="handleCancel()" (nzOnOk)="handleSave()">
+      <ng-container *nzModalContent>
+        <div class="modal__wrapper" [formGroup]="scheduleForm">
+            <div class="modal__field">
+                <label class="modal__field--label">Title</label>
+                <input class="modal__field--input" type="text" formControlName="title"/>
+            </div>
+             <div class="modal__field">
+                <label class="modal__field--label">Description</label>
+                <textarea class="modal__field--textarea" formControlName="description"></textarea>
+            </div>  
+            <div class="modal__field">
+                <label class="modal__field--label">Location</label>
+                <input class="modal__field--input" type="text" formControlName="place" />
+            </div>  
+            <div class="modal__column">
+                <div class="modal__column--sub">
+                    <div class="modal__field">
+                        <label class="modal__field--label">Time Start</label>
+                        <input class="modal__field--input" formControlName="timeStart"/>
+                    </div>
+                </div>
+                <div class="modal__column--sub">
+                    <div class="modal__field">
+                        <label class="modal__field--label">Time End</label>
+                        <input class="modal__field--input" formControlName="timeEnd"/>
+                    </div>
+                </div>
+            </div> 
+        </div>
+
+      </ng-container>
+    </nz-modal>    

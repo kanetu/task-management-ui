@@ -3,6 +3,9 @@
 <div class="task-item" [formGroup]="taskForm" >
   <span class="task-item__title">{{data.title}}</span>
   <span class="task-item__desc">{{data.description}}</span>
+    <button class="task-item__btn" (click)="handleEditTask()">
+        <img src="assets/icons/Edit.svg" alt="delete">
+    </button>  
   <span class="task-item__field">
     <label class="task-item__field--label">Estimate:</label>
     <input type="text" class="task-item__field--input" formControlName="estimate"/>
@@ -15,4 +18,4 @@
     <label class="task-item__field--label">Complete:</label>
     <input type="text" class="task-item__field--input" formControlName="complete"/>
   </span>
-</div>
+</div>                                                                   

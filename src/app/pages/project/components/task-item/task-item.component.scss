@@ -8,9 +8,19 @@
   @apply my-2;
   @apply rounded-md;
   @apply bg-white;
+  @apply relative;
+  &__btn{
+      @apply absolute;
+        @apply right-1;
+    & img{
+        @apply w-6;
+        @apply h-6;
+    }
+  }
   &__title{
     @apply text-lg;
     @apply font-semibold;
+    @apply w-11/12;
   }
   &__desc{
     @apply text-sm;

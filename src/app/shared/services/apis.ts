@@ -1,0 +1,28 @@
+export const baseAPI = 'http://task-management.tk';
+
+export const API = {
+  register: '/auth/register',
+  login: '/auth/login',
+  logout: '/auth/logout',
+  getUser: '/auth/user',
+  getAllUser: '/auth/user/all',
+  updateUser: '/auth/user',
+  getAllPermission: '/permission',
+  addPermission: '/permission',
+  getProject: '/project/{{projectId}}',
+  getAllProject: '/project',
+  updateProject: '/project/{{projectId}}',
+  addProject: '/project',
+  grantRole: '/auth/grantRole',
+  getAllRole: '/role',
+  addRole: '/role',
+  updateRole: '/role',
+  deleteRole: '/role/{{roleId}}',
+  getAllSchedule: '/schedule',
+  addSchedule: '/schedule',
+  updateSchedule: '/schedule/{{scheduleId}}',
+  addUserToSchedule: '/schedule/{{scheduleId}}',
+  getTask: '/task/{{taskId}}',
+  addTask: '/task/{{projectId}}',
+  updateTask: '/task/{{taskId}}',
+};

@@ -1,8 +1,33 @@
 
 .task-board{
+    @apply relative;
   & h3{
     @apply text-2xl;
     @apply my-4;
+  }
+  &__btn {
+    @apply bg-white;
+    @apply shadow;
+    @apply hover:shadow-lg;
+    @apply text-sm;
+    @apply rounded;
+    @apply p-2;
+    @apply text-white;
+    @apply absolute;
+    @apply top-0;
+    @apply right-0;
+    @apply rounded-full;
+    @apply text-black;
+    @apply flex;
+    @apply items-center;
+    & img{
+        @apply w-4;
+    }
+    & span{
+        @apply uppercase;
+        @apply text-xs;
+        @apply ml-2;
+    }
   }
   &__wrapper{
     @apply grid;

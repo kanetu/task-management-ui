@@ -1,0 +1,47 @@
+<nz-modal [nzVisible]="open" [nzTitle]="taskTitle"(nzOnCancel)="handleCancel()" (nzOnOk)="handleSave()">
+      <ng-container *nzModalContent>
+        <div class="modal__wrapper" [formGroup]="taskForm">
+            <div class="modal__field">
+                <label class="modal__field--label">Title</label>
+                <input class="modal__field--input" formControlName="title"/>
+            </div>
+            <div class="modal__field">
+                <label class="modal__field--label">Description</label>
+                <textarea class="modal__field--textarea" formControlName="description"></textarea>
+            </div>
+            
+            <div class="modal__column">
+            <div class="modal__column--sub">
+                <div class="modal__field">
+                    <label class="modal__field--label">Estimate</label>
+                    <input class="modal__field--input" formControlName="estimate"/>
+                </div>
+                <div class="modal__field">
+                    <label class="modal__field--label">Remaining</label>
+                    <input class="modal__field--input" formControlName="remaining"/>
+                </div> 
+                <div class="modal__field">
+                    <label class="modal__field--label">Complete</label>
+                    <input class="modal__field--input" formControlName="complete"/>
+                </div> 
+
+            </div>
+             
+             <div class="modal__column--sub">
+                <div class="modal__field">
+                <label class="modal__field--label">Status</label>
+                <nz-radio-group class="modal__field--radio" formControlName="status">
+                    <label nz-radio nzValue="New">New</label>
+                    <label nz-radio nzValue="In processing" *ngIf="openMode !== 'ADD'">In process</label>
+                    <label nz-radio nzValue="Resolve" *ngIf="openMode !== 'ADD'">Resolve</label>
+                    <label nz-radio nzValue="Ready for test" *ngIf="openMode !== 'ADD'">Ready for test</label>
+                    <label nz-radio nzValue="Close" *ngIf="openMode !== 'ADD'">Close</label>
+                </nz-radio-group>
+                </div>
+            </div>
+            </div>
+             
+        </div>
+
+      </ng-container>
+    </nz-modal>

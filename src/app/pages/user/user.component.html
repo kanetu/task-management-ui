@@ -2,7 +2,7 @@
 
 <div class="user">
   <h3>User</h3>
-  <div class="user__wrapper">
-    <app-user-item></app-user-item>
+  <div class="user__wrapper" *ngIf="(users$ | async)?.length">
+    <app-user-item (editUser)="handleEditUser($event)" *ngFor="let user of users$ | async" [user]="user"></app-user-item>
   </div>
 </div>

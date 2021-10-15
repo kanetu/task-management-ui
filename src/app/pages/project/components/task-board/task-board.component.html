@@ -1,34 +1,36 @@
-
-
-
-
 <div class="task-board">
   <h3>Task Board</h3>
+  <button class="task-board__btn task-board__btn--add" (click)="openAddTask()">
+    <img src="assets/icons/Add.svg" alt="add-task">
+    <span>Add Task</span>
+  </button>
   <div class="task-board__wrapper">
     <div cdkDropList [cdkDropListData]="taskNewData" [cdkDropListConnectedTo]="taskBoardIds" (cdkDropListDropped)="onTaskDrop($event)" id="dropListNew" class="task-board__col task-board__col--new">
       <h4>New</h4>
-      <app-task-item cdkDrag *ngFor="let task of taskNewData" [data]="task"></app-task-item>
+      <app-task-item [processState$]="processState$" (editTask)="openEditTask($event)" cdkDrag [cdkDragData]="task" *ngFor="let task of taskNewData" [data]="task"></app-task-item>
     </div>
 
     <div cdkDropList [cdkDropListData]="taskInProcessingData" [cdkDropListConnectedTo]="taskBoardIds" (cdkDropListDropped)="onTaskDrop($event)" id="dropListInProcessing" class="task-board__col task-board__col--in-processing">
       <h4>In Processing</h4>
-      <app-task-item cdkDrag *ngFor="let task of taskInProcessingData" [data]="task"></app-task-item>
+      <app-task-item [processState$]="processState$"  (editTask)="openEditTask($event)" cdkDrag [cdkDragData]="task" *ngFor="let task of taskInProcessingData" [data]="task"></app-task-item>
     </div>
 
     <div cdkDropList  [cdkDropListData]="taskResolveData" [cdkDropListConnectedTo]="taskBoardIds" (cdkDropListDropped)="onTaskDrop($event)" id="dropListResolve" class="task-board__col task-board__col--resolve">
       <h4>Resolve</h4>
-      <app-task-item cdkDrag *ngFor="let task of taskResolveData" [data]="task"></app-task-item>
+      <app-task-item [processState$]="processState$"  (editTask)="openEditTask($event)" cdkDrag [cdkDragData]="task" *ngFor="let task of taskResolveData" [data]="task"></app-task-item>
     </div>
 
     <div cdkDropList [cdkDropListData]="taskReadyForTestData" [cdkDropListConnectedTo]="taskBoardIds"  (cdkDropListDropped)="onTaskDrop($event)" id="dropListReadyForTest" class="task-board__col task-board__col--ready-for-test">
       <h4>Ready for test</h4>
-      <app-task-item cdkDrag *ngFor="let task of taskReadyForTestData" [data]="task"></app-task-item>
+      <app-task-item [processState$]="processState$"  (editTask)="openEditTask($event)" cdkDrag [cdkDragData]="task" *ngFor="let task of taskReadyForTestData" [data]="task"></app-task-item>
     </div>
 
     <div cdkDropList [cdkDropListData]="taskCloseData" [cdkDropListConnectedTo]="taskBoardIds" (cdkDropListDropped)="onTaskDrop($event)" id="dropListClose" class="task-board__col task-board__col--close">
       <h4>Close</h4>
-      <app-task-item cdkDrag *ngFor="let task of taskCloseData" [data]="task"></app-task-item>
+      <app-task-item [processState$]="processState$"  (editTask)="openEditTask($event)" cdkDrag [cdkDragData]="task" *ngFor="let task of taskCloseData" [data]="task"></app-task-item>
     </div>
   </div>
-
+  <app-task-detail-modal [open$]="openModal$" [processState$]="processState$" [task$]="taskEdit$" ></app-task-detail-modal>
 </div>
+
+

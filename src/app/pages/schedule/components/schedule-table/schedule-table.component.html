@@ -1,0 +1,63 @@
+
+
+<div class="schedule-table">
+
+ <nz-table #basicTable [nzData]="dataSet" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th>
+          <span>
+          <img src="assets/icons/Title.svg" alt="title">
+          Title
+          </span>
+        </th>
+        <th>
+          <span>
+          <img src="assets/icons/UserNoBorder.svg" alt="user">
+          Creator
+          </span>
+        </th>
+        <th>
+          <span>
+          <img src="assets/icons/Description.svg" alt="description">
+          Description
+          </span>
+        </th>
+        <th>
+          <span>
+          <img src="assets/icons/Location.svg" alt="location">
+          Location
+          </span>
+        </th>
+        <th>
+          <span>
+          <img src="assets/icons/Calendar.svg" alt="calendar">
+          Time Start
+          </span>
+        </th>
+        <th>
+          <span>
+          <img src="assets/icons/Calendar.svg" alt="calendar">
+          Time End
+          </span>
+        </th>
+        <th>
+
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{data.title}}</td>
+        <td>{{data.creator}}</td>
+        <td>{{data.description}}</td>
+        <td>{{data.place}}</td>
+        <td>{{data.timeStart}}</td>
+        <td>{{data.timeEnd}}</td>
+        <td>
+          <a (click)="handleEdit(data)">Edit</a>
+        </td>
+      </tr>
+  </tbody>
+  </nz-table>
+</div>

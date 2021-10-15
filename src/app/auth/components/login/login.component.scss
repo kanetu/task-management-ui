@@ -1,0 +1,67 @@
+.login_wrapper{
+    @apply flex;
+    @apply h-screen;
+    @apply w-full;
+    @apply my-auto;
+    @apply mx-auto;
+
+    & .login{
+        @apply shadow-md;
+        @apply max-w-sm; 
+        @apply mx-auto;
+        @apply my-auto;
+        @apply px-4; 
+        @apply py-4; 
+        @apply rounded-lg;
+        
+        &__field{
+            @apply block;
+            @apply text-sm;
+            @apply text-black;
+            @apply placeholder-gray-500;
+            @apply border;
+            @apply border-gray-200;
+            @apply rounded-md;
+            @apply py-2;
+            @apply pl-5; 
+            @apply w-72;
+            @apply mx-auto;
+
+            &--email{
+                @apply mb-4;    
+            }
+            &--password{
+                
+            }
+        }
+
+        &__actions{
+             @apply flex;
+             @apply justify-between;
+             @apply items-center;
+             @apply mt-4;
+
+             & button {
+                @apply bg-indigo-500;
+                @apply text-sm;
+                @apply hover:bg-indigo-600;
+                @apply rounded;
+                @apply px-4;
+                @apply py-2;
+                @apply text-white;
+             }
+
+             & a{
+                @apply text-sm;
+                @apply hover:text-blue-800;
+                @apply text-blue-700;
+                @apply underline; 
+             }
+        }
+
+        & h3 {
+           @apply mb-4;
+           @apply text-xl;
+        }
+    }
+}
