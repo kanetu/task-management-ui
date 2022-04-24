@@ -10,14 +10,7 @@ import { API, baseAPI } from './apis';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  httpOptions = {
-    withCredentials: true,
-  };
-
   getAllUser(): Observable<User[]> {
-    return this.http.get(
-      baseAPI + API.getAllUser,
-      this.httpOptions
-    ) as Observable<User[]>;
+    return this.http.get(baseAPI + API.getAllUser) as Observable<User[]>;
   }
 }

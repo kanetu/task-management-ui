@@ -1,4 +1,4 @@
-export const baseAPI = 'http://task-management.tk';
+export const baseAPI = 'http://localhost:3000/api/v1';
 
 export const API = {
   register: '/auth/register',

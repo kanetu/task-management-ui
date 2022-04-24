@@ -1,10 +1,6 @@
+.task-board {
+  @apply relative;
 
-.task-board{
-    @apply relative;
-  & h3{
-    @apply text-2xl;
-    @apply my-4;
-  }
   &__btn {
     @apply bg-white;
     @apply shadow;
@@ -14,59 +10,92 @@
     @apply p-2;
     @apply text-white;
     @apply absolute;
-    @apply top-0;
     @apply right-0;
     @apply rounded-full;
     @apply text-black;
     @apply flex;
     @apply items-center;
-    & img{
-        @apply w-4;
+    top: -55px;
+    & img {
+      @apply w-4;
     }
-    & span{
-        @apply uppercase;
-        @apply text-xs;
-        @apply ml-2;
+    & span {
+      @apply uppercase;
+      @apply text-xs;
+      @apply ml-2;
     }
   }
-  &__wrapper{
-    @apply grid;
-    @apply grid-cols-5;
-    @apply gap-4;
-  }
-  &__col{
-    @apply h-96;
+  &__wrapper {
     @apply flex;
-    @apply flex-col;
+    @apply overflow-x-auto;
+    padding-bottom: 20px;
 
-    & h4{
-      @apply text-center;
-      @apply text-white;
-      @apply rounded;
-      @apply py-1;
+    &::-webkit-scrollbar {
+      width: 10px !important;
+      height: 10px;
+      background-color: rgb(241, 245, 249);
+      border-radius: 10px;
     }
-    &--new{
-      & h4{
-        @apply bg-gray-700
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: rgb(203, 213, 225);
+    }
+  }
+
+  &__state {
+    @apply flex;
+    @apply items-center;
+    @apply text-center;
+    @apply text-white;
+    @apply py-1;
+    font-size: 16px;
+    width: 222px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 8px;
+    color: #5b5b5b;
+    margin-bottom: 10px;
+    & span{
+      &:first-child{
+        font-weight: 500;
+        font-size: 14px;
       }
     }
-    &--in-processing{
-      & h4{
+    
+  }
+  &__divier {
+    margin: 20px 20px 28px 0;
+    border-bottom: 1px solid #c4c4c4;
+  }
+  &__col {
+    @apply flex;
+    @apply flex-col;
+    margin-right: 10px;
+    padding: 5px 10px 0 10px;
+    border-radius: 8px;
+    background: rgba(196, 196, 196, 0.2);
+    &--new {
+      & h4 {
+        @apply bg-gray-700;
+      }
+    }
+    &--in-processing {
+      & h4 {
         @apply bg-blue-700;
       }
     }
-    &--resolve{
-      & h4{
+    &--resolve {
+      & h4 {
         @apply bg-indigo-700;
       }
     }
-    &--ready-for-test{
-      & h4{
+    &--ready-for-test {
+      & h4 {
         @apply bg-yellow-700;
       }
     }
-    &--close{
-      & h4{
+    &--close {
+      & h4 {
         @apply bg-green-700;
       }
     }

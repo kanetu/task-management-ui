@@ -11,7 +11,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { TaskDetailModalComponent } from './components/task-detail-modal/task-detail-modal.component';
-import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { ProjectBoardComponent } from './components/project-board/project-board.component';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 @NgModule({
   declarations: [
@@ -20,13 +22,15 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
     TaskBoardComponent,
     TaskItemComponent,
     TaskDetailModalComponent,
+    ProjectBoardComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     NzIconModule,
     NzModalModule,
-    NzRadioModule,
+    NzTabsModule,
+    NzSelectModule,
     DragDropModule,
     ProjectRoutingModule,
     ReactiveFormsModule,

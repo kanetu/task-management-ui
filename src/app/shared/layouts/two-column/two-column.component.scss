@@ -1,0 +1,29 @@
+
+
+.column-wrapper{
+  @apply flex;
+  @apply flex-wrap;
+  @apply flex-row;
+  @apply container;
+  @apply justify-center;
+  @apply w-full;
+  @apply m-auto;
+  padding: 40px 0;
+
+  & .column-left{
+    @apply w-full;
+    @apply md:w-1/6;
+    @apply md:h-screen;
+    padding: 0 15px;
+    @apply md:p-0;
+  }
+
+  & .column-right{
+    @apply w-full;
+    @apply md:w-9/12;
+    @apply mt-4;
+    @apply ml-4;
+    padding: 15px;
+    @apply md:p-0;
+  }
+}

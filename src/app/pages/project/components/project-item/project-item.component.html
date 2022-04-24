@@ -1,14 +1,17 @@
-
-
-
-<div class="project-item">
+<div class="project-item" (click)="goIntoProject()">
   <div class="project-item__intro">
-      <span class="project-item__intro--big-letter">{{projectLetter}}</span>
-    <span class="project-item__intro--name">{{project.name}}</span>
+    <span class="project-item__intro--big-letter">{{ projectLetter }}</span>
+    <span class="project-item__intro--name">{{ project.name }}</span>
   </div>
-  <span class="project-item__desc">{{project.description}}</span>
-  <button class="project-item__view" (click)="goIntoProject()">
-    <img src="assets/icons/Enter.svg" alt="enter" />
-    <span>Enter</span>
-  </button>
+  <span class="project-item__desc">{{ project.description }}</span>
+  <div class="project-item__shortened">
+    <div class="shortened__start-date">
+      <img src="assets/icons/Schedule.svg" alt="schedule" />
+      <span>22/10/2020</span>
+    </div>
+    <div class="shortened__members">
+      <img src="assets/icons/User.svg" alt="members" />
+      <span>8</span>
+    </div>
+  </div>
 </div>

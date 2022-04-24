@@ -1,6 +1,9 @@
 <div class="project">
-  <h3 class="project__title">Project List </h3>
+  <h3 class="project__title">PROJECT</h3>
   <div class="project__list" *ngIf="(projects$ | async)?.length">
-    <app-project-item *ngFor="let project of projects$ | async" [project]="project"></app-project-item>
+    <app-project-item
+      *ngFor="let project of projects$ | async"
+      [project]="project"
+    ></app-project-item>
   </div>
 </div>

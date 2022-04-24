@@ -1,21 +1,41 @@
+<div class="task-item">
+  <span class="task-item__title">{{ data.title }}</span>
+  <span class="task-item__desc">{{ data.description }}</span>
+  <button class="task-item__btn" (click)="handleEditTask()">
+    <img src="assets/icons/ThreeDots.svg" alt="delete" />
+  </button>
+  <div class="task-item__others">
+    <div class="task-item__others__links">
+      <img src="assets/icons/Link.svg" alt="links" />
+      <span>2</span>
+    </div>
+    <div class="task-item__others__comments">
+      <img src="assets/icons/Comment.svg" alt="comments" />
+      <span>3</span>
+    </div>
+  </div>
 
-
-<div class="task-item" [formGroup]="taskForm" >
-  <span class="task-item__title">{{data.title}}</span>
-  <span class="task-item__desc">{{data.description}}</span>
-    <button class="task-item__btn" (click)="handleEditTask()">
-        <img src="assets/icons/Edit.svg" alt="delete">
-    </button>  
-  <span class="task-item__field">
-    <label class="task-item__field--label">Estimate:</label>
-    <input type="text" class="task-item__field--input" formControlName="estimate"/>
-  </span>
-  <span class="task-item__field">
-    <label class="task-item__field--label">Remaining:</label>
-    <input type="text" class="task-item__field--input" formControlName="remaining"/>
-  </span>
-  <span class="task-item__field">
-    <label class="task-item__field--label">Complete:</label>
-    <input type="text" class="task-item__field--input" formControlName="complete"/>
-  </span>
-</div>                                                                   
+  <div class="task-item__piority-members">
+    <div class="piority">Medium</div>
+    <ul class="members">
+      <li>
+        <img
+          src="https://images.generated.photos/pn-4ub1PeBlBuDILgChTqIwjBIMhxm-Ah_rzk9t0GD8/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/ODUwMDk3LmpwZw.jpg"
+          alt="photos1"
+        />
+      </li>
+      <li>
+        <img
+          src="https://images.generated.photos/bGIClhKlL6J_Dp8l3QFET_YUPNbJ4-uALgcC6iR5qBo/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MjE4MzU5LmpwZw.jpg"
+          alt="photos2"
+        />
+      </li>
+      <li>
+        <img
+          src="https://images.generated.photos/MNruB_GfAxPXKsGsawQd6gatWPG7agzvo_MLWP6adCQ/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NTk1ODE5LmpwZw.jpg"
+          alt="photos3"
+        />
+      </li>
+    </ul>
+  </div>
+</div>

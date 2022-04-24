@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { API, baseAPI } from './apis';
 
 @Injectable({
@@ -9,19 +8,12 @@ import { API, baseAPI } from './apis';
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
-  httpOptions = {
-    withCredentials: true,
-  };
 
   login(data: any) {
-    return this.http.post(baseAPI + API.login, data, this.httpOptions);
+    return this.http.post(baseAPI + API.login, data);
   }
 
   register(data: any): Observable<any> {
-    return this.http.post(
-      baseAPI + API.register,
-      data,
-      this.httpOptions
-    ) as Observable<any>;
+    return this.http.post(baseAPI + API.register, data) as Observable<any>;
   }
 }

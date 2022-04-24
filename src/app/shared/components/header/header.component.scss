@@ -1,35 +1,175 @@
-.header{
-  @apply w-full;
-  @apply md:w-1/2;
+.header {
   @apply flex;
+  @apply flex-row;
+  @apply md:flex-col;
   @apply items-center;
-  @apply justify-around;
+  @apply justify-between;
   @apply md:justify-start;
-  @apply mt-4;
-  @apply mb-8;
-  &__logo{
-    & img{
-      width: 40px;
-      height: 45px;
+  @apply md:items-start;
+
+  &--wrapper {
+  }
+
+  &__account {
+    @apply flex;
+    @apply items-center;
+    @apply justify-between;
+    @apply border;
+    @apply border-black;
+    @apply p-2;
+    @apply rounded;
+    @apply relative;
+
+    min-width: 165px;
+    & .ant-divider{
+      @apply absolute;
+      top: 15px;
+      right: 35px;
+      height: 20px;
+    }
+    &__name-title {
+      @apply flex;
+      @apply flex-col;
+      & span {
+        max-width: 150px;
+        @apply truncate;
+        font-size: 12px;
+        &:last-child {
+          @apply text-gray-400;
+          @apply capitalize;
+          font-size: 10px;
+        }
+      }
+    }
+    & a {
+      width: 25px;
+    }
+
+    &__config {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  &__logo {
+    @apply relative;
+    width: 120px;
+    margin-bottom: 35px;
+    & img {
+      width: 45px;
+      height: 75px;
+    }
+    & span {
+      @apply font-extrabold;
+      @apply uppercase;
+      @apply absolute;
+      font-size: 9px;
+      top: 62px;
+      left: 0;
     }
   }
 
-  &__menus{
-    @apply ml-8;
-    &__list{
+  &__menus {
+    @apply w-full;
+    margin-bottom: 50px;
+    &--mobile {
+      @apply absolute;
+      @apply md:hidden;
+      width: 45px;
+      height: 45px;
+      bottom: 24px;
+      left: calc(50% - 22px);
+      @apply z-40;
+      &__list {
+        @apply absolute;
+        width: 200px;
+        height: 45px;
+        bottom: 0;
+        left: calc(50% - 100px);
+        &__item {
+          @apply absolute;
+          transform-origin: 100px;
+          & a {
+            @apply px-2;
+            @apply py-2;
+            @apply hover:bg-gray-100;
+            @apply rounded-full;
+            @apply flex;
+            @apply flex-col;
+            @apply items-center;
+            @apply shadow;
+            @apply hover:shadow-lg;
+            height: 45px;
+            width: 45px;
+          }
+          & img {
+            @apply w-6;
+            @apply md:w-8;
+            @apply h-6;
+            @apply md:h-8;
+          }
+          & span {
+            @apply uppercase;
+            margin-top: 10px;
+            font-size: 10px;
+          }
+          &:nth-child(1) {
+            transform: rotate(35deg);
+            & a {
+              transform: rotate(-35deg);
+            }
+          }
+          &:nth-child(2) {
+            transform: rotate(90deg);
+            & a {
+              transform: rotate(-90deg);
+            }
+          }
+          &:nth-child(3) {
+            transform: rotate(145deg);
+            & a {
+              transform: rotate(-145deg);
+            }
+          }
+        }
+      }
+    }
+    &__btn {
+      @apply w-full;
+      @apply h-full;
       @apply flex;
+      @apply items-center;
+      @apply justify-center;
+      @apply shadow;
+      @apply hover:shadow-lg;
+      @apply text-sm;
+      @apply rounded-full;
+      @apply absolute;
+      @apply z-10;
+    }
+    &__list {
+      @apply justify-between;
+      @apply md:justify-start;
+      @apply flex-col;
+      @apply hidden;
+      @apply md:flex;
       &__item {
-        & a{
-          @apply px-4;
+        & a {
+          @apply px-2;
           @apply py-2;
           @apply hover:bg-gray-100;
           @apply rounded;
           @apply flex;
           @apply items-center;
         }
-        & img{
-          @apply w-8;
-          @apply h-8;
+        & img {
+          @apply w-6;
+          @apply md:w-8;
+          @apply h-6;
+          @apply md:h-8;
+        }
+        & span {
+          @apply uppercase;
+          @apply ml-2;
         }
       }
     }

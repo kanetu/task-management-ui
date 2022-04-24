@@ -1,57 +1,81 @@
-
-
-.task-item{
+.task-item {
   @apply flex;
   @apply flex-col;
   @apply shadow-md;
-  @apply p-2;
-  @apply my-2;
+  @apply my-px;
+  @apply md:my-2;
   @apply rounded-md;
-  @apply bg-white;
   @apply relative;
-  &__btn{
-      @apply absolute;
-        @apply right-1;
-    & img{
-        @apply w-6;
-        @apply h-6;
+  width: 222px;
+  background-color: #ffffff;
+  padding: 14px;
+  &__btn {
+    @apply absolute;
+    top: 16px;
+    right: 12px;
+    & img {
+      width: 20px;
+      height: 20px;
     }
   }
-  &__title{
-    @apply text-lg;
+  &__title {
     @apply font-semibold;
     @apply w-11/12;
+    font-size: 16px;
   }
-  &__desc{
-    @apply text-sm;
-    @apply text-gray-500;
+  &__desc {
     @apply my-2;
+    @apply hidden;
+    @apply md:block;
+    font-size: 16px;
   }
-  &__field{
-    @apply text-sm;
-    @apply relative;
+  &__others {
     @apply flex;
-    @apply items-center;
-    @apply justify-end;
-    @apply my-1;
-    &--label{
-      @apply text-sm;
-      @apply absolute;
-      @apply w-min;
-      @apply left-0;
+    & img {
+      width: 18px;
+      height: 18px;
     }
-    &--input {
-      @apply focus:ring-indigo-500;
-      @apply focus:border-indigo-500;
-      @apply block;
-      @apply w-full;
-      @apply pl-2;
-      @apply pr-2;
-      @apply py-1;
-      @apply ml-20;
-      @apply text-xs;
-      @apply border-none;
-      @apply rounded-sm;
+    & > div {
+      @apply flex;
+      @apply items-center;
+      margin-right: 14px;
+      & span {
+        margin-left: 5px;
+      }
+    }
+    &__comments {
+    }
+    &__links {
+    }
+  }
+  &__piority-members {
+    @apply flex;
+    @apply justify-between;
+    @apply items-end;
+    
+    & .piority {
+      background-color: #b46b42;
+      color: #fff;
+      padding: 5px;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 10px;
+      height: 20px;
+      @apply font-semibold;
+    }
+    & .members {
+      @apply flex;
+      @apply flex-row-reverse;
+
+      & > li {
+        margin-left: -10px;
+      }
+      & img {
+        width: 32px;
+        height: 32px;
+        border: 2px solid #fff;
+        @apply rounded-full;
+      }
     }
   }
 }

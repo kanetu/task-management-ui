@@ -1,18 +1,18 @@
 .project{
   &__title{
-    @apply my-2;
-    @apply md:my-4;
+    @apply mb-2;
+    @apply md:mb-4;
     @apply text-2xl;
-    @apply mx-2;
-    @apply sm:mx-2;
   }
   &__list{
-    @apply grid;
-    @apply grid-cols-1;
-    @apply md:grid-cols-2;
-    @apply lg:grid-cols-4;
-    @apply gap-4;
-    @apply mx-4;
     @apply my-4;
+    @apply flex;
+    @apply flex-wrap;
+
+    &::ng-deep{
+      & .project-item{
+        margin-right: 10px;
+      }
+    }
   }
 }

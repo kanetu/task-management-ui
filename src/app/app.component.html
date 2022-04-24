@@ -1,5 +1,17 @@
+<div>
+  <ng-container
+    *ngIf="router$ | async; then notauthen; else authen"
+  ></ng-container>
 
-<app-one-column *ngIf="showLayout"></app-one-column>
-<div class="container mx-auto px-16">
-  <router-outlet></router-outlet>
+  <ng-template #authen>
+    <app-two-column>
+      <div class="main-wrapper">
+        <router-outlet></router-outlet>
+      </div>
+    </app-two-column>
+  </ng-template>
+
+  <ng-template #notauthen>
+    <router-outlet></router-outlet>
+  </ng-template>
 </div>

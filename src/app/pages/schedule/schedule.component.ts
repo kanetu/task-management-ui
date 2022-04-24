@@ -19,6 +19,44 @@ export class ScheduleComponent implements OnInit, OnDestroy, AfterViewInit {
   processState$ = new Subject<boolean>();
   destroyed$ = new Subject();
 
+  selectedValue = new Date();
+
+  selectChange(select: Date): void {
+    console.log(`Select value: ${select}`);
+  }
+
+  panelChange(select: any): void {
+    console.log(`this->`, select);
+  }
+  listDataMap = {
+    eight: [
+      { type: 'warning', content: 'This is warning event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+      { type: 'success', content: 'This is usual event.' },
+    ],
+  };
+
   ngOnInit(): void {
     this.processState$
       .pipe(
@@ -26,8 +64,8 @@ export class ScheduleComponent implements OnInit, OnDestroy, AfterViewInit {
         switchMap(() =>
           this.scheduleService
             .getSchedules()
-            .pipe(map((data) => this.schedules$.next(this.formatData(data))))
-        )
+            .pipe(map((data) => this.schedules$.next(this.formatData(data)))),
+        ),
       )
       .subscribe();
   }
@@ -43,7 +81,7 @@ export class ScheduleComponent implements OnInit, OnDestroy, AfterViewInit {
     const formatDateTime = 'DD/MM/YYYY HH:mm';
     const result = data.map((item) => {
       const creator = item.users.find(
-        (user: any) => Number(user.id) === item.creator
+        (user: any) => Number(user.id) === item.creator,
       );
       return {
         ...item,

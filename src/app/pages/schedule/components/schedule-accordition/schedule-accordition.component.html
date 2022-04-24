@@ -1,0 +1,30 @@
+<div class="schedule-accord" [ngClass]="{ show: show }">
+  <div class="schedule-accord__header" (click)="toggleAccrod()">
+    <div class="schedule-accord__header-content">
+      <span>{{ data.title }}</span>
+      <div>
+        <span>10:30 AM - 11:00 AM</span>
+        <span>{{ data.description }}</span>
+      </div>
+    </div>
+    <span class="schedule-accord__header-arrow">
+      <img src="assets/icons/Arrow.svg" alt="arrow" />
+    </span>
+  </div>
+  <div class="schedule-accord__content">
+    <div class="schedule-accord__content-row">
+      <span> Creator: </span>
+      <span>{{ data.creator }}</span>
+    </div>
+    <div class="schedule-accord__content-row">
+      <span> Place: </span>
+
+      <span>{{ data.place }}</span>
+    </div>
+    <div
+      class="schedule-accord__content-row schedule-accord__content-row--desc"
+    >
+      {{ data.description }}
+    </div>
+  </div>
+</div>

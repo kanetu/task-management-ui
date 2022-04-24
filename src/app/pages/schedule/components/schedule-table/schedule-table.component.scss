@@ -1,4 +1,6 @@
 .schedule-table{
+  @apply hidden;
+  @apply md:block;
   & ::ng-deep{
     & .ant-table-thead{
       & tr > th > span {

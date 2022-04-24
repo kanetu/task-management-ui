@@ -9,12 +9,15 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { ScheduleDetailModalComponent } from './components/schedule-detail-modal/schedule-detail-modal.component';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { ScheduleAccorditionComponent } from './components/schedule-accordition/schedule-accordition.component';
+import { NzCalendarModule } from 'ng-zorro-antd/calendar';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
 @NgModule({
   declarations: [
     ScheduleComponent,
     ScheduleTableComponent,
     ScheduleDetailModalComponent,
+    ScheduleAccorditionComponent,
   ],
   imports: [
     CommonModule,
@@ -24,11 +27,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     NzDividerModule,
     NzIconModule,
     NzModalModule,
+    NzCalendarModule,
+    NzBadgeModule,
   ],
   exports: [
     ScheduleComponent,
     ScheduleTableComponent,
     ScheduleDetailModalComponent,
+    ScheduleAccorditionComponent,
   ],
 })
 export class ScheduleModule {}

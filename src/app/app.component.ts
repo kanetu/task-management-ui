@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { NavigationEnd, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +11,12 @@ import { filter } from 'rxjs/operators';
 export class AppComponent implements OnInit {
   constructor(private router: Router) {}
 
-  showLayout: boolean;
+  router$: Observable<boolean | undefined> = this.router.events.pipe(
+    filter((event) => event instanceof NavigationEnd),
+    map((data: any) => {
+      return ['/welcome/login', '/welcome/register'].includes(data.url);
+    }),
+  );
 
-  ngOnInit(): void {
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((data) => {
-        if (data instanceof NavigationEnd) {
-          this.showLayout = !['/login', '/register'].includes(data.url);
-        }
-      });
-  }
+  ngOnInit(): void {}
 }

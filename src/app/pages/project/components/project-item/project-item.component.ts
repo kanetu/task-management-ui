@@ -19,6 +19,6 @@ export class ProjectItemComponent implements OnInit {
   }
 
   goIntoProject(): void {
-    this.router.navigate([`/project/${this.project.id}/task`]);
+    this.router.navigate([`/project/${this.project.id}/view`]);
   }
 }

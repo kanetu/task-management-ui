@@ -3,7 +3,13 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map, switchMap, takeUntil, tap, timeout } from 'rxjs/operators';
@@ -18,6 +24,8 @@ import { TaskService } from 'src/app/shared/services/task.service';
   styleUrls: ['./task-board.component.scss'],
 })
 export class TaskBoardComponent implements OnInit {
+  @ViewChild('taskBoardWrapper', { static: true }) taskBoardWrapper: ElementRef;
+  @ViewChild('scrollbarPseudo', { static: true }) scrollbarPseudo: ElementRef;
   taskNewData: Task[] = [];
   taskInProcessingData: Task[] = [];
   taskResolveData: Task[] = [];
@@ -32,7 +40,8 @@ export class TaskBoardComponent implements OnInit {
   constructor(
     private activateRoute: ActivatedRoute,
     private projectService: ProjectService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +52,7 @@ export class TaskBoardComponent implements OnInit {
         .getProject(projectId)
         .pipe(
           takeUntil(this.destroyed$),
-          map((project) => this.dettachTaskBaseStatus(project))
+          map((project) => this.dettachTaskBaseStatus(project)),
         )
         .subscribe();
 
@@ -52,11 +61,18 @@ export class TaskBoardComponent implements OnInit {
           switchMap(() =>
             this.projectService
               .getProject(projectId)
-              .pipe(map((project) => this.dettachTaskBaseStatus(project)))
-          )
+              .pipe(map((project) => this.dettachTaskBaseStatus(project))),
+          ),
         )
         .subscribe();
     }
+  }
+
+  ngAfterViewInit() {
+    console.log('this->', this.taskBoardWrapper.nativeElement.clientWidth);
+    this.scrollbarPseudo.nativeElement.style.width =
+      this.taskBoardWrapper.nativeElement.clientWidth;
+    this.cdr.detectChanges();
   }
 
   ngOnDestroy() {
@@ -66,16 +82,16 @@ export class TaskBoardComponent implements OnInit {
   dettachTaskBaseStatus(project: Project): void {
     this.taskNewData = project.tasks.filter((task) => task.status === 'New');
     this.taskInProcessingData = project.tasks.filter(
-      (task) => task.status === 'In processing'
+      (task) => task.status === 'In processing',
     );
     this.taskResolveData = project.tasks.filter(
-      (task) => task.status === 'Resolve'
+      (task) => task.status === 'Resolve',
     );
     this.taskReadyForTestData = project.tasks.filter(
-      (task) => task.status === 'Ready for test'
+      (task) => task.status === 'Ready for test',
     );
     this.taskCloseData = project.tasks.filter(
-      (task) => task.status === 'Close'
+      (task) => task.status === 'Close',
     );
   }
 
@@ -106,7 +122,7 @@ export class TaskBoardComponent implements OnInit {
       moveItemInArray(
         event.container.data,
         event.previousIndex,
-        event.currentIndex
+        event.currentIndex,
       );
     } else {
       this.taskService
@@ -117,14 +133,14 @@ export class TaskBoardComponent implements OnInit {
           takeUntil(this.destroyed$),
           map(() => {
             this.processState$.next(true);
-          })
+          }),
         )
         .subscribe();
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex
+        event.currentIndex,
       );
     }
   }

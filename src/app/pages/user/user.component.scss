@@ -1,11 +1,16 @@
-.user{
-  & h3{
-    @apply text-2xl;
-    @apply my-4;
+.user {
+  & h3 {
+    margin-right: 10px;
+    @apply mb-2;
   }
-  &__wrapper{
-    @apply grid;
-    @apply grid-cols-5;
-    @apply gap-4;
+  &__wrapper {
+    @apply flex;
+    @apply flex-wrap;
+
+    ::ng-deep {
+      & .user-item {
+        margin-right: 10px;
+      }
+    }
   }
 }

@@ -26,14 +26,13 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
   });
 
   destroyed$ = new Subject();
-  scheduleTitle: string;
   scheduleId: string;
   open: boolean;
   openMode: string;
   formatDate = 'DD/MM/YYYY HH:mm';
   constructor(
     private formBuilder: FormBuilder,
-    private scheduleService: ScheduleService
+    private scheduleService: ScheduleService,
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +42,6 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
         map((data) => {
           if (data === 'ADD') {
             this.openMode = 'ADD';
-            this.scheduleTitle = 'Add Schedule';
             this.scheduleForm.reset();
             this.scheduleForm.patchValue({
               timeStart: moment().format(this.formatDate),
@@ -52,7 +50,7 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
           }
           this.openMode = data;
           this.open = ['EDIT', 'ADD'].includes(data);
-        })
+        }),
       )
       .subscribe();
 
@@ -60,7 +58,6 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroyed$),
         map((data) => {
-          this.scheduleTitle = `Schedule: ${data.title}`;
           this.scheduleId = data.id;
 
           this.scheduleForm.patchValue({
@@ -70,7 +67,7 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
             timeStart: data.timeStart,
             timeEnd: data.timeEnd,
           });
-        })
+        }),
       )
       .subscribe();
   }
@@ -82,12 +79,12 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
   handleSave(): void {
     const timeStart = moment(
       this.scheduleForm.controls['timeStart'].value,
-      this.formatDate
+      this.formatDate,
     );
 
     const timeEnd = moment(
       this.scheduleForm.controls['timeEnd'].value,
-      this.formatDate
+      this.formatDate,
     );
     if (this.openMode === 'ADD') {
       this.scheduleService
@@ -96,7 +93,7 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
           takeUntil(this.destroyed$),
           tap(() => {
             this.processState$.next(true);
-          })
+          }),
         )
         .subscribe();
     } else {
@@ -110,7 +107,7 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
           takeUntil(this.destroyed$),
           tap(() => {
             this.processState$.next(true);
-          })
+          }),
         )
         .subscribe();
     }

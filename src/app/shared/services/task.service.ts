@@ -10,23 +10,17 @@ import { API, baseAPI } from './apis';
 export class TaskService {
   constructor(private http: HttpClient) {}
 
-  httpOptions = {
-    withCredentials: true,
-  };
-
   createTask(projectId: string, body: any): Observable<Task> {
     return this.http.post(
       baseAPI + API.addTask.replace('{{projectId}}', projectId),
-      body,
-      this.httpOptions
+      body
     ) as Observable<Task>;
   }
 
   updateTask(taskId: string, body: any): Observable<Task> {
     return this.http.put(
       baseAPI + API.updateTask.replace('{{taskId}}', taskId),
-      body,
-      this.httpOptions
+      body
     ) as Observable<never>;
   }
 }

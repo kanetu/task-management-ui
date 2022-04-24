@@ -1,0 +1,8 @@
+<div class="project-board">
+  <h3 *ngIf="project$ | async; let project">PROJECT / {{ project.name }}</h3>
+  <nz-tabset>
+    <nz-tab nzTitle="Task board"><app-task-board></app-task-board></nz-tab>
+    <nz-tab nzTitle="About">About!</nz-tab>
+    <nz-tab nzTitle="Members">Members!</nz-tab>
+  </nz-tabset>
+</div>

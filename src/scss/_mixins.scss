@@ -1,0 +1,27 @@
+ @mixin screen($break-point) {
+  @if $break-point == 'sm' {
+    @media (min-width: 640px){
+      @content;
+    }
+  }
+  @if $break-point == 'md' {
+    @media (min-width: 768px){
+      @content;
+    }
+  }  
+  @if $break-point == 'lg' {
+    @media (min-width: 1024px){
+      @content;
+    }
+  }
+  @if $break-point == 'xl' {
+    @media (min-width: 1280px){
+      @content;
+    }
+  }
+  @if $break-point == '2xl' {
+    @media (min-width:  1536px){
+      @content;
+    }
+  } 
+} 

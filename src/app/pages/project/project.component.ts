@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 import { Project } from 'src/app/shared/models/project.model';
 import { ProjectService } from 'src/app/shared/services/project.service';
 
@@ -10,15 +9,9 @@ import { ProjectService } from 'src/app/shared/services/project.service';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-  projects$: Observable<Project[]>;
+  projects$: Observable<Project[]> = this.projectService.getAllProject();
 
   constructor(private projectService: ProjectService) {}
 
-  ngOnInit(): void {
-    this.projects$ = this.projectService.getAllProject().pipe(
-      tap((data) => {
-        console.log(data);
-      })
-    );
-  }
+  ngOnInit(): void {}
 }

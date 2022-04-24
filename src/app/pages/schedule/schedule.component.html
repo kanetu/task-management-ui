@@ -1,18 +1,48 @@
-
-
-
 <div clsas="schedule">
   <div class="schedule__wrapper">
-    <h3>Schedule
-    <button class="btn-add-schedule" (click)="openAddSchedule()">
-    <img src="assets/icons/Add.svg" alt="add-schedule">
-    <span>Add Schedule</span>
-  </button>  
+    <h3>
+      SCHEDULE
+      <button class="btn-add-schedule" (click)="openAddSchedule()">
+        <img src="assets/icons/Add.svg" alt="add-schedule" />
+        <span>Add Schedule</span>
+      </button>
     </h3>
-  
-    <div class="schedule__table" >
-        <app-schedule-table  [data$]="schedules$" [scheduleEditData$]="scheduleEditData$" [openEditSchedule$]="openModal$"> </app-schedule-table>
+
+    <div class="schedule__table">
+      <!-- <app-schedule-table -->
+      <!--   [data$]="schedules$" -->
+      <!--   [scheduleEditData$]="scheduleEditData$" -->
+      <!--   [openEditSchedule$]="openModal$" -->
+      <!-- > -->
+      <!-- </app-schedule-table> -->
+
+      <div class="schedule__tasks">
+        <app-schedule-accordition
+          *ngFor="let item of schedules$ | async"
+          [data]="item"
+        ></app-schedule-accordition>
+      </div>
+      <div class="schedule__calendar">
+        <nz-calendar
+          (nzPanelChange)="panelChange($event)"
+          (nzSelectChange)="selectChange($event)"
+        >
+          <ul *nzDateCell="let date">
+            <ng-container [ngSwitch]="date.getDate()">
+              <ng-container *ngSwitchCase="8">
+                <li *ngFor="let item of listDataMap.eight">
+                  <nz-badge [nzStatus]="item.type"></nz-badge>
+                </li>
+              </ng-container>
+            </ng-container>
+          </ul>
+        </nz-calendar>
+      </div>
     </div>
-    <app-schedule-detail-modal [open$]="openModal$" [scheduleEditData$]="scheduleEditData$" [processState$]="processState$" ></app-schedule-detail-modal>
+    <app-schedule-detail-modal
+      [open$]="openModal$"
+      [scheduleEditData$]="scheduleEditData$"
+      [processState$]="processState$"
+    ></app-schedule-detail-modal>
   </div>
 </div>

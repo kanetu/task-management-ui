@@ -39,10 +39,18 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
     complete: [''],
     remaining: [''],
   });
+
+  listOfOption = [
+    { label: 'New', value: 'New' },
+    { label: 'In processing', value: 'In process' },
+    { label: 'Resolve', value: 'Resolve' },
+    { label: 'Close', value: 'Close' },
+    { label: 'Ready for test', value: 'Ready for test' },
+  ];
   constructor(
     private formBuilder: FormBuilder,
     private taskService: TaskService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
@@ -66,7 +74,7 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
           }
 
           this.openMode = data;
-        })
+        }),
       )
       .subscribe();
 
@@ -85,7 +93,7 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
             complete: data.complete,
             remaining: data.remaining,
           });
-        })
+        }),
       )
       .subscribe();
   }
@@ -102,7 +110,7 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
           takeUntil(this.destroyed$),
           map(() => {
             this.processState$.next(true);
-          })
+          }),
         )
         .subscribe();
     } else {
@@ -112,7 +120,7 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
           takeUntil(this.destroyed$),
           map(() => {
             this.processState$.next(true);
-          })
+          }),
         )
         .subscribe();
     }

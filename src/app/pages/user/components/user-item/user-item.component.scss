@@ -1,44 +1,34 @@
-.user-item{
-  @apply w-full;
+.user-item {
   @apply shadow-lg;
   @apply bg-white;
-  @apply p-4;
   @apply rounded-lg;
   @apply flex;
   @apply flex-col;
   @apply items-center;
-  &__logo{
-    & img{
-      @apply rounded-full;
-      @apply w-20;
-      @apply h-20;
-      @apply object-cover;
-    }
-  }
-  &__name{
-    @apply text-xl;
-    @apply my-2;
-  }
-  &__actions{
-    @apply flex;
-    @apply items-center;
-    @apply justify-between;
+  width: 202px;
+  &__logo {
     @apply w-full;
-    @apply mt-2;
-  }
-  &__btn{
-    @apply text-sm;
-    @apply rounded;
-    @apply text-white;
-    @apply shadow;
-    @apply p-1;
-    @apply hover:shadow-lg;
     & img {
-      @apply w-6;
-      @apply h-6;
+      @apply w-full;
+      @apply object-cover;
+      border-radius: 8px 8px 0 0;
+      height: 105px;
     }
-    &--edit{
-      @apply mr-4;
-    }
+  }
+  &__desc {
+    @apply h-full;
+    @apply w-full;
+    @apply capitalize;
+    @apply flex;
+    @apply flex-col;
+    padding: 0 10px;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  &__name {
+    @apply font-medium;
+  }
+  &__role {
+    color: #797979;
   }
 }

@@ -10,30 +10,23 @@ import { API, baseAPI } from './apis';
 export class ScheduleService {
   constructor(private http: HttpClient) {}
 
-  httpOptions = {
-    withCredentials: true,
-  };
-
   getSchedules(): Observable<Schedule[]> {
-    return this.http.get(
-      baseAPI + API.getAllSchedule,
-      this.httpOptions
-    ) as Observable<Schedule[]>;
+    return this.http.get(baseAPI + API.getAllSchedule) as Observable<
+      Schedule[]
+    >;
   }
 
   createSchedule(data: any): Observable<Schedule> {
     return this.http.post(
       baseAPI + API.addSchedule,
-      data,
-      this.httpOptions
+      data
     ) as Observable<Schedule>;
   }
 
   updateSchedule(scheduleId: string, data: any): Observable<Schedule> {
     return this.http.put(
       baseAPI + API.updateSchedule.replace('{{scheduleId}}', scheduleId),
-      data,
-      this.httpOptions
+      data
     ) as Observable<Schedule>;
   }
 }

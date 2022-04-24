@@ -1,54 +1,72 @@
-.project-item{
+.project-item {
   @apply flex;
   @apply flex-col;
   @apply rounded-lg;
   @apply items-center;
   @apply shadow;
   @apply items-end;
-  &__intro{
+  @apply cursor-pointer;
+  width: 225px;
+  height: 150px;
+  &__intro {
     @apply w-full;
     @apply flex;
     @apply mb-2;
     @apply items-center;
 
-    &--big-letter{
-      @apply text-2xl;
-      @apply rounded-r-lg;
+    &--big-letter {
       @apply bg-gray-400;
-      @apply h-10;
-      @apply w-10;
       @apply flex;
       @apply text-white;
       @apply items-center;
       @apply justify-center;
+      border-radius: 8px 0 8px 0;
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
     }
-    &--name{
+    &--name {
       @apply ml-3;
-      @apply text-xl;
+      @apply font-medium;
+      font-size: 18px;
     }
   }
-  &__desc{
+  &__desc {
     @apply px-4;
-    @apply py-2;
-    @apply text-sm;
     @apply w-full;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 14px;
+    @apply flex-grow;
   }
-  &__view{
-    @apply text-sm;
-    @apply rounded;
-    @apply text-black;
-    @apply shadow;
-    @apply p-2;
-    @apply mr-2;
-    @apply mb-2;
+
+  &__shortened {
+    @apply w-full;
     @apply flex;
-    @apply hover:shadow-lg;
-    & span{
-      @apply ml-2;
+    @apply justify-between;
+    padding: 12px;
+    & span {
+      margin-left: 6px;
+      font-size: 12px;
+    }
+    & .shortened {
+      &__start-date {
+        @apply flex;
+        @apply items-center;
+      }
+      &__members {
+        @apply flex;
+        @apply items-center;
+        & span {
+          padding: 2px 10px;
+          background: rgba(196, 196, 196, 0.5);
+          border-radius: 8px;
+        }
+      }
     }
     & img {
-      @apply w-5;
-      @apply h-5;
+      width: 22px;
+      height: 22px;
     }
   }
 }

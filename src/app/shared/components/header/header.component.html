@@ -1,16 +1,79 @@
-
-<div class="container px-16 mx-auto">
+<div class="header--wrapper">
   <div class="header">
-  <div class="header__logo">
-    <img src="assets/Logo.svg" alt="logo">
-  </div>
-  <div class="header__menus">
-    <ul class="header__menus__list">
-      <li class="header__menus__list__item"><a routerLink="/project" routerLinkActive="active"> <img src="assets/icons/Project.svg" alt="project"><span>Project</span></a></li>
-      <li class="header__menus__list__item"><a routerLink="/schedule" routerLinkActive="active"><img src="assets/icons/Schedule.svg" alt="schedule"><span>Schedule</span></a></li>
-      <li class="header__menus__list__item"><a routerLink="/user" routerLinkActive="active"> <img src="assets/icons/User.svg" alt="schedule"><span>User</span></a></li>
-    </ul>
-  </div>
+    <div class="header__logo">
+      <img src="assets/Logo.svg" alt="logo" />
+      <span>KaneBan</span>
+    </div>
+    <div class="header__menus">
+      <ul class="header__menus__list">
+        <li class="header__menus__list__item">
+          <a routerLink="/project" routerLinkActive="active">
+            <img src="assets/icons/Project.svg" alt="project" /><span
+              >Project</span
+            ></a
+          >
+        </li>
+        <li class="header__menus__list__item">
+          <a routerLink="/schedule" routerLinkActive="active"
+            ><img src="assets/icons/Schedule.svg" alt="schedule" /><span
+              >Schedule</span
+            ></a
+          >
+        </li>
+        <li class="header__menus__list__item">
+          <a routerLink="/user" routerLinkActive="active">
+            <img src="assets/icons/User.svg" alt="schedule" /><span
+              >User</span
+            ></a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <div class="header__account">
+      <div class="header__account__name-title">
+        <span>Kane Tu</span>
+        <span>Administrator</span>
+      </div>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+        <img class="header__account__config" src="assets/icons/Config.svg" />
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item>Account</li>
+          <li nz-menu-item>Logout</li>
+        </ul>
+      </nz-dropdown-menu>
+    </div>
+
+    <div class="header__menus--mobile">
+      <button class="header__menus__btn" (click)="onShowMenuOptions()">
+        <img src="assets/icons/Navigation.svg" alt="navigation" />
+      </button>
+      <ul class="header__menus--mobile__list" *ngIf="showMenuOptions">
+        <li class="header__menus--mobile__list__item">
+          <a routerLink="/project" routerLinkActive="active">
+            <img src="assets/icons/Project.svg" alt="project" /><span
+              >Project</span
+            ></a
+          >
+        </li>
+        <li class="header__menus--mobile__list__item">
+          <a routerLink="/schedule" routerLinkActive="active"
+            ><img src="assets/icons/Schedule.svg" alt="schedule" /><span
+              >Schedule</span
+            ></a
+          >
+        </li>
+        <li class="header__menus--mobile__list__item">
+          <a routerLink="/user" routerLinkActive="active">
+            <img src="assets/icons/User.svg" alt="schedule" /><span
+              >User</span
+            ></a
+          >
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
-
