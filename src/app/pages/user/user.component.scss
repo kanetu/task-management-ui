@@ -1,7 +1,7 @@
 .user {
   & h3 {
-    margin-right: 10px;
-    @apply mb-2;
+    @apply text-2xl;
+    @apply my-2;
   }
   &__wrapper {
     @apply flex;

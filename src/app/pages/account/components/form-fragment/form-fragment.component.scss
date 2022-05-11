@@ -1,0 +1,78 @@
+
+@import "scss/_mixins";
+.form-fr {
+  @apply flex;
+  @apply flex-wrap;
+  @applt flex-col;
+  margin-top: 60px;
+
+  &__group {
+    @apply w-full;
+    @apply flex;
+    @apply flex-wrap;
+  }
+  &__item {
+    flex-basis: 350px;
+    flex-shrink: 0;
+    margin-bottom: 18px;
+    margin-right: 20px;
+    label {
+      @apply font-semibold;
+      @apply flex;
+      @apply items-center;
+      > img {
+        width: 12px;
+        height: 12px;
+        @apply ml-1;
+      }
+    }
+    .ant-picker {
+      @apply rounded-md;
+      @apply py-2;
+      @apply px-5;
+      margin-top: 10px;
+      width: 100%;
+      @include screen(md){
+        width: initial;
+      }
+      ::ng-deep {
+        .ant-picker-input {
+          > input {
+            line-height: 1.25rem;
+          }
+        }
+      }
+    }
+    input {
+      @apply w-full;
+      @apply block;
+      @apply text-sm;
+      @apply text-black;
+      @apply placeholder-gray-500;
+      @apply border;
+      @apply border-gray-200;
+      @apply rounded-md;
+      @apply py-2;
+      @apply px-5;
+      margin-top: 10px;
+    }
+  }
+
+  &__actions {
+    @apply w-full;
+    @apply flex;
+    @apply justify-end;
+    button {
+      &.ant-btn-primary {
+        margin-top: 16px;
+        background: var(--primary-color);
+        border-radius: 8px;
+        @apply border-none;
+        @apply font-semibold;
+      }
+    }
+  }
+  app-delete-account{
+    @apply w-full;
+  }
+}

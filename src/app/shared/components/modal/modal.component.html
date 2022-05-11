@@ -1,0 +1,19 @@
+<nz-modal
+  [nzVisible]="visible"
+  (nzOnCancel)="handleOnCancel()"
+  [nzFooter]="null"
+  nzClassName="modal-wrapper"
+  nzWidth="750px"
+>
+  <ng-container *nzModalContent>
+    <div class="modal">
+      <ng-content></ng-content>
+      <div class="modal__actions">
+        <button (click)="handleOnOk()">
+          <img src="/assets/icons/Save.svg" alt="Save" />
+          <span>Save</span>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

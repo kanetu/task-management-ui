@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +12,6 @@ export class HeaderComponent implements OnInit {
 
   onShowMenuOptions() {
     this.showMenuOptions = !this.showMenuOptions;
-    console.log('this');
   }
 
   ngOnInit(): void {}

@@ -21,7 +21,7 @@
     @apply relative;
 
     min-width: 165px;
-    & .ant-divider{
+    & .ant-divider {
       @apply absolute;
       top: 15px;
       right: 35px;
@@ -43,11 +43,6 @@
     }
     & a {
       width: 25px;
-    }
-
-    &__config {
-      width: 25px;
-      height: 25px;
     }
   }
   &__logo {

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScheduleTableComponent } from './schedule-table.component';
+import { AvatarFragmentComponent } from './avatar-fragment.component';
 
-describe('ScheduleTableComponent', () => {
-  let component: ScheduleTableComponent;
-  let fixture: ComponentFixture<ScheduleTableComponent>;
+describe('AvatarFragmentComponent', () => {
+  let component: AvatarFragmentComponent;
+  let fixture: ComponentFixture<AvatarFragmentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ScheduleTableComponent ]
+      declarations: [ AvatarFragmentComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ScheduleTableComponent);
+    fixture = TestBed.createComponent(AvatarFragmentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

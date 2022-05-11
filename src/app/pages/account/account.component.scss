@@ -1,0 +1,7 @@
+.account {
+  &__title {
+    @apply mb-2;
+    @apply md:mb-4;
+    @apply text-2xl;
+  }
+}

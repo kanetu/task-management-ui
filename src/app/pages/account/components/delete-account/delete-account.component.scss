@@ -1,0 +1,34 @@
+
+.delete-account {
+  @apply w-full;
+  @apply flex;
+  @apply items-center;
+  @apply justify-between;
+  margin-top: 50px;
+  padding: 30px 0;
+  border-top: 1px solid var(--neutral-color-black);
+  border-bottom: 1px solid var(--neutral-color-black);
+  &__content {
+    @apply mr-5;
+    @apply md:mr-0;
+    span {
+      &:first-child {
+        @apply font-semibold;
+        @apply block;
+        @apply mb-1;
+      }
+      &:last-child{
+        color: var(--neutral-color-2);
+      }
+    }
+  }
+  button {
+    &.ant-btn {
+      background: var(--error-color);
+      color: var(--neutral-color-white);
+      border-radius: 8px;
+      @apply border-none;
+      @apply font-semibold;
+    }
+  }
+}

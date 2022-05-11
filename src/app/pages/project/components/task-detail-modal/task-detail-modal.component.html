@@ -1,65 +1,49 @@
-<nz-modal
-  [nzVisible]="open"
-  (nzOnOk)="handleSave()"
-  (nzOnCancel)="handleCancel()"
-  [nzFooter]="null"
-  nzClassName="modal-wrapper"
-  nzWidth="750px"
->
-  <ng-container *nzModalContent>
-    <div class="modal__wrapper" [formGroup]="taskForm">
-      <div class="modal__column">
-        <div class="modal__column--main">
-          <div class="modal__field">
-            <label class="modal__field--label">Title</label>
-            <input class="modal__field--input" formControlName="title" />
-          </div>
-          <div class="modal__field">
-            <label class="modal__field--label">Description</label>
-            <textarea
-              class="modal__field--textarea"
-              formControlName="description"
-              rows="5"
-            ></textarea>
-          </div>
+<app-modal [visible]="open" (onOk)="handleSave()" (onCancel)="handleCancel()">
+  <div class="modal__wrapper" [formGroup]="taskForm">
+    <div class="modal__column">
+      <div class="modal__column--main">
+        <div class="modal__field">
+          <label class="modal__field--label">Title</label>
+          <input class="modal__field--input" formControlName="title" />
         </div>
-        <div class="modal__column--sub">
-          <div class="modal__field">
-            <label class="modal__field--label">Estimate</label>
-            <input class="modal__field--input" formControlName="estimate" />
-          </div>
-          <div class="modal__field">
-            <label class="modal__field--label">Remaining</label>
-            <input class="modal__field--input" formControlName="remaining" />
-          </div>
-          <div class="modal__field">
-            <label class="modal__field--label">Complete</label>
-            <input class="modal__field--input" formControlName="complete" />
-          </div>
+        <div class="modal__field">
+          <label class="modal__field--label">Description</label>
+          <textarea
+            class="modal__field--textarea"
+            formControlName="description"
+            rows="5"
+          ></textarea>
         </div>
       </div>
-
-      <div class="modal__field">
-        <label class="modal__field--label">Status</label>
-        <nz-select
-          nzShowSearch
-          formControlName="status"
-          class="modal__field--select"
-        >
-          <nz-option
-            *ngFor="let o of listOfOption"
-            [nzLabel]="o.label"
-            [nzValue]="o.value"
-          ></nz-option>
-        </nz-select>
-      </div>
-
-      <div class="modal__actions">
-        <button>
-          <img src="/assets/icons/Save.svg" alt="Save" />
-          <span>Save</span>
-        </button>
+      <div class="modal__column--sub">
+        <div class="modal__field">
+          <label class="modal__field--label">Estimate</label>
+          <input class="modal__field--input" formControlName="estimate" />
+        </div>
+        <div class="modal__field">
+          <label class="modal__field--label">Remaining</label>
+          <input class="modal__field--input" formControlName="remaining" />
+        </div>
+        <div class="modal__field">
+          <label class="modal__field--label">Complete</label>
+          <input class="modal__field--input" formControlName="complete" />
+        </div>
       </div>
     </div>
-  </ng-container>
-</nz-modal>
+
+    <div class="modal__field">
+      <label class="modal__field--label">Status</label>
+      <nz-select
+        nzShowSearch
+        formControlName="status"
+        class="modal__field--select"
+      >
+        <nz-option
+          *ngFor="let o of listOfOption"
+          [nzLabel]="o.label"
+          [nzValue]="o.value"
+        ></nz-option>
+      </nz-select>
+    </div>
+  </div>
+</app-modal>

@@ -36,15 +36,7 @@
         <span>Administrator</span>
       </div>
       <nz-divider nzType="vertical"></nz-divider>
-      <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
-        <img class="header__account__config" src="assets/icons/Config.svg" />
-      </a>
-      <nz-dropdown-menu #menu="nzDropdownMenu">
-        <ul nz-menu>
-          <li nz-menu-item>Account</li>
-          <li nz-menu-item>Logout</li>
-        </ul>
-      </nz-dropdown-menu>
+      <app-dropdown></app-dropdown>
     </div>
 
     <div class="header__menus--mobile">

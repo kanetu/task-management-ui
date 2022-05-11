@@ -1,0 +1,39 @@
+<div class="form-fr" [formGroup]="accountForm">
+  <div class="form-fr__group">
+    <div class="form-fr__item">
+      <label for="displayName"
+        >Display Name
+        <img
+          src="assets/icons/Question.svg"
+          alt="question-hint"
+          nzTooltipTitle="This text will be displayed in the whole application."
+          nzTooltipPlacement="right"
+          nz-button
+          nz-tooltip
+        />
+      </label>
+      <input nz-input name="displayName" formControlName="displayName" />
+    </div>
+    <div class="form-fr__item">
+      <label for="">Birth Day</label>
+      <nz-date-picker formControlName="birthDay"></nz-date-picker>
+    </div>
+  </div>
+
+  <div class="form-fr__group">
+    <div class="form-fr__item">
+      <label for="">Email Address</label>
+      <input nz-input formControlName="emailAddress" />
+    </div>
+    <div class="form-fr__item">
+      <label for="">Phone Number</label>
+      <input nz-input formControlName="phoneNumber" />
+    </div>
+  </div>
+
+  <app-delete-account></app-delete-account>
+
+  <div class="form-fr__actions">
+    <button nz-button nzType="primary" (click)="onSave()">Save Changes</button>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+@import 'scss/_mixins';
+
+.avatar-fr {
+  @apply flex;
+  @apply flex-wrap;
+  @apply mt-5;
+  @apply md:mt-0;
+  
+  &__avatar {
+    margin-bottom: 20px;
+    @include screen(md) {
+      margin-bottom: 0;
+      margin-right: 40px;
+    }
+
+    img {
+      width: 180px;
+      height: 180px;
+      border-radius: 15px;
+    }
+  }
+  &__set-avatar {
+    @include screen(md) {
+      flex-basis: 250px;
+      @apply flex-shrink-0;
+    }
+    label {
+      @apply flex;
+      @apply items-center;
+      @apply font-semibold;
+      > img {
+        @apply ml-1;
+        width: 12px;
+        height: 12px;
+      }
+    }
+    input {
+      @apply w-full;
+      @apply block;
+      @apply text-sm;
+      @apply text-black;
+      @apply placeholder-gray-500;
+      @apply border;
+      @apply border-gray-200;
+      @apply rounded-md;
+      @apply py-2;
+      @apply px-5;
+      margin-top: 16px;
+    }
+    button {
+      &.ant-btn-primary {
+        margin-top: 16px;
+        background: var(--primary-color);
+        border-radius: 8px;
+        @apply border-none;
+        @apply font-semibold;
+      }
+    }
+  }
+}

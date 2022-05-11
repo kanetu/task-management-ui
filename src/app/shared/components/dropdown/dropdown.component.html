@@ -1,0 +1,16 @@
+<a
+  nz-dropdown
+  nzTrigger="click"
+  nzPlacement="bottomCenter"
+  [nzDropdownMenu]="menu"
+  nzOverlayClassName="dropdown__overlay"
+>
+  <img class="dropdown__icon" src="assets/icons/Config.svg" />
+</a>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu class="dropdown__ul">
+    <li nz-menu-item *ngFor="let option of options" [routerLink]="option.value" >
+      {{ option.text }}
+    </li>
+  </ul>
+</nz-dropdown-menu>
