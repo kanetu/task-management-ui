@@ -1,5 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { Project } from 'src/app/shared/models/project.model';
 
 @Component({
@@ -12,10 +20,14 @@ export class ProjectItemComponent implements OnInit {
 
   projectLetter: string;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    @Inject('MomentWrapper') private momentWrapper: any,
+  ) {}
 
   ngOnInit(): void {
     this.projectLetter = this.project.name[0];
+    console.log(this.momentWrapper());
   }
 
   goIntoProject(): void {

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../models/user.model';
+import { IFilterUserRequest } from '../models/requests/IFitlerUserRequest';
+import { IFilterUserResponse } from '../models/responses/IFitlerUserResponse';
 import { API, baseAPI } from './apis';
 
 @Injectable({
@@ -10,7 +11,10 @@ import { API, baseAPI } from './apis';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  getAllUser(): Observable<User[]> {
-    return this.http.get(baseAPI + API.getAllUser) as Observable<User[]>;
+  filterUser(payload: IFilterUserRequest): Observable<IFilterUserResponse> {
+    return this.http.post(
+      baseAPI + API.filterUser,
+      payload,
+    ) as Observable<IFilterUserResponse>;
   }
 }

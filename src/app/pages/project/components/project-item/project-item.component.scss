@@ -1,3 +1,5 @@
+@import 'scss/_mixins';
+
 .project-item {
   @apply flex;
   @apply flex-col;
@@ -6,8 +8,12 @@
   @apply shadow;
   @apply items-end;
   @apply cursor-pointer;
-  width: 225px;
   height: 150px;
+  @apply w-full;
+  @include screen(md) {
+    width: 225px;
+    height: 150px;
+  }
   &__intro {
     @apply w-full;
     @apply flex;

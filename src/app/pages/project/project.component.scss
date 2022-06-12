@@ -1,17 +1,23 @@
-.project{
-  &__title{
+.project {
+  &__title {
     @apply mb-2;
     @apply md:mb-4;
     @apply text-2xl;
   }
-  &__list{
+  &__list {
     @apply my-4;
     @apply flex;
     @apply flex-wrap;
 
-    &::ng-deep{
-      & .project-item{
-        margin-right: 10px;
+    &::ng-deep {
+      & app-project-item {
+        @apply mb-5;
+        @apply md:mb-0;
+        @apply w-full;
+        @apply md:w-auto;
+        .project-item {
+          margin-right: 10px;
+        }
       }
     }
   }

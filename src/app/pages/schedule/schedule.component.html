@@ -9,13 +9,6 @@
     </h3>
 
     <div class="schedule__table">
-      <!-- <app-schedule-table -->
-      <!--   [data$]="schedules$" -->
-      <!--   [scheduleEditData$]="scheduleEditData$" -->
-      <!--   [openEditSchedule$]="openModal$" -->
-      <!-- > -->
-      <!-- </app-schedule-table> -->
-
       <div class="schedule__tasks">
         <app-schedule-accordition
           *ngFor="let item of schedules$ | async"
@@ -26,14 +19,13 @@
         <nz-calendar
           (nzPanelChange)="panelChange($event)"
           (nzSelectChange)="selectChange($event)"
+          (change)="panelChange($event)"
         >
           <ul *nzDateCell="let date">
-            <ng-container [ngSwitch]="date.getDate()">
-              <ng-container *ngSwitchCase="8">
-                <li *ngFor="let item of listDataMap.eight">
-                  <nz-badge [nzStatus]="item.type"></nz-badge>
-                </li>
-              </ng-container>
+            <ng-container *ngIf="listDataMap[formatDate(date)]">
+              <li *ngFor="let item of listDataMap[formatDate(date)]">
+                <nz-badge [nzStatus]="item.type"></nz-badge>
+              </li>
             </ng-container>
           </ul>
         </nz-calendar>

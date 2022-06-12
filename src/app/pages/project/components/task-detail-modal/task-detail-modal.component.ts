@@ -41,11 +41,11 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
   });
 
   listOfOption = [
-    { label: 'New', value: 'New' },
-    { label: 'In processing', value: 'In process' },
-    { label: 'Resolve', value: 'Resolve' },
-    { label: 'Close', value: 'Close' },
-    { label: 'Ready for test', value: 'Ready for test' },
+    { label: 'New', value: 'NEW' },
+    { label: 'In processing', value: 'IN_PROCESSING' },
+    { label: 'Resolve', value: 'RESOLVE' },
+    { label: 'Close', value: 'CLOSE' },
+    { label: 'Ready for test', value: 'READY_FOR_TEST' },
   ];
   constructor(
     private formBuilder: FormBuilder,

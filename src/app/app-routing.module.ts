@@ -27,7 +27,7 @@ const routes: Routes = [
       import('./pages/user/user.module').then((m) => m.UserModule),
     canActivate: [RoleGuard],
     data: {
-      role: 'admin',
+      role: 'user',
     },
   },
   {

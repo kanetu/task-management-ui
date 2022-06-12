@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .login(this.loginForm.value)
       .pipe(takeUntil(this.destroyed$))
       .subscribe((data: any) => {
-        if (data?.message === 'success') {
+        if (data.status) {
           this.router.navigate(['/project']);
         }
       });

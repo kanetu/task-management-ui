@@ -13,6 +13,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map, switchMap, takeUntil, tap, timeout } from 'rxjs/operators';
+import { TASK_STATUS } from 'src/app/constants/task-status';
 import { Project } from 'src/app/shared/models/project.model';
 import { Task } from 'src/app/shared/models/task.model';
 import { ProjectService } from 'src/app/shared/services/project.service';
@@ -52,7 +53,7 @@ export class TaskBoardComponent implements OnInit {
         .getProject(projectId)
         .pipe(
           takeUntil(this.destroyed$),
-          map((project) => this.dettachTaskBaseStatus(project)),
+          map((result) => this.dettachTaskBaseStatus(result.data)),
         )
         .subscribe();
 
@@ -61,7 +62,7 @@ export class TaskBoardComponent implements OnInit {
           switchMap(() =>
             this.projectService
               .getProject(projectId)
-              .pipe(map((project) => this.dettachTaskBaseStatus(project))),
+              .pipe(map((result) => this.dettachTaskBaseStatus(result.data))),
           ),
         )
         .subscribe();
@@ -69,7 +70,6 @@ export class TaskBoardComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log('this->', this.taskBoardWrapper.nativeElement.clientWidth);
     this.scrollbarPseudo.nativeElement.style.width =
       this.taskBoardWrapper.nativeElement.clientWidth;
     this.cdr.detectChanges();
@@ -80,18 +80,20 @@ export class TaskBoardComponent implements OnInit {
   }
 
   dettachTaskBaseStatus(project: Project): void {
-    this.taskNewData = project.tasks.filter((task) => task.status === 'New');
+    this.taskNewData = project.tasks.filter(
+      (task) => task.status === TASK_STATUS.NEW,
+    );
     this.taskInProcessingData = project.tasks.filter(
-      (task) => task.status === 'In processing',
+      (task) => task.status === TASK_STATUS.IN_PROCESSING,
     );
     this.taskResolveData = project.tasks.filter(
-      (task) => task.status === 'Resolve',
+      (task) => task.status === TASK_STATUS.RESOLVE,
     );
     this.taskReadyForTestData = project.tasks.filter(
-      (task) => task.status === 'Ready for test',
+      (task) => task.status === TASK_STATUS.READY_FOR_TEST,
     );
     this.taskCloseData = project.tasks.filter(
-      (task) => task.status === 'Close',
+      (task) => task.status === TASK_STATUS.CLOSE,
     );
   }
 
@@ -108,12 +110,16 @@ export class TaskBoardComponent implements OnInit {
   mapTableWithStatus(table: string): string {
     const status = table.split('dropList')[1];
     switch (status) {
+      case 'New':
+        return TASK_STATUS.NEW;
       case 'InProcessing':
-        return 'In processing';
+        return TASK_STATUS.IN_PROCESSING;
+      case 'Resolve':
+        return TASK_STATUS.RESOLVE;
       case 'ReadyForTest':
-        return 'Ready for test';
+        return TASK_STATUS.READY_FOR_TEST;
       default:
-        return status;
+        return TASK_STATUS.CLOSE;
     }
   }
 

@@ -1,9 +1,26 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subject, Subscription } from 'rxjs';
-import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { of, ReplaySubject, Subject } from 'rxjs';
+import {
+  distinct,
+  map,
+  mergeMap,
+  scan,
+  startWith,
+  switchMap,
+  takeUntil,
+  tap,
+} from 'rxjs/operators';
 import { Schedule } from 'src/app/shared/models/schedule.model';
 import { ScheduleService } from 'src/app/shared/services/schedule.service';
 import * as moment from 'moment';
+import { SYSTEM_DATE_FORMAT } from 'src/app/constants/date-format';
+import rangeDatesOfCalendar from 'src/app/shared/utils/calendar';
 
 @Component({
   selector: 'app-schedule',
@@ -11,61 +28,107 @@ import * as moment from 'moment';
   styleUrls: ['./schedule.component.scss'],
 })
 export class ScheduleComponent implements OnInit, OnDestroy, AfterViewInit {
-  constructor(private scheduleService: ScheduleService) {}
+  constructor(
+    @Inject('MomentWrapper') private momentWrapper: any,
+    private scheduleService: ScheduleService,
+  ) {}
 
   schedules$ = new Subject<Schedule[]>();
   openModal$ = new Subject<string>();
   scheduleEditData$ = new Subject<Schedule>();
   processState$ = new Subject<boolean>();
   destroyed$ = new Subject();
-
-  selectedValue = new Date();
+  selectedDate$ = new ReplaySubject<string>(2);
+  cloneSelectedDate$ = new ReplaySubject<string>(2);
 
   selectChange(select: Date): void {
-    console.log(`Select value: ${select}`);
+    this.selectedDate$.next(
+      this.momentWrapper(select).format(SYSTEM_DATE_FORMAT),
+    );
   }
 
   panelChange(select: any): void {
     console.log(`this->`, select);
   }
-  listDataMap = {
-    eight: [
-      { type: 'warning', content: 'This is warning event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-      { type: 'success', content: 'This is usual event.' },
-    ],
-  };
+
+  listDataMap: {
+    [key: string]: any;
+  } = {};
 
   ngOnInit(): void {
+    const [firstDate, lastDate] = rangeDatesOfCalendar(
+      this.momentWrapper,
+      this.momentWrapper(),
+    );
+
+    this.scheduleService
+      .getSchedulesInRange({
+        firstDate,
+        lastDate,
+      })
+      .pipe(
+        takeUntil(this.destroyed$),
+        tap(({ data }) => {
+          this.handleListData(data);
+        }),
+      )
+      .subscribe();
+
     this.processState$
       .pipe(
         takeUntil(this.destroyed$),
         switchMap(() =>
           this.scheduleService
-            .getSchedules()
-            .pipe(map((data) => this.schedules$.next(this.formatData(data)))),
+            .getSchedules(this.momentWrapper().format(SYSTEM_DATE_FORMAT))
+            .pipe(
+              map((result) => {
+                this.schedules$.next(this.formatData(result.data));
+              }),
+            ),
         ),
+      )
+      .subscribe();
+
+    this.selectedDate$
+      .pipe(
+        takeUntil(this.destroyed$),
+        startWith(this.momentWrapper().format(SYSTEM_DATE_FORMAT)),
+        scan((acc, curr) => [...acc, curr].slice(-2), <string[]>[]),
+        switchMap((data) => {
+          if (
+            this.momentWrapper(data[0]).format('MM') !==
+            this.momentWrapper(data[1]).format('MM')
+          ) {
+            const [firstDate, lastDate] = rangeDatesOfCalendar(
+              this.momentWrapper,
+              this.momentWrapper(data[1]),
+            );
+            return this.scheduleService.getSchedulesInRange({
+              firstDate,
+              lastDate,
+            });
+          } else {
+            return of({ data: [] });
+          }
+        }),
+        tap(({ data }) => {
+          if (data.length > 0) this.handleListData(data);
+        }),
+      )
+      .subscribe();
+
+    this.selectedDate$
+      .pipe(
+        takeUntil(this.destroyed$),
+        switchMap((date) => {
+          return this.scheduleService
+            .getSchedules(this.momentWrapper().format(date))
+            .pipe(
+              map((result) => {
+                this.schedules$.next(this.formatData(result.data));
+              }),
+            );
+        }),
       )
       .subscribe();
   }
@@ -73,8 +136,26 @@ export class ScheduleComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     this.processState$.next(true);
   }
+
   ngOnDestroy(): void {
     this.destroyed$.complete();
+  }
+
+  handleListData(data: Schedule[]): void {
+    this.listDataMap = data.reduce((obj, curr) => {
+      const date = this.momentWrapper(curr.timeStart).format(
+        SYSTEM_DATE_FORMAT,
+      );
+      if (!obj[date]) {
+        obj[date] = [{ type: 'success', content: curr.description }];
+      } else {
+        obj[date] = [
+          ...obj[date],
+          { type: 'success', content: curr.description },
+        ];
+      }
+      return obj;
+    }, <{ [key: string]: any }>{});
   }
 
   formatData(data: Schedule[]): Schedule[] {
@@ -91,6 +172,10 @@ export class ScheduleComponent implements OnInit, OnDestroy, AfterViewInit {
       };
     });
     return result;
+  }
+
+  formatDate(date: Date): string {
+    return this.momentWrapper(date).format(SYSTEM_DATE_FORMAT);
   }
 
   openAddSchedule(): void {
