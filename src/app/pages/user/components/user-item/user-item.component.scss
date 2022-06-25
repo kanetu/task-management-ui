@@ -28,6 +28,9 @@
   &__name {
     @apply font-medium;
   }
+  &__email {
+    @apply normal-case;
+  }
   &__role {
     color: #797979;
   }

@@ -51,6 +51,7 @@
     @apply flex;
     @apply justify-between;
     padding: 12px;
+    height: 45px;
     & span {
       margin-left: 6px;
       font-size: 12px;
@@ -63,10 +64,41 @@
       &__members {
         @apply flex;
         @apply items-center;
-        & span {
-          padding: 2px 10px;
-          background: rgba(196, 196, 196, 0.5);
-          border-radius: 8px;
+        @apply flex-row-reverse;
+        @apply relative;
+        width: 55px;
+
+
+        & > li {
+          margin-left: -15px;
+          width: 32px;
+          height: 32px;
+          @apply drop-shadow-md;
+          & img {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            @apply rounded-full;
+            border: 2px solid #fff;
+          }
+        }
+        & .members {
+          &__count {
+            left: 16px;
+            @apply absolute;
+            width: 30px;
+            height: 30px;
+            & span {
+              @apply flex;
+              @apply items-center;
+              @apply justify-center;
+              @apply rounded-full;
+              width: 30px;
+              height: 30px;
+              background: rgba(0, 0, 0, 0.25);
+              color: #fff;
+            }
+          }
         }
       }
     }

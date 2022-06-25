@@ -7,9 +7,7 @@ import {
 } from '@angular/core';
 import { of, ReplaySubject, Subject } from 'rxjs';
 import {
-  distinct,
   map,
-  mergeMap,
   scan,
   startWith,
   switchMap,
@@ -39,16 +37,11 @@ export class ScheduleComponent implements OnInit, OnDestroy, AfterViewInit {
   processState$ = new Subject<boolean>();
   destroyed$ = new Subject();
   selectedDate$ = new ReplaySubject<string>(2);
-  cloneSelectedDate$ = new ReplaySubject<string>(2);
 
   selectChange(select: Date): void {
     this.selectedDate$.next(
       this.momentWrapper(select).format(SYSTEM_DATE_FORMAT),
     );
-  }
-
-  panelChange(select: any): void {
-    console.log(`this->`, select);
   }
 
   listDataMap: {
@@ -159,7 +152,7 @@ export class ScheduleComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   formatData(data: Schedule[]): Schedule[] {
-    const formatDateTime = 'DD/MM/YYYY HH:mm';
+    const formatDateTime = 'hh:mm A';
     const result = data.map((item) => {
       const creator = item.users.find(
         (user: any) => Number(user.id) === item.creator,
@@ -180,5 +173,9 @@ export class ScheduleComponent implements OnInit, OnDestroy, AfterViewInit {
 
   openAddSchedule(): void {
     this.openModal$.next('ADD');
+  }
+
+  trackById(_: number, item: Schedule) {
+    return item.id;
   }
 }

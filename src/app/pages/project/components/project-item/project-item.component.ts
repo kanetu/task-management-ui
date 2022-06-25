@@ -1,13 +1,5 @@
-import {
-  Component,
-  EventEmitter,
-  Inject,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
 import { Project } from 'src/app/shared/models/project.model';
 
 @Component({
@@ -18,16 +10,22 @@ import { Project } from 'src/app/shared/models/project.model';
 export class ProjectItemComponent implements OnInit {
   @Input() project: Project;
 
+  shouldShowMember = 2;
   projectLetter: string;
-
-  constructor(
-    private router: Router,
-    @Inject('MomentWrapper') private momentWrapper: any,
-  ) {}
+  totalUsers: number;
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.projectLetter = this.project.name[0];
-    console.log(this.momentWrapper());
+
+    this.totalUsers =
+      this.project.users.length -
+      this.project.users.slice(0, this.shouldShowMember).length;
+
+    this.project = {
+      ...this.project,
+      users: this.project.users.slice(0, this.shouldShowMember),
+    };
   }
 
   goIntoProject(): void {

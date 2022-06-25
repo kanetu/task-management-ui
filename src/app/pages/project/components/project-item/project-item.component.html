@@ -7,11 +7,15 @@
   <div class="project-item__shortened">
     <div class="shortened__start-date">
       <img src="assets/icons/Schedule.svg" alt="schedule" />
-      <span>{{project.createAt}}</span>
+      <span>{{ project.createAt }}</span>
     </div>
-    <div class="shortened__members">
-      <img src="assets/icons/User.svg" alt="members" />
-      <span>8</span>
-    </div>
+    <ul class="shortened__members" data-avatar="3">
+      <li *ngFor="let u of project.users">
+        <img [src]="u.avatarUrl" [alt]="u.name" />
+      </li>
+      <li *ngIf="totalUsers > 0" class="members__count">
+        <span> +{{ totalUsers }}</span>
+      </li>
+    </ul>
   </div>
 </div>

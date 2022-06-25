@@ -1,7 +1,6 @@
-import { Input } from '@angular/core';
+import { Inject, Input } from '@angular/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import * as moment from 'moment';
 import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { Schedule } from 'src/app/shared/models/schedule.model';
@@ -21,8 +20,9 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
     title: [''],
     description: [''],
     place: [''],
-    timeStart: [''],
-    timeEnd: [''],
+    date: [''],
+    timeStart: [this.moment()],
+    timeEnd: [this.moment()],
   });
 
   destroyed$ = new Subject();
@@ -33,6 +33,7 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private scheduleService: ScheduleService,
+    @Inject('MomentWrapper') private moment: any,
   ) {}
 
   ngOnInit(): void {
@@ -42,14 +43,10 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
         map((data) => {
           if (data === 'ADD') {
             this.openMode = 'ADD';
-            this.scheduleForm.reset();
-            this.scheduleForm.patchValue({
-              timeStart: moment().format(this.formatDate),
-              timeEnd: moment().format(this.formatDate),
-            });
           }
           this.openMode = data;
           this.open = ['EDIT', 'ADD'].includes(data);
+          console.log(data);
         }),
       )
       .subscribe();
@@ -77,18 +74,18 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
   }
 
   handleSave(): void {
-    const timeStart = moment(
-      this.scheduleForm.controls['timeStart'].value,
-      this.formatDate,
-    );
+    // const timeStart = this.moment(
+    //   this.scheduleForm.controls['timeStart'].value,
+    //   this.formatDate,
+    // );
 
-    const timeEnd = moment(
-      this.scheduleForm.controls['timeEnd'].value,
-      this.formatDate,
-    );
+    // const timeEnd = this.moment(
+    //   this.scheduleForm.controls['timeEnd'].value,
+    //   this.formatDate,
+    // );
     if (this.openMode === 'ADD') {
       this.scheduleService
-        .createSchedule({ ...this.scheduleForm.value, timeStart, timeEnd })
+        .createSchedule({ ...this.scheduleForm.value })
         .pipe(
           takeUntil(this.destroyed$),
           tap(() => {
@@ -100,8 +97,8 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
       this.scheduleService
         .updateSchedule(this.scheduleId, {
           ...this.scheduleForm.value,
-          timeStart,
-          timeEnd,
+          // timeStart,
+          // timeEnd,
         })
         .pipe(
           takeUntil(this.destroyed$),

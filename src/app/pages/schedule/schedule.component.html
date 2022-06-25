@@ -11,16 +11,12 @@
     <div class="schedule__table">
       <div class="schedule__tasks">
         <app-schedule-accordition
-          *ngFor="let item of schedules$ | async"
+          *ngFor="let item of schedules$ | async; trackBy: trackById"
           [data]="item"
         ></app-schedule-accordition>
       </div>
       <div class="schedule__calendar">
-        <nz-calendar
-          (nzPanelChange)="panelChange($event)"
-          (nzSelectChange)="selectChange($event)"
-          (change)="panelChange($event)"
-        >
+        <nz-calendar (nzSelectChange)="selectChange($event)">
           <ul *nzDateCell="let date">
             <ng-container *ngIf="listDataMap[formatDate(date)]">
               <li *ngFor="let item of listDataMap[formatDate(date)]">

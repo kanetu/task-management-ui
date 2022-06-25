@@ -23,7 +23,7 @@ export class ProjectBoardComponent implements OnInit {
       .getProject(this.route.snapshot.paramMap.get('projectId') || '')
       .pipe(
         map((result) => {
-          console.log(result);
+          console.log('this->', result);
           return result.data;
         }),
       );

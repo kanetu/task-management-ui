@@ -18,7 +18,7 @@
     >
       <div class="task-board__state">
         <span>New</span>
-        <span class="task-board__state__count">(0)</span>
+        <span class="task-board__state__count">({{ taskNewData.length }})</span>
       </div>
       <app-task-item
         [processState$]="processState$"
@@ -40,7 +40,9 @@
     >
       <div class="task-board__state">
         <span>In Processing</span>
-        <span class="task-board__state__count">(0)</span>
+        <span class="task-board__state__count"
+          >({{ taskInProcessingData.length }})</span
+        >
       </div>
       <app-task-item
         [processState$]="processState$"
@@ -62,7 +64,9 @@
     >
       <div class="task-board__state">
         <span>Resolve</span>
-        <span class="task-board__state__count">(0)</span>
+        <span class="task-board__state__count"
+          >({{ taskResolveData.length }})</span
+        >
       </div>
       <app-task-item
         [processState$]="processState$"
@@ -84,7 +88,9 @@
     >
       <div class="task-board__state">
         <span>Ready for test</span>
-        <span class="task-board__state__count">(0)</span>
+        <span class="task-board__state__count"
+          >({{ taskReadyForTestData.length }})</span
+        >
       </div>
       <app-task-item
         [processState$]="processState$"
@@ -106,7 +112,9 @@
     >
       <div class="task-board__state">
         <span>Close</span>
-        <span class="task-board__state__count">(0)</span>
+        <span class="task-board__state__count"
+          >({{ taskCloseData.length }})</span
+        >
       </div>
       <app-task-item
         [processState$]="processState$"

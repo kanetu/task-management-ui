@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Schedule } from 'src/app/shared/models/schedule.model';
 
 @Component({
   selector: 'app-schedule-accordition',
@@ -6,8 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./schedule-accordition.component.scss'],
 })
 export class ScheduleAccorditionComponent implements OnInit {
-  @Input() data: any;
+  @Input() data: Schedule;
   show: boolean = false;
+
   constructor() {}
 
   ngOnInit(): void {}
