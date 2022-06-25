@@ -9,6 +9,8 @@ import { TaskItemComponent } from './components/task-item/task-item.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TaskDetailModalComponent } from './components/task-detail-modal/task-detail-modal.component';
 import { ProjectBoardComponent } from './components/project-board/project-board.component';
+import { ProjectMemberComponent } from './components/project-member/project-member.component';
+import { ProjectAboutComponent } from './components/project-about/project-about.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { ProjectBoardComponent } from './components/project-board/project-board.
     TaskItemComponent,
     TaskDetailModalComponent,
     ProjectBoardComponent,
+    ProjectMemberComponent,
+    ProjectAboutComponent,
   ],
   imports: [CommonModule, SharedModule, DragDropModule, ProjectRoutingModule],
   exports: [

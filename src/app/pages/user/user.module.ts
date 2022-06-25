@@ -2,22 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
-import { UserItemComponent } from './components/user-item/user-item.component';
-import {UserComponent} from './user.component';
-
+import { UserComponent } from './user.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [
-    UserComponent,
-    UserItemComponent
-  ],
-  imports: [
-    CommonModule,
-    UserRoutingModule
-  ],
-  exports: [
-    UserComponent,
-    UserItemComponent
-  ]
+  declarations: [UserComponent],
+  imports: [CommonModule, SharedModule, UserRoutingModule],
+  exports: [UserComponent],
 })
-export class UserModule { }
+export class UserModule {}

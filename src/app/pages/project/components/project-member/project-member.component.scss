@@ -1,0 +1,16 @@
+.project-member {
+  &__wrapper {
+    @apply flex;
+    @apply flex-wrap;
+    min-height: 400px;
+    border: 3px dashed grey;
+    padding: 10px;
+    border-radius: 10px;
+    ::ng-deep {
+      & .user-item {
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

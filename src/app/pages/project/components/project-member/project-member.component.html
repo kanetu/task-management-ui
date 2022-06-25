@@ -1,0 +1,7 @@
+ <div class="project-member__wrapper" *ngIf="members.length">
+    <app-user-item
+      (editUser)="handleEditUser($event)"
+      *ngFor="let member of members"
+      [user]="member"
+    ></app-user-item>
+  </div> 

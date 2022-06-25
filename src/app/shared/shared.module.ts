@@ -21,6 +21,8 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import * as moment from 'moment';
+import { UserItemComponent } from './components/user-item/user-item.component';
+
 @NgModule({
   declarations: [
     OneColumnComponent,
@@ -28,6 +30,7 @@ import * as moment from 'moment';
     TwoColumnComponent,
     ModalComponent,
     DropdownComponent,
+    UserItemComponent,
   ],
   imports: [
     CommonModule,
@@ -63,6 +66,7 @@ import * as moment from 'moment';
     NzDividerModule,
     NzModalModule,
     ReactiveFormsModule,
+    UserItemComponent,
   ],
 })
 export class SharedModule {}

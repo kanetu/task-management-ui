@@ -1,3 +1,4 @@
+@import 'scss/_mixins';
 .user-item {
   @apply shadow-lg;
   @apply bg-white;
@@ -5,7 +6,10 @@
   @apply flex;
   @apply flex-col;
   @apply items-center;
-  width: 202px;
+  width: 160px;
+  @include screen(md) {
+    width: 202px;
+  }
   &__logo {
     @apply w-full;
     & img {
