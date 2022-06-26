@@ -1,4 +1,6 @@
-export interface Task {
+import { Base } from './base.model';
+
+export interface Task extends Base {
   id: string;
   title: string;
   description: string;

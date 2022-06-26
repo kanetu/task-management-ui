@@ -1,4 +1,6 @@
-export interface Schedule {
+import { Base } from './base.model';
+
+export interface Schedule extends Base {
   id: string;
   title: string;
   description: string;

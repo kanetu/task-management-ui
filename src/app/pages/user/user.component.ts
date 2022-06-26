@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -11,6 +11,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class UserComponent implements OnInit {
   users$: Observable<User[]>;
+  destroyed$ = new Subject();
 
   constructor(private userService: UserService) {}
 
@@ -23,6 +24,7 @@ export class UserComponent implements OnInit {
       keyword: '',
     };
     this.users$ = this.userService.filterUser(payload).pipe(
+      takeUntil(this.destroyed$),
       map((result) => {
         const { data } = result;
         return data;
@@ -32,5 +34,9 @@ export class UserComponent implements OnInit {
 
   handleEditUser(data: any): void {
     console.log(data);
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.complete();
   }
 }

@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { Project } from 'src/app/shared/models/project.model';
 import { ProjectService } from 'src/app/shared/services/project.service';
 
@@ -9,9 +9,9 @@ import { ProjectService } from 'src/app/shared/services/project.service';
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss'],
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, OnDestroy {
   projects$: Observable<Project[]>;
-
+  destroyed$ = new Subject();
   constructor(
     @Inject('MomentWrapper') private momentWrapper: any,
     private projectService: ProjectService,
@@ -26,6 +26,7 @@ export class ProjectComponent implements OnInit {
       keyword: '',
     };
     this.projects$ = this.projectService.filterProject(payload).pipe(
+      takeUntil(this.destroyed$),
       map((result) => {
         const data: Project[] = result.data.map((project) => ({
           ...project,
@@ -35,5 +36,9 @@ export class ProjectComponent implements OnInit {
         return data;
       }),
     );
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.complete();
   }
 }

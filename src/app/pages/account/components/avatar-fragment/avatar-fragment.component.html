@@ -1,11 +1,8 @@
 <div class="avatar-fr">
   <div class="avatar-fr__avatar">
-    <img
-      src="https://images.generated.photos/pFn_Vmu_rVhAmPqPW5Ig9FG1htuwiED2XtbuDV6obeU/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LmNvbmQvYmY5OTgx/ZDYtZGE3MC00OWNm/LWE0YTEtN2JjM2Yz/MjdmNzU3LmpwZw.jpg"
-      alt="avatar"
-    />
+    <img [src]="avatarUrl" alt="avatar" />
   </div>
-  <div class="avatar-fr__set-avatar">
+  <div class="avatar-fr__set-avatar" [formGroup]="avatarForm">
     <label for="url-input"
       >Image Url
       <img
@@ -16,7 +13,9 @@
         nz-button
         nz-tooltip
     /></label>
-    <input nz-input placeholder="Basic usage" />
-    <button nz-button nzType="primary">Set Avatar</button>
+    <input nz-input placeholder="Avatar url" formControlName="avatarUrl" />
+    <button nz-button nzType="primary" (click)="handleSubmit()">
+      Set Avatar
+    </button>
   </div>
 </div>

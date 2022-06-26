@@ -1,7 +1,14 @@
 <div class="account">
   <h3 class="account__title">Account</h3>
-  <div class="account__content">
-    <app-avatar-fragment></app-avatar-fragment>
-    <app-form-fragment></app-form-fragment>
+  <div class="account__content" *ngIf="user$ | async; let user">
+    <app-avatar-fragment
+      (onUpdateAvatar)="handleUpdateAvatar($event)"
+      [avatarUrl]="user.avatarUrl || ''"
+    ></app-avatar-fragment>
+    <app-form-fragment
+      (onUpdateUser)="handleUpdateUser($event)"
+      (onDeactiveUser)="handleDeactiveUser()"
+      [user]="user"
+    ></app-form-fragment>
   </div>
 </div>

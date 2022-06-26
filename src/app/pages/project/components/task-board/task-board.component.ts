@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-import { map, switchMap, takeUntil, tap, timeout } from 'rxjs/operators';
+import { map, switchMap, takeUntil } from 'rxjs/operators';
 import { TASK_STATUS } from 'src/app/constants/task-status';
 import { Project } from 'src/app/shared/models/project.model';
 import { Task } from 'src/app/shared/models/task.model';
