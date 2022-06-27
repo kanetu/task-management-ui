@@ -20,12 +20,26 @@ import * as moment from 'moment';
 import { SYSTEM_DATE_FORMAT } from 'src/app/constants/date-format';
 import rangeDatesOfCalendar from 'src/app/shared/utils/calendar';
 
+export interface ICreateSchedule {
+  title: string;
+  description: string;
+  place: string;
+  date: string;
+  timeStart: string;
+  timeEnd: string;
+}
+
+export interface IUpdateSchedule {
+  formValue: ICreateSchedule;
+  scheduleId: string;
+}
+
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss'],
 })
-export class ScheduleComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ScheduleComponent implements OnInit, OnDestroy {
   constructor(
     @Inject('MomentWrapper') private momentWrapper: any,
     private scheduleService: ScheduleService,
@@ -54,28 +68,29 @@ export class ScheduleComponent implements OnInit, OnDestroy, AfterViewInit {
       this.momentWrapper(),
     );
 
-    this.scheduleService
-      .getSchedulesInRange({
-        firstDate,
-        lastDate,
-      })
-      .pipe(
-        takeUntil(this.destroyed$),
-        tap(({ data }) => {
-          this.handleListData(data);
-        }),
-      )
-      .subscribe();
-
     this.processState$
       .pipe(
         takeUntil(this.destroyed$),
+        startWith(true),
         switchMap(() =>
           this.scheduleService
             .getSchedules(this.momentWrapper().format(SYSTEM_DATE_FORMAT))
             .pipe(
               map((result) => {
                 this.schedules$.next(this.formatData(result.data));
+              }),
+            ),
+        ),
+        switchMap(() =>
+          this.scheduleService
+            .getSchedulesInRange({
+              firstDate,
+              lastDate,
+            })
+            .pipe(
+              takeUntil(this.destroyed$),
+              tap(({ data }) => {
+                this.handleListData(data);
               }),
             ),
         ),
@@ -126,10 +141,6 @@ export class ScheduleComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe();
   }
 
-  ngAfterViewInit(): void {
-    this.processState$.next(true);
-  }
-
   ngOnDestroy(): void {
     this.destroyed$.complete();
   }
@@ -149,6 +160,33 @@ export class ScheduleComponent implements OnInit, OnDestroy, AfterViewInit {
       }
       return obj;
     }, <{ [key: string]: any }>{});
+  }
+
+  handleCreateSchedule(data: ICreateSchedule): void {
+    this.scheduleService
+      .createSchedule({ ...data })
+      .pipe(
+        takeUntil(this.destroyed$),
+        tap(() => {
+          this.processState$.next(true);
+        }),
+      )
+      .subscribe();
+  }
+
+  handleUpdateSchedule(data: IUpdateSchedule): void {
+    const { scheduleId, formValue } = data;
+    this.scheduleService
+      .updateSchedule(scheduleId, {
+        ...formValue,
+      })
+      .pipe(
+        takeUntil(this.destroyed$),
+        tap(() => {
+          this.processState$.next(true);
+        }),
+      )
+      .subscribe();
   }
 
   formatData(data: Schedule[]): Schedule[] {

@@ -1,10 +1,10 @@
-import { Inject, Input } from '@angular/core';
+import { EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { map, takeUntil, tap } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { Schedule } from 'src/app/shared/models/schedule.model';
-import { ScheduleService } from 'src/app/shared/services/schedule.service';
+import { ICreateSchedule, IUpdateSchedule } from '../../schedule.component';
 
 @Component({
   selector: 'app-schedule-detail-modal',
@@ -15,6 +15,9 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
   @Input() open$: Subject<string>;
   @Input() scheduleEditData$: Subject<Schedule>;
   @Input() processState$: Subject<boolean>;
+
+  @Output() onCreateSchedule = new EventEmitter<ICreateSchedule>();
+  @Output() onUpdateSchedule = new EventEmitter<IUpdateSchedule>();
 
   scheduleForm = this.formBuilder.group({
     title: [''],
@@ -30,9 +33,9 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
   open: boolean;
   openMode: string;
   formatDate = 'DD/MM/YYYY HH:mm';
+
   constructor(
     private formBuilder: FormBuilder,
-    private scheduleService: ScheduleService,
     @Inject('MomentWrapper') private moment: any,
   ) {}
 
@@ -46,7 +49,6 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
           }
           this.openMode = data;
           this.open = ['EDIT', 'ADD'].includes(data);
-          console.log(data);
         }),
       )
       .subscribe();
@@ -84,29 +86,12 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
     //   this.formatDate,
     // );
     if (this.openMode === 'ADD') {
-      this.scheduleService
-        .createSchedule({ ...this.scheduleForm.value })
-        .pipe(
-          takeUntil(this.destroyed$),
-          tap(() => {
-            this.processState$.next(true);
-          }),
-        )
-        .subscribe();
+      this.onCreateSchedule.emit(this.scheduleForm.value);
     } else {
-      this.scheduleService
-        .updateSchedule(this.scheduleId, {
-          ...this.scheduleForm.value,
-          // timeStart,
-          // timeEnd,
-        })
-        .pipe(
-          takeUntil(this.destroyed$),
-          tap(() => {
-            this.processState$.next(true);
-          }),
-        )
-        .subscribe();
+      this.onUpdateSchedule.emit({
+        scheduleId: this.scheduleId,
+        formValue: this.scheduleForm.value,
+      });
     }
     this.open$.next('CLOSE');
   }

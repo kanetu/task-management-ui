@@ -15,7 +15,6 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {}
 
   handleOnOk() {
-    debugger;
     this.onOk.emit('');
   }
 
