@@ -10,22 +10,18 @@ import { ProjectService } from 'src/app/shared/services/project.service';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit, OnDestroy {
-  projects$: Observable<Project[]>;
   destroyed$ = new Subject();
-  constructor(
-    @Inject('MomentWrapper') private momentWrapper: any,
-    private projectService: ProjectService,
-  ) {}
+  payload = {
+    paging: {
+      pageIndex: 0,
+      pageSize: 100,
+    },
+    keyword: '',
+  };
 
-  ngOnInit(): void {
-    const payload = {
-      paging: {
-        pageIndex: 0,
-        pageSize: 100,
-      },
-      keyword: '',
-    };
-    this.projects$ = this.projectService.filterProject(payload).pipe(
+  projects$: Observable<Project[]> = this.projectService
+    .filterProject(this.payload)
+    .pipe(
       takeUntil(this.destroyed$),
       map((result) => {
         const data: Project[] = result.data.map((project) => ({
@@ -36,7 +32,13 @@ export class ProjectComponent implements OnInit, OnDestroy {
         return data;
       }),
     );
-  }
+
+  constructor(
+    @Inject('MomentWrapper') private momentWrapper: any,
+    private projectService: ProjectService,
+  ) {}
+
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.destroyed$.complete();

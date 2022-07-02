@@ -16,16 +16,9 @@ export class ProjectBoardComponent implements OnInit {
     private projectService: ProjectService,
   ) {}
 
-  project$: Observable<Project>;
+  project$: Observable<Project> = this.projectService
+    .getProject(this.route.snapshot.paramMap.get('projectId') || '')
+    .pipe(map(({ data }) => data));
 
-  ngOnInit(): void {
-    this.project$ = this.projectService
-      .getProject(this.route.snapshot.paramMap.get('projectId') || '')
-      .pipe(
-        map((result) => {
-          console.log('this->', result);
-          return result.data;
-        }),
-      );
-  }
+  ngOnInit(): void {}
 }

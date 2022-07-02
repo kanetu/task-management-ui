@@ -1,17 +1,12 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-import { map, takeUntil, takeWhile } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { Task } from 'src/app/shared/models/task.model';
+import { User } from 'src/app/shared/models/user.model';
 import { TaskService } from 'src/app/shared/services/task.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-task-detail-modal',
@@ -30,27 +25,50 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
   destroyed$ = new Subject();
   openMode: string;
   projectId: string;
+  payload = {
+    paging: {
+      pageIndex: 0,
+      pageSize: 100,
+    },
+    keyword: '',
+  };
+
+  users$ = this.userService.filterUser(this.payload).pipe(
+    takeUntil(this.destroyed$),
+    map(({ data }) => data),
+  );
 
   taskForm = this.formBuilder.group({
     title: [''],
     description: [''],
+    assignTo: [''],
+    priority: [''],
     status: [''],
     estimate: [''],
     complete: [''],
     remaining: [''],
   });
 
-  listOfOption = [
+  listOfStatus = [
     { label: 'New', value: 'NEW' },
     { label: 'In processing', value: 'IN_PROCESSING' },
     { label: 'Resolve', value: 'RESOLVE' },
     { label: 'Close', value: 'CLOSE' },
     { label: 'Ready for test', value: 'READY_FOR_TEST' },
   ];
+
+  listOfPriority = [
+    { label: 'Low', value: 'LOW' },
+    { label: 'Medium', value: 'MEDIUM' },
+    { label: 'High', value: 'HIGH' },
+    { label: 'Critical', value: 'CRITICAL' },
+  ];
+
   constructor(
     private formBuilder: FormBuilder,
     private taskService: TaskService,
     private activateRoute: ActivatedRoute,
+    private userService: UserService,
   ) {}
 
   ngOnInit(): void {

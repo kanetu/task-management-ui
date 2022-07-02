@@ -48,20 +48,36 @@
     &__links {
     }
   }
-  &__piority-members {
+  &__priority-members {
     @apply flex;
     @apply justify-between;
     @apply items-end;
-    
-    & .piority {
-      background-color: #b46b42;
-      color: #fff;
+
+    & .priority {
       padding: 5px;
-      border-radius: 8px;
+      border-radius: 4px;
       font-size: 12px;
-      line-height: 10px;
+      line-height: 7px;
       height: 20px;
       @apply font-semibold;
+      @apply capitalize;
+
+      &--low {
+        border: 2px solid #3a7fe8;
+        color: #3a7fe8;
+      }
+      &--medium {
+        border: 2px solid #b46b42;
+        color: #b46b42;
+      }
+      &--high {
+        border: 2px solid #d3a52f;
+        color: #d3a52f;
+      }
+      &--critical {
+        border: 2px solid #e83a3a;
+        color: #e83a3a;
+      }
     }
     & .members {
       @apply flex;
@@ -74,6 +90,7 @@
         width: 32px;
         height: 32px;
         border: 2px solid #fff;
+        object-fit: cover;
         @apply rounded-full;
       }
     }
