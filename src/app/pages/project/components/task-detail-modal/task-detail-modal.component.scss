@@ -1,1 +1,20 @@
-
+.modal {
+  &__column {
+    &--main {
+      .modal__field {
+        @apply px-2;
+      }
+      .modal__field--main {
+        @apply px-0;
+      }
+    }
+  }
+  &__field {
+    &--main {
+      .modal__field--input {
+        @apply font-semibold;
+        @apply text-xl;
+      }
+    }
+  }
+}

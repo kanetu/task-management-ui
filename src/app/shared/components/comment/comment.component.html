@@ -1,0 +1,24 @@
+<div class="comment__section">
+  <div class="comment__area">
+    <textarea class="modal__field--textarea" rows="2"></textarea>
+    <button (click)="handleSubmitComment()">
+      <img src="/assets/icons/Send.svg" alt="Send" />
+    </button>
+  </div>
+  <div class="comment__list">
+    <div class="comment__item" *ngFor="let comment of listComment">
+      <div class="item__avatar">
+        <img [src]="comment.user.avatarUrl" alt="avatar" />
+      </div>
+      <div class="item__content">
+        <div class="item__date" *ngIf="comment.updateAt > comment.createAt">
+          {{ comment.createAt }}, Edited
+        </div>
+        <div class="item__date" *ngIf="comment.createAt === comment.updateAt">
+          {{ comment.createAt }}
+        </div>
+        <div>{{ comment.content }}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,20 +18,39 @@
         @apply text-sm;
         @apply text-black;
         @apply placeholder-gray-500;
-        @apply border;
-        @apply border-gray-200;
-        @apply rounded-md;
-        @apply py-2;
-        @apply px-5;
+        @apply rounded-sm;
+        @apply py-1;
+        @apply px-2;
+        &:hover {
+          outline: 2px solid black;
+          outline-offset: -1px;
+        }
+        border: none;
       }
       &--label {
-        @apply my-2;
+        @apply my-1;
+        @apply font-semibold;
       }
 
       &--select {
-        ::ng-deep {
+        &.ant-select::ng-deep {
           .ant-select-selector {
-            @apply rounded-md;
+            @apply rounded-sm;
+
+            border-color: #000;
+
+            &:hover {
+              outline: 2px solid black;
+              outline-offset: -1px;
+            }
+          }
+        }
+        &.ant-select-focused::ng-deep {
+          .ant-select-selector {
+            border-color: #000 !important;
+            border: none;
+            outline: 2px solid black !important;
+            box-shadow: none !important;
           }
         }
       }
@@ -43,25 +62,30 @@
         @apply placeholder-gray-500;
         @apply border;
         @apply border-gray-200;
-        @apply rounded-md;
-        @apply py-2;
-        @apply px-5;
+        @apply rounded-sm;
+        @apply py-1;
+        @apply px-2;
+
+        &:hover {
+          outline: 2px solid black;
+          outline-offset: -1px;
+        }
       }
       &--radio {
         @apply flex;
         @apply flex-col;
       }
-      &--date-picker{
+      &--date-picker {
         @apply rounded-md;
         @apply py-2;
-        @apply px-5; 
+        @apply px-5;
         @apply mr-5;
       }
 
-      &--time-picker{
+      &--time-picker {
         @apply rounded-md;
         @apply py-2;
-        @apply px-5;  
+        @apply px-5;
       }
     }
 

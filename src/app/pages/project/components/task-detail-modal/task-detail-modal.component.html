@@ -2,8 +2,7 @@
   <div class="modal__wrapper" [formGroup]="taskForm">
     <div class="modal__column">
       <div class="modal__column--main">
-        <div class="modal__field">
-          <label class="modal__field--label">Title</label>
+        <div class="modal__field modal__field--main">
           <input class="modal__field--input" formControlName="title" />
         </div>
         <div class="modal__field">
@@ -14,8 +13,55 @@
             rows="5"
           ></textarea>
         </div>
+        <div class="modal__field">
+          <label class="modal__field--label">Comments</label>
+          <app-comment></app-comment>
+        </div>
       </div>
       <div class="modal__column--sub">
+        <div class="modal__field">
+          <label class="modal__field--label">Assign To</label>
+          <nz-select
+            nzShowSearch
+            formControlName="assignTo"
+            class="modal__field--select"
+          >
+            <nz-option
+              *ngFor="let o of users$ | async"
+              [nzLabel]="o.name"
+              [nzValue]="o.id"
+            ></nz-option>
+          </nz-select>
+        </div>
+        <div class="modal__field">
+          <label class="modal__field--label">Status</label>
+          <nz-select
+            nzShowSearch
+            formControlName="status"
+            class="modal__field--select"
+          >
+            <nz-option
+              *ngFor="let o of listOfStatus"
+              [nzLabel]="o.label"
+              [nzValue]="o.value"
+            ></nz-option>
+          </nz-select>
+        </div>
+        <div class="modal__field">
+          <label class="modal__field--label">Priority</label>
+          <nz-select
+            nzShowSearch
+            formControlName="priority"
+            class="modal__field--select"
+          >
+            <nz-option
+              *ngFor="let p of listOfPriority"
+              [nzLabel]="p.label"
+              [nzValue]="p.value"
+            ></nz-option>
+          </nz-select>
+        </div>
+
         <div class="modal__field">
           <label class="modal__field--label">Estimate</label>
           <input class="modal__field--input" formControlName="estimate" />
@@ -28,51 +74,6 @@
           <label class="modal__field--label">Complete</label>
           <input class="modal__field--input" formControlName="complete" />
         </div>
-      </div>
-    </div>
-
-    <div class="modal__column--sub">
-      <div class="modal__field">
-        <label class="modal__field--label">Status</label>
-        <nz-select
-          nzShowSearch
-          formControlName="status"
-          class="modal__field--select"
-        >
-          <nz-option
-            *ngFor="let o of listOfStatus"
-            [nzLabel]="o.label"
-            [nzValue]="o.value"
-          ></nz-option>
-        </nz-select>
-      </div>
-      <div class="modal__field">
-        <label class="modal__field--label">Status</label>
-        <nz-select
-          nzShowSearch
-          formControlName="priority"
-          class="modal__field--select"
-        >
-          <nz-option
-            *ngFor="let p of listOfPriority"
-            [nzLabel]="p.label"
-            [nzValue]="p.value"
-          ></nz-option>
-        </nz-select>
-      </div>
-      <div class="modal__field">
-        <label class="modal__field--label">Assign To</label>
-        <nz-select
-          nzShowSearch
-          formControlName="assignTo"
-          class="modal__field--select"
-        >
-          <nz-option
-            *ngFor="let o of users$ | async"
-            [nzLabel]="o.name"
-            [nzValue]="o.id"
-          ></nz-option>
-        </nz-select>
       </div>
     </div>
   </div>

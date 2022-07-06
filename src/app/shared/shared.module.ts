@@ -22,6 +22,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import * as moment from 'moment';
 import { UserItemComponent } from './components/user-item/user-item.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UserItemComponent } from './components/user-item/user-item.component';
     ModalComponent,
     DropdownComponent,
     UserItemComponent,
+    CommentComponent,
   ],
   imports: [
     CommonModule,
@@ -67,6 +69,7 @@ import { UserItemComponent } from './components/user-item/user-item.component';
     NzModalModule,
     ReactiveFormsModule,
     UserItemComponent,
+    CommentComponent,
   ],
 })
 export class SharedModule {}
