@@ -101,7 +101,6 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
         map((data) => {
           this.taskId = data.id;
           this.taskTitle = `Task: ${data.title}`;
-
           this.taskForm.patchValue({
             title: data.title,
             description: data.description,
@@ -109,6 +108,8 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
             estimate: data.estimate,
             complete: data.complete,
             remaining: data.remaining,
+            assignTo: data.assignTo.id,
+            priority: data.priority,
           });
         }),
       )
@@ -146,5 +147,9 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
 
   handleCancel(): void {
     this.open$.next('CLOSE');
+  }
+
+  handleSendComment(data: { content: string }): void {
+    console.log('this->', data);
   }
 }

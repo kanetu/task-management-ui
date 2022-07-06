@@ -1,9 +1,17 @@
 <app-modal [visible]="open" (onOk)="handleSave()" (onCancel)="handleCancel()">
-  <div class="modal__wrapper" [formGroup]="taskForm">
+  <div
+    class="modal__wrapper"
+    [formGroup]="taskForm"
+    *ngIf="task$ | async as task"
+  >
     <div class="modal__column">
       <div class="modal__column--main">
         <div class="modal__field modal__field--main">
-          <input class="modal__field--input" formControlName="title" />
+          <input
+            class="modal__field--input"
+            placeholder="Title"
+            formControlName="title"
+          />
         </div>
         <div class="modal__field">
           <label class="modal__field--label">Description</label>
@@ -13,9 +21,12 @@
             rows="5"
           ></textarea>
         </div>
-        <div class="modal__field">
+        <div class="modal__field" *ngIf="openMode === 'EDIT'">
           <label class="modal__field--label">Comments</label>
-          <app-comment></app-comment>
+          <app-comment
+            [listComment]="task.comments"
+            (onSubmit)="handleSendComment($event)"
+          ></app-comment>
         </div>
       </div>
       <div class="modal__column--sub">

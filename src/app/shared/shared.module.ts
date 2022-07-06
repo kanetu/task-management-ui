@@ -23,6 +23,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import * as moment from 'moment';
 import { UserItemComponent } from './components/user-item/user-item.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { CustomDatePipe } from './pipes/custom-date.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CommentComponent } from './components/comment/comment.component';
     DropdownComponent,
     UserItemComponent,
     CommentComponent,
+    CustomDatePipe,
   ],
   imports: [
     CommonModule,
@@ -70,6 +72,7 @@ import { CommentComponent } from './components/comment/comment.component';
     ReactiveFormsModule,
     UserItemComponent,
     CommentComponent,
+    CustomDatePipe,
   ],
 })
 export class SharedModule {}

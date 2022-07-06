@@ -36,6 +36,7 @@
   &__item {
     @apply flex;
     @apply items-start;
+    @apply mt-2;
     .item__avatar {
       img {
         width: 40px;
