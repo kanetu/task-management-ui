@@ -18,35 +18,33 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getUser(): Observable<IGetUserResponse> {
-    return this.http.get(baseAPI + API.getUser) as Observable<IGetUserResponse>;
+    return this.http.get<IGetUserResponse>(baseAPI + API.getUser);
   }
 
   filterUser(payload: IFilterUserRequest): Observable<IFilterUserResponse> {
-    return this.http.post(
+    return this.http.post<IFilterUserResponse>(
       baseAPI + API.filterUser,
       payload,
-    ) as Observable<IFilterUserResponse>;
+    );
   }
 
   updateAvatar(
     payload: IUpdateAvatarRequest,
   ): Observable<IUpdateAvatarResponse> {
-    return this.http.post(
+    return this.http.post<IUpdateAvatarResponse>(
       baseAPI + API.updateAvatar,
       payload,
-    ) as Observable<IUpdateAvatarResponse>;
+    );
   }
 
   deactiveUser(): Observable<IDeactiveUserResponse> {
-    return this.http.delete(
-      baseAPI + API.deactiveUser,
-    ) as Observable<IDeactiveUserResponse>;
+    return this.http.delete<IDeactiveUserResponse>(baseAPI + API.deactiveUser);
   }
 
   updateUser(payload: IUpdateUserRequest): Observable<IUpdateUserResponse> {
-    return this.http.put(
+    return this.http.put<IUpdateUserResponse>(
       baseAPI + API.updateUser,
       payload,
-    ) as Observable<IUpdateUserResponse>;
+    );
   }
 }

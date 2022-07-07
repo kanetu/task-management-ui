@@ -15,28 +15,28 @@ export class ScheduleService {
     firstDate: string;
     lastDate: string;
   }): Observable<IGetSchedulesResponse> {
-    return this.http.get(baseAPI + API.getSchedulesInRange, {
-      params,
-    }) as Observable<IGetSchedulesResponse>;
+    return this.http.get<IGetSchedulesResponse>(
+      baseAPI + API.getSchedulesInRange,
+      {
+        params,
+      },
+    );
   }
 
   getSchedules(date: string): Observable<IGetSchedulesResponse> {
-    return this.http.get(
+    return this.http.get<IGetSchedulesResponse>(
       baseAPI + API.getAllSchedules + `/${date}`,
-    ) as Observable<IGetSchedulesResponse>;
+    );
   }
 
   createSchedule(data: any): Observable<Schedule> {
-    return this.http.post(
-      baseAPI + API.addSchedule,
-      data,
-    ) as Observable<Schedule>;
+    return this.http.post<Schedule>(baseAPI + API.addSchedule, data);
   }
 
   updateSchedule(scheduleId: string, data: any): Observable<Schedule> {
-    return this.http.put(
+    return this.http.put<Schedule>(
       baseAPI + API.updateSchedule.replace('{{scheduleId}}', scheduleId),
       data,
-    ) as Observable<Schedule>;
+    );
   }
 }

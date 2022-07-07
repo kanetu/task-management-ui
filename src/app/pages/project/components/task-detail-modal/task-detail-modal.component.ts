@@ -1,9 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { pipe, Subject } from 'rxjs';
+import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { Task } from 'src/app/shared/models/task.model';
+import { CommentService } from 'src/app/shared/services/comment.service';
 import { TaskService } from 'src/app/shared/services/task.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -68,6 +69,7 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
     private taskService: TaskService,
     private activateRoute: ActivatedRoute,
     private userService: UserService,
+    private commentService: CommentService,
   ) {}
 
   ngOnInit(): void {
@@ -82,12 +84,17 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
           if (data === 'ADD') {
             this.taskForm.reset();
             this.taskForm.patchValue({
-              status: 'New',
+              status: 'NEW',
+              priority: 'LOW',
               estimate: 0,
               remaining: 0,
               complete: 0,
             });
+
+            this.taskForm.controls['status'].disable();
             this.taskTitle = 'Add Task';
+          } else {
+            this.taskForm.controls['status'].enable();
           }
 
           this.openMode = data;
@@ -108,7 +115,7 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
             estimate: data.estimate,
             complete: data.complete,
             remaining: data.remaining,
-            assignTo: data.assignTo.id,
+            assignTo: data.assignTo?.id,
             priority: data.priority,
           });
         }),
@@ -150,6 +157,14 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
   }
 
   handleSendComment(data: { content: string }): void {
-    console.log('this->', data);
+    if (data.content) {
+      this.commentService
+        .createTaskComment(this.taskId, { content: data.content })
+        .pipe(
+          takeUntil(this.destroyed$),
+          tap(() => this.processState$.next(true)),
+        )
+        .subscribe();
+    }
   }
 }

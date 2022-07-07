@@ -11,16 +11,16 @@ export class TaskService {
   constructor(private http: HttpClient) {}
 
   createTask(projectId: string, body: any): Observable<Task> {
-    return this.http.post(
+    return this.http.post<Task>(
       baseAPI + API.addTask.replace('{{projectId}}', projectId),
-      body
-    ) as Observable<Task>;
+      body,
+    );
   }
 
   updateTask(taskId: string, body: any): Observable<Task> {
-    return this.http.put(
+    return this.http.put<Task>(
       baseAPI + API.updateTask.replace('{{taskId}}', taskId),
-      body
-    ) as Observable<never>;
+      body,
+    );
   }
 }

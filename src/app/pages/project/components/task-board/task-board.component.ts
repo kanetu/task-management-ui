@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-import { map, switchMap, takeUntil } from 'rxjs/operators';
+import { map, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { TASK_STATUS } from 'src/app/constants/task-status';
 import { Project } from 'src/app/shared/models/project.model';
 import { Task } from 'src/app/shared/models/task.model';
@@ -36,6 +36,7 @@ export class TaskBoardComponent implements OnInit {
   destroyed$ = new Subject();
   openModal$: Subject<string> = new Subject();
   taskEdit$: Subject<Task> = new Subject<Task>();
+  taskEditId: string;
   processState$ = new Subject();
 
   constructor(
@@ -49,21 +50,31 @@ export class TaskBoardComponent implements OnInit {
     const projectId = this.activateRoute.snapshot.paramMap.get('projectId');
 
     if (projectId) {
-      this.projectService
-        .getProject(projectId)
+      this.processState$
         .pipe(
           takeUntil(this.destroyed$),
-          map((result) => this.dettachTaskBaseStatus(result.data)),
+          startWith(true),
+          switchMap(() =>
+            this.projectService.getProject(projectId).pipe(
+              tap(({ data }) => {
+                if (this.taskEditId) {
+                  this.taskEdit$.next(
+                    data.tasks.find((item) => item.id === this.taskEditId),
+                  );
+                }
+              }),
+              map((result) => this.dettachTaskBaseStatus(result.data)),
+            ),
+          ),
         )
         .subscribe();
 
-      this.processState$
+      this.taskEdit$
         .pipe(
-          switchMap(() =>
-            this.projectService
-              .getProject(projectId)
-              .pipe(map((result) => this.dettachTaskBaseStatus(result.data))),
-          ),
+          takeUntil(this.destroyed$),
+          tap((data: Task) => {
+            this.taskEditId = data.id;
+          }),
         )
         .subscribe();
     }

@@ -13,7 +13,7 @@ export class UserItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.user.role.name = this.user = {
+    this.user = {
       ...this.user,
       role: {
         name: this.user.role ? this.user.role.name : 'Unknown',

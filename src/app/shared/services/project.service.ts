@@ -15,15 +15,15 @@ export class ProjectService {
   filterProject(
     payload: IFilterProjectRequest,
   ): Observable<IFilterProjectResponse> {
-    return this.http.post(
+    return this.http.post<IFilterProjectResponse>(
       baseAPI + API.filterProject,
       payload,
-    ) as Observable<IFilterProjectResponse>;
+    );
   }
 
   getProject(projectId: string): Observable<IGetProjectResponse> {
-    return this.http.get(
+    return this.http.get<IGetProjectResponse>(
       baseAPI + API.getProject.replace('{{projectId}}', projectId),
-    ) as Observable<IGetProjectResponse>;
+    );
   }
 }

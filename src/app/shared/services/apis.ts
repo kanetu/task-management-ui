@@ -28,4 +28,7 @@ export const API = {
   updateTask: '/task/{{taskId}}',
   updateAvatar: '/auth/avatar',
   deactiveUser: '/auth/user',
+  createTaskComment: '/task/{{taskId}}/comment',
+  deleteTaskComment: '/task/{{taskId}}/comment/{{commentId}}',
+  updateTaskComment: '/task/{{taskId}}/comment/{{commentId}}',
 };

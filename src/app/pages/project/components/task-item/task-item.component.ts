@@ -22,10 +22,10 @@ export class TaskItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.memberAvatars = [
-      { url: this.data.assignTo.avatarUrl, id: this.data.assignTo.id },
+      { url: this.data.assignTo?.avatarUrl, id: this.data.assignTo?.id },
       ...this.data.comments.map((item) => ({
-        url: item.user.avatarUrl,
-        id: item.user.id,
+        url: item.user?.avatarUrl,
+        id: item.user?.id,
       })),
     ].reduce((acc, cur): IMemberAvatar[] => {
       const currentUrls = acc.map((i) => i.id);
