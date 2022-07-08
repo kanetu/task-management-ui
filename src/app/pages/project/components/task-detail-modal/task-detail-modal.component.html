@@ -13,8 +13,11 @@
           <label class="modal__field--label">Description</label>
           <textarea
             class="modal__field--textarea"
+            placeholder="Description"
             formControlName="description"
-            rows="5"
+            rows="1"
+            #refTextarea
+            (input)="changeInput(refTextarea)"
           ></textarea>
         </div>
         <div class="modal__field" *ngIf="task$ | async as task">

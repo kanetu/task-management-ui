@@ -2,8 +2,11 @@
   <div class="comment__area" [formGroup]="commentForm">
     <textarea
       class="modal__field--textarea"
-      rows="2"
+      placeholder="Give your comment here"
+      rows="1"
       formControlName="content"
+      #refTextarea
+      (input)="changeInput(refTextarea)"
     ></textarea>
     <button (click)="handleSubmitComment()">
       <img src="/assets/icons/Send.svg" alt="Send" />

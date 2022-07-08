@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
   @Input() visible: boolean = false;
+  @Input() modalWidth: string = '750px';
   @Output() onOk = new EventEmitter<string>();
   @Output() onCancel = new EventEmitter<void>();
 

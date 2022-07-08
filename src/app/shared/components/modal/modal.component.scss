@@ -60,8 +60,7 @@
         @apply text-sm;
         @apply text-black;
         @apply placeholder-gray-500;
-        @apply border;
-        @apply border-gray-200;
+        @apply border-none;
         @apply rounded-sm;
         @apply py-1;
         @apply px-2;
@@ -76,16 +75,33 @@
         @apply flex-col;
       }
       &--date-picker {
-        @apply rounded-md;
-        @apply py-2;
-        @apply px-5;
-        @apply mr-5;
+        @apply rounded-sm;
+        @apply py-1;
+        @apply px-2;
+        &.ant-picker {
+          &:hover {
+            border-color: transparent;
+          } 
+        }
+        &:hover {
+          outline: 2px solid black;
+          outline-offset: -1px;
+        }
       }
 
       &--time-picker {
-        @apply rounded-md;
-        @apply py-2;
-        @apply px-5;
+        @apply rounded-sm;
+        @apply py-1;
+        @apply px-2;
+        &.ant-picker {
+          &:hover {
+            border-color: none;
+          }
+        }
+        &:hover {
+          outline: 2px solid black;
+          outline-offset: -1px;
+        }
       }
     }
 

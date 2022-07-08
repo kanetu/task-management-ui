@@ -1,1 +1,34 @@
-
+.modal {
+  &__wrapper {
+    @apply mt-8;
+  }
+  &__column {
+    &--main {
+      @apply w-full;
+      .modal__field {
+        @apply px-2;
+      }
+      .modal__field--main {
+        @apply px-0;
+      }
+    }
+  }
+  &__field-group {
+    @apply my-2;
+  }
+  &__field {
+    &--main {
+      .modal__field--input {
+        @apply font-semibold;
+        @apply text-xl;
+      }
+    }
+    &--date-picker {
+      width: 135px;
+      @apply mr-5;
+    }
+    &--time-picker {
+      width: 75px;
+    }
+  }
+}

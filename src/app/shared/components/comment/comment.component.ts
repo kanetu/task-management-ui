@@ -22,4 +22,9 @@ export class CommentComponent implements OnInit {
     this.onSubmit.emit(this.commentForm.value);
     this.commentForm.reset();
   }
+
+  changeInput(input: HTMLTextAreaElement): void {
+    input.style.height = '';
+    input.style.height = input.scrollHeight + 'px';
+  }
 }

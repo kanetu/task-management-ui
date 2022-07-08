@@ -22,17 +22,22 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
   scheduleForm = this.formBuilder.group({
     title: [''],
     description: [''],
-    place: [''],
-    date: [''],
-    timeStart: [this.moment()],
-    timeEnd: [this.moment()],
+    place: ['London'],
+    date: [new Date()],
+    timeStart: [
+      this.moment().add(30 - (this.moment().minute() % 30), 'minutes'),
+    ],
+    timeEnd: [
+      this.moment()
+        .add(30 - (this.moment().minute() % 30), 'minutes')
+        .add(30, 'minutes'),
+    ],
   });
 
   destroyed$ = new Subject();
   scheduleId: string;
   open: boolean;
   openMode: string;
-  formatDate = 'DD/MM/YYYY HH:mm';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -98,5 +103,10 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
 
   handleCancel(): void {
     this.open$.next('CLOSE');
+  }
+
+  changeInput(input: HTMLTextAreaElement): void {
+    input.style.height = '';
+    input.style.height = input.scrollHeight + 'px';
   }
 }

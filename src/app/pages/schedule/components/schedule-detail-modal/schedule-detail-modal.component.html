@@ -1,47 +1,60 @@
 <app-modal
   class="custom-schedule"
   [visible]="open"
+  modalWidth="500px"
   (onCancel)="handleCancel()"
   (onOk)="handleSave()"
 >
   <div class="modal__wrapper" [formGroup]="scheduleForm">
-    <div class="modal__field">
-      <label class="modal__field--label">Title</label>
-      <input class="modal__field--input" type="text" formControlName="title" />
-    </div>
-    <div class="modal__field">
-      <label class="modal__field--label">Description</label>
-      <textarea
-        class="modal__field--textarea"
-        formControlName="description"
-      ></textarea>
-    </div>
-    <div class="modal__field">
-      <label class="modal__field--label">Location</label>
-      <input class="modal__field--input" type="text" formControlName="place" />
-    </div>
     <div class="modal__column">
-      <div class="modal__field">
-        <label class="modal__field--label">Date</label>
-        <div class="modal__field-group">
-          <nz-date-picker
-            class="modal__field--date-picker"
-            formControlName="date"
-          >
-          </nz-date-picker>
-          <nz-time-picker
-            class="modal__field--time-picker"
-            nzFormat="HH:mm"
-            formControlName="timeStart"
-            nzPlaceHolder="HH:mm"
-          ></nz-time-picker>
-          -
-          <nz-time-picker
-            class="modal__field--time-picker"
-            nzFormat="HH:mm"
-            formControlName="timeEnd"
-            nzPlaceHolder="HH:mm"
-          ></nz-time-picker>
+      <div class="modal__column--main">
+        <div class="modal__field modal__field--main">
+          <input
+            class="modal__field--input"
+            placeholder="Title"
+            formControlName="title"
+          />
+        </div>
+
+        <div class="modal__field">
+          <div class="modal__field-group">
+            <nz-date-picker
+              class="modal__field--date-picker"
+              formControlName="date"
+            >
+            </nz-date-picker>
+            <nz-time-picker
+              class="modal__field--time-picker"
+              nzFormat="HH:mm"
+              formControlName="timeStart"
+              nzPlaceHolder="HH:mm"
+            ></nz-time-picker>
+            -
+            <nz-time-picker
+              class="modal__field--time-picker"
+              nzFormat="HH:mm"
+              formControlName="timeEnd"
+              nzPlaceHolder="HH:mm"
+            ></nz-time-picker>
+          </div>
+        </div>
+        <div class="modal__field">
+          <label class="modal__field--label">Location</label>
+          <input
+            class="modal__field--input"
+            type="text"
+            formControlName="place"
+          />
+        </div>
+        <div class="modal__field">
+          <label class="modal__field--label">Description</label>
+          <textarea
+            class="modal__field--textarea"
+            placeholder="Description"
+            formControlName="description"
+            #refTextarea
+            (input)="changeInput(refTextarea)"
+          ></textarea>
         </div>
       </div>
     </div>
