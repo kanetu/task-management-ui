@@ -60,6 +60,10 @@
       &__start-date {
         @apply flex;
         @apply items-center;
+        & .svg-icon {
+          width: 19px;
+          height: 19px;
+        }
       }
       &__members {
         @apply flex;
@@ -67,7 +71,6 @@
         @apply flex-row-reverse;
         @apply relative;
         width: 55px;
-
 
         & > li {
           margin-left: -15px;

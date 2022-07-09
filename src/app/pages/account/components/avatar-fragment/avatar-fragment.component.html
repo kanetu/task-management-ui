@@ -5,14 +5,16 @@
   <div class="avatar-fr__set-avatar" [formGroup]="avatarForm">
     <label for="url-input"
       >Image Url
-      <img
-        src="assets/icons/Question.svg"
-        alt="question-hint"
+
+      <app-svg-icon
+        [value]="questionIcon"
+        class="svg-icon"
         nzTooltipTitle="Put the url of the image which will be added as your avatar"
         nzTooltipPlacement="right"
         nz-button
         nz-tooltip
-    /></label>
+      ></app-svg-icon>
+    </label>
     <input nz-input placeholder="Avatar url" formControlName="avatarUrl" />
     <button nz-button nzType="primary" (click)="handleSubmit()">
       Set Avatar

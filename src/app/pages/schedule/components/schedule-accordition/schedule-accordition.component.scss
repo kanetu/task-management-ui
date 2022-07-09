@@ -13,15 +13,13 @@
     @apply items-center;
   }
   &__header-arrow {
+    width: 24px;
     @apply flex-shrink-0;
-    & img {
-      @apply w-3;
-    }
   }
   &__header-content {
     @apply w-full;
     width: calc(100% - 15px);
-    & > span{
+    & > span {
       @apply block;
       @apply mb-1;
     }
@@ -61,7 +59,7 @@
 
   &__content-row {
     & > span {
-      & img {
+      & .svg-icon {
         @apply w-4;
       }
     }

@@ -3,20 +3,29 @@
     <div class="form-fr__item">
       <label for="displayName"
         >Display Name
-        <img
-          src="assets/icons/Question.svg"
-          alt="question-hint"
+
+        <app-svg-icon
+          [value]="questionIcon"
+          class="svg-icon"
           nzTooltipTitle="This text will be displayed in the whole application."
           nzTooltipPlacement="right"
           nz-button
           nz-tooltip
-        />
+        ></app-svg-icon>
       </label>
-      <input nz-input name="displayName" formControlName="name" />
+      <input
+        nz-input
+        name="displayName"
+        placeholder="Display name"
+        formControlName="name"
+      />
     </div>
     <div class="form-fr__item">
       <label for="">Birth Day</label>
-      <nz-date-picker formControlName="birthday"></nz-date-picker>
+      <nz-date-picker
+        formControlName="birthday"
+        placeholder="YYYY-MM-DD"
+      ></nz-date-picker>
     </div>
   </div>
 
@@ -27,7 +36,7 @@
     </div>
     <div class="form-fr__item">
       <label for="">Phone Number</label>
-      <input nz-input formControlName="phoneNumber" />
+      <input nz-input placeholder="(+84) xxxxx" formControlName="phoneNumber" />
     </div>
   </div>
 

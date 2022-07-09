@@ -16,7 +16,7 @@
     @apply flex;
     @apply items-center;
     top: -55px;
-    & img {
+    & .svg-icon {
       @apply w-4;
     }
     & span {
@@ -55,13 +55,12 @@
     border-radius: 8px;
     color: #5b5b5b;
     margin-bottom: 10px;
-    & span{
-      &:first-child{
+    & span {
+      &:first-child {
         font-weight: 500;
         font-size: 14px;
       }
     }
-    
   }
   &__divier {
     margin: 20px 20px 28px 0;

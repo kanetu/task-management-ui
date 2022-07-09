@@ -5,7 +5,7 @@
   @apply flex-wrap;
   @apply mt-5;
   @apply md:mt-0;
-  
+
   &__avatar {
     margin-bottom: 20px;
     @include screen(md) {
@@ -29,7 +29,8 @@
       @apply flex;
       @apply items-center;
       @apply font-semibold;
-      > img {
+      @apply my-1;
+      > .svg-icon {
         @apply ml-1;
         width: 12px;
         height: 12px;
@@ -41,12 +42,20 @@
       @apply text-sm;
       @apply text-black;
       @apply placeholder-gray-500;
-      @apply border;
-      @apply border-gray-200;
-      @apply rounded-md;
-      @apply py-2;
-      @apply px-5;
-      margin-top: 16px;
+      @apply border-none;
+      @apply rounded-sm;
+      @apply py-1;
+      @apply px-2;
+
+      &:focus{
+        box-shadow: none;
+        outline: 2px solid black;
+        outline-offset: -1px;
+      }
+      &:hover {
+        outline: 2px solid black;
+        outline-offset: -1px;
+      }
     }
     button {
       &.ant-btn-primary {

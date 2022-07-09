@@ -95,13 +95,14 @@
             @apply hover:shadow-lg;
             height: 45px;
             width: 45px;
+            & .svg-icon {
+              @apply w-6;
+              @apply md:w-8;
+              @apply h-6;
+              @apply md:h-8;
+            }
           }
-          & img {
-            @apply w-6;
-            @apply md:w-8;
-            @apply h-6;
-            @apply md:h-8;
-          }
+
           & span {
             @apply uppercase;
             margin-top: 10px;
@@ -155,6 +156,12 @@
           @apply rounded;
           @apply flex;
           @apply items-center;
+          & .svg-icon {
+            @apply w-6;
+            @apply md:w-8;
+            @apply h-6;
+            @apply md:h-8;
+          }
         }
         & img {
           @apply w-6;

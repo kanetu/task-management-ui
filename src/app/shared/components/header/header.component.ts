@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { projectIcon, scheduleIcon, userIcon } from '../../icons';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   showMenuOptions: boolean = false;
+
+  projectIcon = projectIcon;
+  userIcon = userIcon;
+  scheduleIcon = scheduleIcon;
 
   constructor() {}
 

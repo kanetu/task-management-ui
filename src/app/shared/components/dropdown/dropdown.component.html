@@ -5,11 +5,11 @@
   [nzDropdownMenu]="menu"
   nzOverlayClassName="dropdown__overlay"
 >
-  <img class="dropdown__icon" src="assets/icons/Config.svg" />
+  <app-svg-icon [value]="configIcon" class="dropdown__icon"></app-svg-icon>
 </a>
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <ul nz-menu class="dropdown__ul">
-    <li nz-menu-item *ngFor="let option of options" [routerLink]="option.value" >
+    <li nz-menu-item *ngFor="let option of options" [routerLink]="option.value">
       {{ option.text }}
     </li>
   </ul>

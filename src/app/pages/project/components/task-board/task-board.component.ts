@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { TASK_STATUS } from 'src/app/constants/task-status';
+import { addIcon } from 'src/app/shared/icons';
 import { Project } from 'src/app/shared/models/project.model';
 import { Task } from 'src/app/shared/models/task.model';
 import { ProjectService } from 'src/app/shared/services/project.service';
@@ -33,6 +34,7 @@ export class TaskBoardComponent implements OnInit {
   taskReadyForTestData: Task[] = [];
   taskCloseData: Task[] = [];
 
+  addIcon = addIcon;
   destroyed$ = new Subject();
   openModal$: Subject<string> = new Subject();
   taskEdit$: Subject<Task> = new Subject<Task>();

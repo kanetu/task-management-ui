@@ -6,7 +6,7 @@
   <span class="project-item__desc">{{ project.description }}</span>
   <div class="project-item__shortened">
     <div class="shortened__start-date">
-      <img src="assets/icons/Schedule.svg" alt="schedule" />
+      <app-svg-icon [value]="scheduleIcon" class="svg-icon"></app-svg-icon>
       <span>{{ project.createAt }}</span>
     </div>
     <ul class="shortened__members" data-avatar="3">

@@ -1,5 +1,4 @@
-
-@import "scss/_mixins";
+@import 'scss/_mixins';
 .form-fr {
   @apply flex;
   @apply flex-wrap;
@@ -20,19 +19,31 @@
       @apply font-semibold;
       @apply flex;
       @apply items-center;
-      > img {
+      @apply my-1;
+
+      > .svg-icon {
         width: 12px;
         height: 12px;
         @apply ml-1;
       }
     }
     .ant-picker {
-      @apply rounded-md;
-      @apply py-2;
-      @apply px-5;
+      @apply rounded-sm;
+      @apply py-1;
+      @apply px-2;
+      @apply w-full;
       margin-top: 10px;
-      width: 100%;
-      @include screen(md){
+
+      &:focus {
+        box-shadow: none;
+        outline: 2px solid black;
+        outline-offset: -1px;
+      }
+      &:hover {
+        outline: 2px solid black;
+        outline-offset: -1px;
+      }
+      @include screen(md) {
         width: initial;
       }
       ::ng-deep {
@@ -49,12 +60,21 @@
       @apply text-sm;
       @apply text-black;
       @apply placeholder-gray-500;
-      @apply border;
-      @apply border-gray-200;
-      @apply rounded-md;
-      @apply py-2;
-      @apply px-5;
+      @apply border-none;
+      @apply rounded-sm;
+      @apply py-1;
+      @apply px-2;
       margin-top: 10px;
+
+      &:focus {
+        box-shadow: none;
+        outline: 2px solid black;
+        outline-offset: -1px;
+      }
+      &:hover {
+        outline: 2px solid black;
+        outline-offset: -1px;
+      }
     }
   }
 
@@ -72,7 +92,7 @@
       }
     }
   }
-  app-delete-account{
+  app-delete-account {
     @apply w-full;
   }
 }

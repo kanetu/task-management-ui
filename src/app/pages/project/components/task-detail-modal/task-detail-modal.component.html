@@ -11,14 +11,13 @@
         </div>
         <div class="modal__field">
           <label class="modal__field--label">Description</label>
-          <textarea
+          <span
             class="modal__field--textarea"
-            placeholder="Description"
+            role="textbox"
+            contenteditable
             formControlName="description"
-            rows="1"
-            #refTextarea
-            (input)="changeInput(refTextarea)"
-          ></textarea>
+            placeholder="Description"
+          ></span>
         </div>
         <div class="modal__field" *ngIf="task$ | async as task">
           <ng-container *ngIf="openMode === 'EDIT'">

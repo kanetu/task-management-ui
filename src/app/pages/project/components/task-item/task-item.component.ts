@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
+import { commentIcon, linkIcon, threeDotsIcon } from 'src/app/shared/icons';
 import { Task } from 'src/app/shared/models/task.model';
 
 interface IMemberAvatar {
@@ -17,7 +18,9 @@ export class TaskItemComponent implements OnInit {
   @Input() processState$: Subject<any>;
   @Output() editTask = new EventEmitter<any>();
   memberAvatars: IMemberAvatar[] = [];
-
+  threeDotsIcon = threeDotsIcon;
+  commentIcon = commentIcon;
+  linkIcon = linkIcon;
   constructor() {}
 
   ngOnInit(): void {

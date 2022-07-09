@@ -167,8 +167,9 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
         .subscribe();
     }
   }
-  changeInput(input: HTMLTextAreaElement): void {
-    input.style.height = '';
-    input.style.height = input.scrollHeight + 'px';
-  }
+  // changeInput(input: HTMLTextAreaElement): void {
+  //   console.log(input.value);
+  //   input.style.height = '';
+  //   input.style.height = input.scrollHeight + 'px';
+  // }
 }

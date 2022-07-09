@@ -2,15 +2,15 @@
   <span class="task-item__title">{{ data.title }}</span>
   <span class="task-item__desc">{{ data.description }}</span>
   <button class="task-item__btn" (click)="handleEditTask()">
-    <img src="assets/icons/ThreeDots.svg" alt="delete" />
+    <app-svg-icon [value]="threeDotsIcon" class="svg-icon"></app-svg-icon>
   </button>
   <div class="task-item__others">
     <div class="task-item__others__links">
-      <img src="assets/icons/Link.svg" alt="links" />
+    <app-svg-icon [value]="linkIcon" class="svg-icon"></app-svg-icon>
       <span>2</span>
     </div>
     <div class="task-item__others__comments">
-      <img src="assets/icons/Comment.svg" alt="comments" />
+      <app-svg-icon [value]="commentIcon" class="svg-icon"></app-svg-icon>
       <span>{{ data.comments.length }}</span>
     </div>
   </div>

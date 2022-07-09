@@ -22,7 +22,7 @@
         @apply items-center;
         margin-left: 4px;
         color: var(--neutral-color-black);
-        & img {
+        & .svg-icon {
           @apply w-4;
         }
         & span {

@@ -1,4 +1,7 @@
 .modal {
+  &__wrapper {
+    @apply mt-8;
+  }
   &__column {
     &--main {
       .modal__field {

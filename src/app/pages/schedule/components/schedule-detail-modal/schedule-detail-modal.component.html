@@ -48,13 +48,13 @@
         </div>
         <div class="modal__field">
           <label class="modal__field--label">Description</label>
-          <textarea
+          <span
             class="modal__field--textarea"
             placeholder="Description"
+            role="textbox"
+            contenteditable
             formControlName="description"
-            #refTextarea
-            (input)="changeInput(refTextarea)"
-          ></textarea>
+          ></span>
         </div>
       </div>
     </div>

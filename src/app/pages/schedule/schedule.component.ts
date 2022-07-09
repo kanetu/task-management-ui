@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  Inject,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { of, ReplaySubject, Subject } from 'rxjs';
 import {
   map,
@@ -19,6 +13,7 @@ import { ScheduleService } from 'src/app/shared/services/schedule.service';
 import * as moment from 'moment';
 import { SYSTEM_DATE_FORMAT } from 'src/app/constants/date-format';
 import rangeDatesOfCalendar from 'src/app/shared/utils/calendar';
+import { addIcon } from 'src/app/shared/icons';
 
 export interface ICreateSchedule {
   title: string;
@@ -45,6 +40,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     private scheduleService: ScheduleService,
   ) {}
 
+  addIcon = addIcon;
   schedules$ = new Subject<Schedule[]>();
   openModal$ = new Subject<string>();
   scheduleEditData$ = new Subject<Schedule>();

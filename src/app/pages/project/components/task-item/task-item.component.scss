@@ -13,10 +13,8 @@
     @apply absolute;
     top: 16px;
     right: 12px;
-    & img {
-      width: 20px;
-      height: 20px;
-    }
+    width: 20px;
+    height: 20px;
   }
   &__title {
     @apply font-semibold;
@@ -31,7 +29,7 @@
   }
   &__others {
     @apply flex;
-    & img {
+    & .svg-icon {
       width: 18px;
       height: 18px;
     }

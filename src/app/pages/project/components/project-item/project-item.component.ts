@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { scheduleIcon } from 'src/app/shared/icons';
 import { Project } from 'src/app/shared/models/project.model';
 
 @Component({
@@ -10,6 +11,7 @@ import { Project } from 'src/app/shared/models/project.model';
 export class ProjectItemComponent implements OnInit {
   @Input() project: Project;
 
+  scheduleIcon = scheduleIcon;
   shouldShowMember = 2;
   projectLetter: string;
   totalUsers: number;

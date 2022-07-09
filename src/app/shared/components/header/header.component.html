@@ -8,24 +8,24 @@
       <ul class="header__menus__list">
         <li class="header__menus__list__item">
           <a routerLink="/project" routerLinkActive="active">
-            <img src="assets/icons/Project.svg" alt="project" /><span
-              >Project</span
-            ></a
-          >
+            <app-svg-icon [value]="projectIcon" class="svg-icon"></app-svg-icon>
+            <span>Project</span>
+          </a>
         </li>
         <li class="header__menus__list__item">
-          <a routerLink="/schedule" routerLinkActive="active"
-            ><img src="assets/icons/Schedule.svg" alt="schedule" /><span
-              >Schedule</span
-            ></a
-          >
+          <a routerLink="/schedule" routerLinkActive="active">
+            <app-svg-icon
+              [value]="scheduleIcon"
+              class="svg-icon"
+            ></app-svg-icon>
+            <span>Schedule</span>
+          </a>
         </li>
         <li class="header__menus__list__item">
           <a routerLink="/user" routerLinkActive="active">
-            <img src="assets/icons/User.svg" alt="schedule" /><span
-              >User</span
-            ></a
-          >
+            <app-svg-icon [value]="userIcon" class="svg-icon"></app-svg-icon>
+            <span>User</span>
+          </a>
         </li>
       </ul>
     </div>

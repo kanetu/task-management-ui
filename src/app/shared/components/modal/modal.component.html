@@ -7,13 +7,13 @@
 >
   <ng-container *nzModalContent>
     <div class="modal">
-      <ng-content></ng-content>
       <div class="modal__actions">
         <button (click)="handleOnOk()">
-          <img src="/assets/icons/Save.svg" alt="Save" />
+          <app-svg-icon [value]="saveIcon" class="svg-icon"></app-svg-icon>
           <span>Save</span>
         </button>
       </div>
+      <ng-content></ng-content>
     </div>
   </ng-container>
 </nz-modal>

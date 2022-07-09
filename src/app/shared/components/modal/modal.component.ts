@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { saveIcon } from '../../icons';
 
 @Component({
   selector: 'app-modal',
@@ -10,6 +11,8 @@ export class ModalComponent implements OnInit {
   @Input() modalWidth: string = '750px';
   @Output() onOk = new EventEmitter<string>();
   @Output() onCancel = new EventEmitter<void>();
+
+  saveIcon = saveIcon;
 
   constructor() {}
 

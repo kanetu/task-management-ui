@@ -64,7 +64,6 @@
         @apply rounded-sm;
         @apply py-1;
         @apply px-2;
-
         &:hover {
           outline: 2px solid black;
           outline-offset: -1px;
@@ -81,7 +80,7 @@
         &.ant-picker {
           &:hover {
             border-color: transparent;
-          } 
+          }
         }
         &:hover {
           outline: 2px solid black;
@@ -123,17 +122,26 @@
     &__actions {
       @apply flex;
       @apply justify-end;
-      @apply mt-5;
+      @apply absolute;
+      right: 65px;
+      top: 18px;
 
       & button {
         @apply flex;
-        & img {
-          width: 16px;
-          height: 22px;
+        @apply p-1;
+        @apply rounded-sm;
+        color: var(--primary-color);
+        &:hover {
+          outline: 2px solid var(--primary-color);
+          outline-offset: -1px;
+        }
+        & .svg-icon {
+          width: 20px;
+          height: 20px;
           margin-right: 5px;
+          color: var(--primary-color);
         }
         & span {
-          @apply underline;
         }
       }
     }

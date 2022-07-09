@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { questionIcon } from 'src/app/shared/icons';
 import { User } from 'src/app/shared/models/user.model';
 
 @Component({
@@ -21,7 +22,7 @@ export class FormFragmentComponent implements OnInit, OnDestroy {
   @Output() onDeactiveUser = new EventEmitter();
 
   destroyed$ = new Subject();
-
+  questionIcon = questionIcon;
   accountForm = this.formBuilder.group({
     name: [''],
     birthday: [''],

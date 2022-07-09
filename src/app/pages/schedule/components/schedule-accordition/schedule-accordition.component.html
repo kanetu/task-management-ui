@@ -3,12 +3,12 @@
     <div class="schedule-accord__header-content">
       <span>{{ data.title }}</span>
       <div>
-        <span>{{data.timeStart}} - {{data.timeEnd}}</span>
+        <span>{{ data.timeStart }} - {{ data.timeEnd }}</span>
         <span>{{ data.description }}</span>
       </div>
     </div>
     <span class="schedule-accord__header-arrow">
-      <img src="assets/icons/Arrow.svg" alt="arrow" />
+      <app-svg-icon [value]="arrowIcon" class="svg-icon"></app-svg-icon>
     </span>
   </div>
   <div class="schedule-accord__content">

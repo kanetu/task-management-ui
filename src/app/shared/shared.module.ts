@@ -24,6 +24,8 @@ import * as moment from 'moment';
 import { UserItemComponent } from './components/user-item/user-item.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
+import { ContenteditableValueAccessor } from './directives/contenteditable.directive';
+import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { CustomDatePipe } from './pipes/custom-date.pipe';
     UserItemComponent,
     CommentComponent,
     CustomDatePipe,
+    ContenteditableValueAccessor,
+    SvgIconComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +56,7 @@ import { CustomDatePipe } from './pipes/custom-date.pipe';
     },
   ],
   exports: [
+    ContenteditableValueAccessor,
     OneColumnComponent,
     TwoColumnComponent,
     HeaderComponent,
@@ -72,6 +77,7 @@ import { CustomDatePipe } from './pipes/custom-date.pipe';
     ReactiveFormsModule,
     UserItemComponent,
     CommentComponent,
+    SvgIconComponent,
     CustomDatePipe,
   ],
 })

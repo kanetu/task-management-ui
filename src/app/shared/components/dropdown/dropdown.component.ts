@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { configIcon } from '../../icons';
 
 @Component({
   selector: 'app-dropdown',
@@ -16,6 +17,8 @@ export class DropdownComponent implements OnInit {
       value: '/logout',
     },
   ];
+
+  configIcon = configIcon;
   constructor() {}
 
   ngOnInit(): void {}
