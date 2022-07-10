@@ -10,7 +10,26 @@
       <div class="modal__actions">
         <button (click)="handleOnOk()">
           <app-svg-icon [value]="saveIcon" class="svg-icon"></app-svg-icon>
-          <span>Save</span>
+          <span>
+            {{ saveType === 'save' ? 'Save' : 'Save & Close' }}
+          </span>
+          <span
+            nz-dropdown
+            nzTrigger="click"
+            (click)="$event.stopPropagation()"
+            [nzDropdownMenu]="menu"
+            nzPlacement="bottomRight"
+          >
+            <i nz-icon nzType="down"></i>
+          </span>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item (click)="handleChangeSaveType('save')">Save</li>
+              <li nz-menu-item (click)="handleChangeSaveType('saveAndClose')">
+                Save & Close
+              </li>
+            </ul>
+          </nz-dropdown-menu>
         </button>
       </div>
       <ng-content></ng-content>

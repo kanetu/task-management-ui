@@ -1,4 +1,8 @@
-<app-modal [visible]="open" (onOk)="handleSave()" (onCancel)="handleCancel()">
+<app-modal
+  [visible]="open"
+  (onOk)="handleSave($event)"
+  (onCancel)="handleCancel()"
+>
   <div class="modal__wrapper" [formGroup]="taskForm">
     <div class="modal__column">
       <div class="modal__column--main">
@@ -23,6 +27,7 @@
           <ng-container *ngIf="openMode === 'EDIT'">
             <label class="modal__field--label">Comments</label>
             <app-comment
+              [shouldSubmit$]="submitComment$"
               [listComment]="task.comments"
               (onSubmit)="handleSendComment($event)"
             ></app-comment>

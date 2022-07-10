@@ -13,16 +13,21 @@ export class ModalComponent implements OnInit {
   @Output() onCancel = new EventEmitter<void>();
 
   saveIcon = saveIcon;
+  saveType = 'save';
 
   constructor() {}
 
   ngOnInit(): void {}
 
   handleOnOk() {
-    this.onOk.emit('');
+    this.onOk.emit(this.saveType);
   }
 
   handleOnCancel() {
     this.onCancel.emit();
+  }
+
+  handleChangeSaveType(type: string): void {
+    this.saveType = type;
   }
 }

@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { pipe, Subject } from 'rxjs';
-import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { map, takeUntil, tap } from 'rxjs/operators';
 import { Task } from 'src/app/shared/models/task.model';
 import { CommentService } from 'src/app/shared/services/comment.service';
 import { TaskService } from 'src/app/shared/services/task.service';
@@ -33,6 +33,7 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
     keyword: '',
   };
 
+  submitComment$ = new Subject();
   users$ = this.userService.filterUser(this.payload).pipe(
     takeUntil(this.destroyed$),
     map(({ data }) => data),
@@ -127,7 +128,7 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
-  handleSave(): void {
+  handleSave($event: string): void {
     if (this.openMode === 'ADD') {
       this.taskService
         .createTask(this.projectId, this.taskForm.value)
@@ -148,8 +149,11 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
           }),
         )
         .subscribe();
+      this.submitComment$.next();
     }
-    this.open$.next('CLOSE');
+    if ($event === 'saveAndClose') {
+      this.open$.next('CLOSE');
+    }
   }
 
   handleCancel(): void {
@@ -160,16 +164,8 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
     if (data.content) {
       this.commentService
         .createTaskComment(this.taskId, { content: data.content })
-        .pipe(
-          takeUntil(this.destroyed$),
-          tap(() => this.processState$.next(true)),
-        )
+        .pipe(takeUntil(this.destroyed$))
         .subscribe();
     }
   }
-  // changeInput(input: HTMLTextAreaElement): void {
-  //   console.log(input.value);
-  //   input.style.height = '';
-  //   input.style.height = input.scrollHeight + 'px';
-  // }
 }

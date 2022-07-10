@@ -9,19 +9,11 @@
     ></span>
   </div>
   <div class="comment__list">
-    <div class="comment__item" *ngFor="let comment of listComment.reverse()">
-      <div class="item__avatar">
-        <img [src]="comment.user.avatarUrl" alt="avatar" />
-      </div>
-      <div class="item__content">
-        <div class="item__date" *ngIf="comment.updateAt > comment.createAt">
-          {{ comment.updateAt | customDate }}, Edited
-        </div>
-        <div class="item__date" *ngIf="comment.createAt === comment.updateAt">
-          {{ comment.createAt | customDate }}
-        </div>
-        <div>{{ comment.content }}</div>
-      </div>
-    </div>
+    <app-comment-item
+      *ngFor="let comment of listComment"
+      [comment]="comment"
+      [currentEditingComment$]="currentEditingComment$"
+      (onUpdateCommentId)="setUpdateCommentId($event)"
+    ></app-comment-item>
   </div>
 </div>

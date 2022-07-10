@@ -1,0 +1,51 @@
+<div class="comment__item">
+  <div class="item__avatar">
+    <img [src]="comment.user.avatarUrl" alt="avatar" />
+  </div>
+  <div class="item__content">
+    <ng-container
+      [ngTemplateOutlet]="isEdit ? updateCommentTemplate : viewCommentTemplate"
+      [ngTemplateOutletContext]="{ comment: comment }"
+    ></ng-container>
+  </div>
+</div>
+
+<ng-template #viewCommentTemplate let-comment="comment">
+  <div class="item__date" *ngIf="comment.updateAt > comment.createAt">
+    {{ comment.updateAt | customDate }}, Edited
+  </div>
+  <div class="item__date" *ngIf="comment.createAt === comment.updateAt">
+    {{ comment.createAt | customDate }}
+  </div>
+  <div class="item__actions">
+    <button
+      nz-dropdown
+      nzTrigger="click"
+      (click)="$event.stopPropagation()"
+      [nzDropdownMenu]="menu"
+      nzPlacement="bottomRight"
+    >
+      <app-svg-icon [value]="threeDotsIcon" class="svg-icon"></app-svg-icon>
+    </button>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item (click)="editComment()">Edit</li>
+        <li nz-menu-item (click)="deleteComment()">Delete</li>
+      </ul>
+    </nz-dropdown-menu>
+
+    <!-- <a (click)="editComment()"> update</a> -->
+  </div>
+  <div>{{ comment.content }}</div>
+</ng-template>
+
+<ng-template #updateCommentTemplate>
+  <div class="comment__area" [formGroup]="updateCommentForm">
+    <span
+      class="modal__field--textarea"
+      role="textbox"
+      contenteditable
+      formControlName="content"
+    ></span>
+  </div>
+</ng-template>

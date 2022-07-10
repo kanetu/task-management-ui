@@ -1,0 +1,53 @@
+.comment__item {
+  @apply flex;
+  @apply items-start;
+  @apply mt-2;
+  .item__avatar {
+    img {
+      width: 40px;
+      height: 40px;
+      @apply object-cover;
+      @apply rounded-full;
+    }
+  }
+  .item__date {
+    @apply text-xs;
+    @apply italic;
+    color: var(--neutral-color-1);
+  }
+  .item__actions {
+    @apply absolute;
+    right: 4px;
+    top: 8px;
+
+    button {
+      width: 14px;
+      height: 14px;
+    }
+    // & .svg-icon {
+    //   width: 18px;
+    //   height: 18px;
+    // }
+  }
+  .item__content {
+    @apply p-2;
+    @apply w-full;
+    @apply ml-3;
+    @apply rounded-sm;
+    @apply border;
+    @apply relative;
+    &:before {
+      @apply absolute;
+      box-shadow: -1px 1px 1px 0px rgb(0 0 0 / 15%);
+      content: '';
+      width: 0;
+      height: 0;
+      top: 10px;
+      left: -5px;
+      transform: rotate(45deg);
+      border: 5px solid black;
+      border-color: transparent transparent var(--neutral-color-white)
+        var(--neutral-color-white);
+    }
+  }
+}

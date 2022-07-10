@@ -26,6 +26,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { ContenteditableValueAccessor } from './directives/contenteditable.directive';
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
+import { CommentItemComponent } from './components/comment-item/comment-item.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
     CustomDatePipe,
     ContenteditableValueAccessor,
     SvgIconComponent,
+    CommentItemComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +50,7 @@ import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
     NzDropDownModule,
     NzDividerModule,
     NzModalModule,
+    NzSelectModule,
   ],
   providers: [
     {
