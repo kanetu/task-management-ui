@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { Task } from 'src/app/shared/models/task.model';
@@ -71,6 +72,7 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
     private activateRoute: ActivatedRoute,
     private userService: UserService,
     private commentService: CommentService,
+    private modal: NzModalService,
   ) {}
 
   ngOnInit(): void {
@@ -160,12 +162,56 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
     this.open$.next('CLOSE');
   }
 
-  handleSendComment(data: { content: string }): void {
-    if (data.content) {
-      this.commentService
-        .createTaskComment(this.taskId, { content: data.content })
-        .pipe(takeUntil(this.destroyed$))
-        .subscribe();
+  handleComment(data: {
+    mode: string;
+    content: string;
+    commentId: string;
+  }): void {
+    const { mode, content, commentId } = data;
+    switch (mode) {
+      case 'add':
+        if (content) {
+          this.commentService
+            .createTaskComment(this.taskId, { content })
+            .pipe(takeUntil(this.destroyed$))
+            .subscribe();
+        }
+        break;
+      case 'edit':
+        if (content && commentId) {
+          this.commentService
+            .updateTaskComment(this.taskId, commentId, {
+              content,
+            })
+            .pipe(takeUntil(this.destroyed$))
+            .subscribe();
+        }
+        break;
+      case 'delete':
+        if (commentId) {
+          this.modal.confirm({
+            nzTitle: 'Are you sure delete this comment?',
+            nzContent: `<b>By deleting the comment, it will be deleted permanently.</b>`,
+            nzOkText: 'Yes',
+            nzOkType: 'primary',
+            nzOkDanger: true,
+            nzOnOk: () => {
+              this.commentService
+                .deleteTaskComment(this.taskId, commentId)
+                .pipe(
+                  takeUntil(this.destroyed$),
+                  tap(() => {
+                    this.processState$.next(true);
+                  }),
+                )
+                .subscribe();
+            },
+            nzCancelText: 'No',
+          });
+        }
+        break;
+      default:
+        break;
     }
   }
 }

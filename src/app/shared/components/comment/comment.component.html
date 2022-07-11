@@ -12,8 +12,11 @@
     <app-comment-item
       *ngFor="let comment of listComment"
       [comment]="comment"
+      [triggerUpdate$]="triggerUpdate$"
       [currentEditingComment$]="currentEditingComment$"
       (onUpdateCommentId)="setUpdateCommentId($event)"
+      (onUpdateData)="handleUpdateComment($event)"
+      (onDeleteCommentId)="handleDeleteComment($event)"
     ></app-comment-item>
   </div>
 </div>
