@@ -5,14 +5,23 @@
 
 @import './variables';
 
-[contenteditable='true']:empty:before {
-  content: attr(placeholder);
-  pointer-events: none;
-  display: block; /* For Firefox */
+span {
+  &[contenteditable='true'] {
+    min-height: 28px;
+    &:empty:before {
+      content: attr(placeholder);
+      pointer-events: none;
+      display: block; /* For Firefox */
+    }
+  }
+  &[contenteditable='false'] {
+    background: var(--disable-background);
+    color: var(--disable-color);
+    cursor: not-allowed;
+    &:empty:before {
+      content: attr(placeholder);
+      pointer-events: none;
+      display: block; /* For Firefox */
+    }
+  }
 }
-
-// .svg-icon {
-//   @apply block;
-//   @apply w-full;
-//   @apply h-full;
-// }

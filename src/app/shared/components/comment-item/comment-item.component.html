@@ -1,4 +1,4 @@
-<div class="comment__item">
+<div [ngClass]="{ comment__item: true, 'comment__item--editing': isEdit }">
   <div class="item__avatar">
     <img [src]="comment.user.avatarUrl" alt="avatar" />
   </div>
@@ -24,13 +24,18 @@
       (click)="$event.stopPropagation()"
       [nzDropdownMenu]="menu"
       nzPlacement="bottomRight"
+      nzOverlayClassName="comment-dropdown"
     >
       <app-svg-icon [value]="threeDotsIcon" class="svg-icon"></app-svg-icon>
     </button>
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu nzSelectable>
-        <li nz-menu-item (click)="editComment()">Edit</li>
-        <li nz-menu-item (click)="deleteComment()">Delete</li>
+        <li nz-menu-item (click)="editComment()">
+          <app-svg-icon [value]="penIcon" class="svg-icon"></app-svg-icon>
+        </li>
+        <li nz-menu-item (click)="deleteComment()">
+          <app-svg-icon [value]="trashIcon" class="svg-icon"></app-svg-icon>
+        </li>
       </ul>
     </nz-dropdown-menu>
   </div>

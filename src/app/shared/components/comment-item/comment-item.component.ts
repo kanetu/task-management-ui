@@ -9,7 +9,7 @@ import {
 import { FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
-import { threeDotsIcon } from '../../icons';
+import { penIcon, threeDotsIcon, trashIcon } from '../../icons';
 import { Comment } from '../../models/comment.model';
 
 @Component({
@@ -28,6 +28,8 @@ export class CommentItemComponent implements OnInit, OnDestroy {
   destroyed$ = new Subject();
   isEdit: boolean;
   threeDotsIcon = threeDotsIcon;
+  penIcon = penIcon;
+  trashIcon = trashIcon;
   updateCommentForm = this.formBuilder.group({
     content: [],
     commentId: [],

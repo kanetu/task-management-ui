@@ -2,6 +2,7 @@
   @apply flex;
   @apply items-start;
   @apply mt-2;
+
   .item__avatar {
     img {
       width: 40px;
@@ -23,11 +24,12 @@
     button {
       width: 14px;
       height: 14px;
+      &:hover {
+        .svg-icon {
+          color: var(--primary-color);
+        }
+      }
     }
-    // & .svg-icon {
-    //   width: 18px;
-    //   height: 18px;
-    // }
   }
   .item__content {
     @apply p-2;
@@ -48,6 +50,29 @@
       border: 5px solid black;
       border-color: transparent transparent var(--neutral-color-white)
         var(--neutral-color-white);
+    }
+  }
+  &--editing {
+    .item__content {
+      border-color: var(--primary-color);
+      &:before {
+        box-shadow: -1px 1px 1px 0px var(--primary-color);
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .comment-dropdown {
+    .ant-dropdown-menu {
+      .ant-dropdown-menu-item {
+        &:hover {
+          color: var(--primary-color);
+        }
+        .svg-icon {
+          width: 15px;
+        }
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 const saveIcon = `
-  <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><title/><g data-name="Layer 49" id="Layer_49"><path class="cls-1" d="M29,31H3a1,1,0,0,1-1-1V2A1,1,0,0,1,3,1H23a1,1,0,0,1,.71.29l6,6A1,1,0,0,1,30,8V30A1,1,0,0,1,29,31ZM4,29H28V8.41L22.59,3H4Z"/><path class="cls-1" d="M20,9H10A1,1,0,0,1,9,8V2a1,1,0,0,1,1-1H20a1,1,0,0,1,1,1V8A1,1,0,0,1,20,9ZM11,7h8V3H11Z"/><path class="cls-1" d="M23,25H9a1,1,0,0,1-1-1V14a1,1,0,0,1,1-1H23a1,1,0,0,1,1,1V24A1,1,0,0,1,23,25ZM10,23H22V15H10Z"/></g></svg>  
+  <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><title/><g data-name="Layer 49" id="Layer_49"><path d="M29,31H3a1,1,0,0,1-1-1V2A1,1,0,0,1,3,1H23a1,1,0,0,1,.71.29l6,6A1,1,0,0,1,30,8V30A1,1,0,0,1,29,31ZM4,29H28V8.41L22.59,3H4Z"/><path d="M20,9H10A1,1,0,0,1,9,8V2a1,1,0,0,1,1-1H20a1,1,0,0,1,1,1V8A1,1,0,0,1,20,9ZM11,7h8V3H11Z"/><path d="M23,25H9a1,1,0,0,1-1-1V14a1,1,0,0,1,1-1H23a1,1,0,0,1,1,1V24A1,1,0,0,1,23,25ZM10,23H22V15H10Z"/></g></svg>  
  `;
 
 const userNoBorderIcon = `
@@ -15,7 +15,7 @@ const titleIcon = `
 `;
 
 const threeDotsIcon = `
-<svg id="Layer_1" version="1.0" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><circle cx="12" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+<svg id="Layer_1" version="1.0" viewBox="0 0 24 24" fill="currentColor" ><circle cx="12" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="19" r="2"/></svg>
 `;
 
 const scheduleIcon = `
@@ -62,12 +62,26 @@ const linkIcon = `
 <svg  viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"/><path d="M7.8 24c0-3.42 2.78-6.2 6.2-6.2h8V14h-8C8.48 14 4 18.48 4 24s4.48 10 10 10h8v-3.8h-8c-3.42 0-6.2-2.78-6.2-6.2zm8.2 2h16v-4H16v4zm18-12h-8v3.8h8c3.42 0 6.2 2.78 6.2 6.2s-2.78 6.2-6.2 6.2h-8V34h8c5.52 0 10-4.48 10-10s-4.48-10-10-10z"/></svg>
 `;
 
+const penIcon = `
+<svg viewBox="0 0 32 32" fill="currentColor" ><g data-name="Layer 42" id="Layer_42"><path  d="M2,29a1,1,0,0,1-1-1.11l.77-7a1,1,0,0,1,.29-.59L18.42,3.94a3.2,3.2,0,0,1,4.53,0l3.11,3.11a3.2,3.2,0,0,1,0,4.53L9.71,27.93a1,1,0,0,1-.59.29l-7,.77Zm7-1.78H9ZM3.73,21.45l-.6,5.42,5.42-.6,16.1-16.1a1.2,1.2,0,0,0,0-1.7L21.53,5.35a1.2,1.2,0,0,0-1.7,0Z"/><path d="M23,14.21a1,1,0,0,1-.71-.29L16.08,7.69A1,1,0,0,1,17.5,6.27l6.23,6.23a1,1,0,0,1,0,1.42A1,1,0,0,1,23,14.21Z"/><rect height="2" transform="translate(-8.31 14.13) rotate(-45)" width="11.01" x="7.39" y="16.1"/><path d="M30,29H14a1,1,0,0,1,0-2H30a1,1,0,0,1,0,2Z"/></g></svg>
+`;
+
+const trashIcon = `
+<svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><title/><g data-name="Layer 17" id="Layer_17"><path d="M24,31H8a3,3,0,0,1-3-3V9A1,1,0,0,1,7,9V28a1,1,0,0,0,1,1H24a1,1,0,0,0,1-1V9a1,1,0,0,1,2,0V28A3,3,0,0,1,24,31Z"/><path d="M28,7H4A1,1,0,0,1,4,5H28a1,1,0,0,1,0,2Z"/><path d="M20,7a1,1,0,0,1-1-1V3H13V6a1,1,0,0,1-2,0V2a1,1,0,0,1,1-1h8a1,1,0,0,1,1,1V6A1,1,0,0,1,20,7Z"/><path d="M16,26a1,1,0,0,1-1-1V11a1,1,0,0,1,2,0V25A1,1,0,0,1,16,26Z"/><path d="M21,24a1,1,0,0,1-1-1V13a1,1,0,0,1,2,0V23A1,1,0,0,1,21,24Z"/><path d="M11,24a1,1,0,0,1-1-1V13a1,1,0,0,1,2,0V23A1,1,0,0,1,11,24Z"/></g></svg>
+`;
+
+const expandIcon = `
+<svg fill="currentColor" viewBox="0 0 24 24"><path d="M4.5 6.25C4.5 5.2835 5.2835 4.5 6.25 4.5H10.25C10.6642 4.5 11 4.16421 11 3.75C11 3.33579 10.6642 3 10.25 3H6.25C4.45507 3 3 4.45507 3 6.25V17.75C3 19.5449 4.45507 21 6.25 21H17.75C19.5449 21 21 19.5449 21 17.75V13.75C21 13.3358 20.6642 13 20.25 13C19.8358 13 19.5 13.3358 19.5 13.75V17.75C19.5 18.7165 18.7165 19.5 17.75 19.5H12V14.75C12 13.2312 10.7688 12 9.25 12H4.5V6.25ZM4.5 13.5H9.25C9.94036 13.5 10.5 14.0596 10.5 14.75V19.5H6.25C5.2835 19.5 4.5 18.7165 4.5 17.75V13.5ZM13 3.75C13 3.33579 13.3358 3 13.75 3H20.2505C20.6647 3 21.0005 3.33579 21.0005 3.75V10.25C21.0005 10.6642 20.6647 11 20.2505 11C19.8362 11 19.5005 10.6642 19.5005 10.25V5.56074L14.2803 10.7804C13.9874 11.0732 13.5125 11.0732 13.2196 10.7803C12.9268 10.4874 12.9268 10.0125 13.2197 9.71964L18.4399 4.5H13.75C13.3358 4.5 13 4.16421 13 3.75Z"/></svg>
+`;
+
 export {
   linkIcon,
   navigationIcon,
+  expandIcon,
   configIcon,
   commentIcon,
   calendarIcon,
+  trashIcon,
   addIcon,
   logoIcon,
   projectIcon,
@@ -76,6 +90,7 @@ export {
   scheduleIcon,
   userNoBorderIcon,
   userIcon,
+  penIcon,
   titleIcon,
   threeDotsIcon,
   arrowIcon,
