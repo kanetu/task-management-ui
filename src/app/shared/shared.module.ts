@@ -27,6 +27,8 @@ import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { ContenteditableValueAccessor } from './directives/contenteditable.directive';
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { CommentItemComponent } from './components/comment-item/comment-item.component';
+import { RemoveHtmlPipe } from './pipes/remove-html.pipe';
+import { SantinizerPipe } from './pipes/santinizer.pipe';
 
 @NgModule({
   declarations: [
@@ -38,8 +40,10 @@ import { CommentItemComponent } from './components/comment-item/comment-item.com
     UserItemComponent,
     CommentComponent,
     CustomDatePipe,
+    SantinizerPipe,
     ContenteditableValueAccessor,
     SvgIconComponent,
+    RemoveHtmlPipe,
     CommentItemComponent,
   ],
   imports: [
@@ -82,6 +86,8 @@ import { CommentItemComponent } from './components/comment-item/comment-item.com
     CommentComponent,
     SvgIconComponent,
     CustomDatePipe,
+    SantinizerPipe,
+    RemoveHtmlPipe,
   ],
 })
 export class SharedModule {}
