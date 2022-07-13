@@ -1,7 +1,6 @@
 .schedule-accord {
   @apply rounded-md;
   @apply shadow;
-  @apply p-3;
   @apply my-2;
   @apply block;
 
@@ -11,6 +10,7 @@
     @apply flex;
     @apply justify-between;
     @apply items-center;
+    @apply p-3;
   }
   &__header-arrow {
     width: 24px;
@@ -25,7 +25,8 @@
     }
     & div {
       @apply flex;
-      color: var(--neutral-color-2);
+      @apply font-normal;
+      font-size: 12px;
       & span {
         &:first-child {
           margin-right: 20px;
@@ -38,9 +39,9 @@
     }
   }
   &__content {
-    @apply mt-2;
     @apply hidden;
-
+    @apply p-3;
+    @apply pt-0;
     &__group {
       @apply flex;
       @apply w-full;
@@ -74,6 +75,10 @@
   }
 
   &.show & {
+    &__header {
+      @apply rounded-t-md;
+      background-color: var(--secondary-color);
+    }
     &__content {
       @apply block;
     }

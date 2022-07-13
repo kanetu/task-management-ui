@@ -22,7 +22,7 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
   scheduleForm = this.formBuilder.group({
     title: [''],
     description: [''],
-    place: ['London'],
+    place: [''],
     date: [new Date()],
     timeStart: [
       this.moment().add(30 - (this.moment().minute() % 30), 'minutes'),
@@ -81,17 +81,9 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
   }
 
   handleSave(): void {
-    // const timeStart = this.moment(
-    //   this.scheduleForm.controls['timeStart'].value,
-    //   this.formatDate,
-    // );
-
-    // const timeEnd = this.moment(
-    //   this.scheduleForm.controls['timeEnd'].value,
-    //   this.formatDate,
-    // );
     if (this.openMode === 'ADD') {
       this.onCreateSchedule.emit(this.scheduleForm.value);
+      this.scheduleForm.reset();
     } else {
       this.onUpdateSchedule.emit({
         scheduleId: this.scheduleId,
@@ -101,12 +93,14 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
     this.open$.next('CLOSE');
   }
 
-  handleCancel(): void {
-    this.open$.next('CLOSE');
+  disabledDate(current: Date): boolean {
+    const today = new Date();
+    current.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+    return current.getTime() < today.getTime();
   }
 
-  changeInput(input: HTMLTextAreaElement): void {
-    input.style.height = '';
-    input.style.height = input.scrollHeight + 'px';
+  handleCancel(): void {
+    this.open$.next('CLOSE');
   }
 }
