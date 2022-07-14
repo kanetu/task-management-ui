@@ -14,6 +14,17 @@
             placeholder="Title"
             formControlName="title"
           />
+          <div
+            *ngIf="
+              f['title'].invalid && (f['title'].dirty || f['title'].touched)
+            "
+            class="form-alert"
+          >
+            <div *ngIf="f['title'].errors?.required" class="alert-item">
+              <app-svg-icon [value]="errorIcon" class="svg-icon"></app-svg-icon>
+              Title is required.
+            </div>
+          </div>
         </div>
 
         <div class="modal__field">
@@ -44,8 +55,20 @@
           <input
             class="modal__field--input"
             type="text"
+            placeholder="Location"
             formControlName="place"
           />
+          <div
+            *ngIf="
+              f['place'].invalid && (f['place'].dirty || f['place'].touched)
+            "
+            class="form-alert"
+          >
+            <div *ngIf="f['place'].errors?.required" class="alert-item">
+              <app-svg-icon [value]="errorIcon" class="svg-icon"></app-svg-icon>
+              Location is required.
+            </div>
+          </div>
         </div>
         <div class="modal__field">
           <label class="modal__field--label">Description</label>

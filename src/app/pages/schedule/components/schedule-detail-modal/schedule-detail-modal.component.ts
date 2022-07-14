@@ -1,8 +1,9 @@
 import { EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
+import { errorIcon } from 'src/app/shared/icons';
 import { Schedule } from 'src/app/shared/models/schedule.model';
 import { ICreateSchedule, IUpdateSchedule } from '../../schedule.component';
 
@@ -20,9 +21,9 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
   @Output() onUpdateSchedule = new EventEmitter<IUpdateSchedule>();
 
   scheduleForm = this.formBuilder.group({
-    title: [''],
+    title: ['', [Validators.required]],
     description: [''],
-    place: [''],
+    place: ['', [Validators.required]],
     date: [new Date()],
     timeStart: [
       this.moment().add(30 - (this.moment().minute() % 30), 'minutes'),
@@ -34,6 +35,11 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
     ],
   });
 
+  get f() {
+    return this.scheduleForm.controls;
+  }
+
+  errorIcon = errorIcon;
   destroyed$ = new Subject();
   scheduleId: string;
   open: boolean;

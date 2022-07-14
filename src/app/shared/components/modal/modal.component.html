@@ -8,7 +8,7 @@
   <ng-container *nzModalContent>
     <div class="modal">
       <div class="modal__actions">
-        <button (click)="handleOnOk()">
+        <button (click)="handleOnOk()" [disabled]="firstSubmit && !allowOk">
           <app-svg-icon [value]="saveIcon" class="svg-icon"></app-svg-icon>
           <span>
             {{ saveType === 'save' ? 'Save' : 'Save & Close' }}

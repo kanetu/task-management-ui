@@ -1,9 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
+import { errorIcon } from 'src/app/shared/icons';
 import { Task } from 'src/app/shared/models/task.model';
 import { CommentService } from 'src/app/shared/services/comment.service';
 import { TaskService } from 'src/app/shared/services/task.service';
@@ -34,6 +35,7 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
     keyword: '',
   };
 
+  errorIcon = errorIcon;
   submitComment$ = new Subject();
   users$ = this.userService.filterUser(this.payload).pipe(
     takeUntil(this.destroyed$),
@@ -41,7 +43,7 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
   );
 
   taskForm = this.formBuilder.group({
-    title: [''],
+    title: ['', [Validators.required]],
     description: [''],
     assignTo: [''],
     priority: [''],
@@ -50,6 +52,10 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
     complete: [''],
     remaining: [''],
   });
+
+  get f() {
+    return this.taskForm.controls;
+  }
 
   listOfStatus = [
     { label: 'New', value: 'NEW' },

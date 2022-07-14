@@ -2,6 +2,7 @@
   [visible]="open"
   (onOk)="handleSave($event)"
   (onCancel)="handleCancel()"
+  [allowOk]="taskForm.valid"
 >
   <div class="modal__wrapper" [formGroup]="taskForm">
     <div class="modal__column">
@@ -12,6 +13,17 @@
             placeholder="Title"
             formControlName="title"
           />
+          <div
+            *ngIf="
+              f['title'].invalid && (f['title'].dirty || f['title'].touched)
+            "
+            class="form-alert"
+          >
+            <div *ngIf="f['title'].errors?.required" class="alert-item">
+              <app-svg-icon [value]="errorIcon" class="svg-icon"></app-svg-icon>
+              Title is required.
+            </div>
+          </div>
         </div>
         <div class="modal__field">
           <label class="modal__field--label">Description</label>

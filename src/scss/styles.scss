@@ -25,3 +25,16 @@ span {
     }
   }
 }
+
+.form-alert {
+  color: red;
+
+  .alert-item {
+    @apply flex;
+    @apply items-center;
+    & .svg-icon {
+      margin-right: 4px;
+      width: 16px;
+    }
+  }
+}

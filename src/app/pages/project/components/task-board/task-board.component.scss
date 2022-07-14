@@ -4,18 +4,18 @@
   &__btn {
     @apply bg-white;
     @apply shadow;
-    @apply hover:shadow-lg;
+    @apply hover:shadow-md;
     @apply text-sm;
-    @apply rounded;
     @apply p-2;
     @apply text-white;
     @apply absolute;
     @apply right-0;
-    @apply rounded-full;
+    @apply rounded-sm;
     @apply text-black;
     @apply flex;
     @apply items-center;
     top: -55px;
+    right: 2px;
     & .svg-icon {
       @apply w-4;
     }
