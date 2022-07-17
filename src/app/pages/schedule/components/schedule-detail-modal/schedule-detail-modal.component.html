@@ -2,6 +2,7 @@
   class="custom-schedule"
   [visible]="open"
   modalWidth="500px"
+  [allowOk]="allowSubmit"
   (onCancel)="handleCancel()"
   (onOk)="handleSave()"
 >
@@ -10,8 +11,13 @@
       <div class="modal__column--main">
         <div class="modal__field modal__field--main">
           <input
-            class="modal__field--input"
+            [ngClass]="{
+              'modal__field--input': true,
+              'modal__field--error':
+                f['title'].invalid && (f['title'].dirty || f['title'].touched)
+            }"
             placeholder="Title"
+            #titleRef
             formControlName="title"
           />
           <div
@@ -51,12 +57,16 @@
           </div>
         </div>
         <div class="modal__field">
-          <label class="modal__field--label">Location</label>
+          <label class="modal__field--label">Location<i>*</i></label>
           <input
-            class="modal__field--input"
             type="text"
             placeholder="Location"
             formControlName="place"
+            [ngClass]="{
+              'modal__field--input': true,
+              'modal__field--error':
+                f['place'].invalid && (f['place'].dirty || f['place'].touched)
+            }"
           />
           <div
             *ngIf="

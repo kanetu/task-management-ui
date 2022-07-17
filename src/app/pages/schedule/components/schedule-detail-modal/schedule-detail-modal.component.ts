@@ -2,7 +2,7 @@ import { EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, tap } from 'rxjs/operators';
 import { errorIcon } from 'src/app/shared/icons';
 import { Schedule } from 'src/app/shared/models/schedule.model';
 import { ICreateSchedule, IUpdateSchedule } from '../../schedule.component';
@@ -24,15 +24,9 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
     title: ['', [Validators.required]],
     description: [''],
     place: ['', [Validators.required]],
-    date: [new Date()],
-    timeStart: [
-      this.moment().add(30 - (this.moment().minute() % 30), 'minutes'),
-    ],
-    timeEnd: [
-      this.moment()
-        .add(30 - (this.moment().minute() % 30), 'minutes')
-        .add(30, 'minutes'),
-    ],
+    date: [],
+    timeStart: [],
+    timeEnd: [],
   });
 
   get f() {
@@ -41,6 +35,7 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
 
   errorIcon = errorIcon;
   destroyed$ = new Subject();
+  allowSubmit = false;
   scheduleId: string;
   open: boolean;
   openMode: string;
@@ -51,15 +46,43 @@ export class ScheduleDetailModalComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    console.log(
+      this.moment()
+        .add(30 - (this.moment().minute() % 30), 'minutes')
+        .toDate(),
+    );
+    this.scheduleForm.valueChanges
+      .pipe(
+        takeUntil(this.destroyed$),
+        tap(() => {
+          this.allowSubmit = this.scheduleForm.valid;
+        }),
+      )
+      .subscribe();
+
     this.open$
       .pipe(
         takeUntil(this.destroyed$),
         map((data) => {
           if (data === 'ADD') {
             this.openMode = 'ADD';
+            this.scheduleForm.patchValue({
+              date: this.moment().toDate(),
+              timeStart: this.moment()
+                .add(30 - (this.moment().minute() % 30), 'minutes')
+                .toDate(),
+              timeEnd: this.moment()
+                .add(30 - (this.moment().minute() % 30), 'minutes')
+                .add(30, 'minutes')
+                .toDate(),
+            });
           }
+
           this.openMode = data;
           this.open = ['EDIT', 'ADD'].includes(data);
+          if (!['EDIT', 'ADD'].includes(data)) {
+            this.scheduleForm.reset();
+          }
         }),
       )
       .subscribe();

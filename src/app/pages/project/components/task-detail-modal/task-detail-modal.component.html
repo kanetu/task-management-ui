@@ -2,7 +2,7 @@
   [visible]="open"
   (onOk)="handleSave($event)"
   (onCancel)="handleCancel()"
-  [allowOk]="taskForm.valid"
+  [allowOk]="allowSubmit"
 >
   <div class="modal__wrapper" [formGroup]="taskForm">
     <div class="modal__column">
@@ -12,6 +12,7 @@
             class="modal__field--input"
             placeholder="Title"
             formControlName="title"
+            #titleRef
           />
           <div
             *ngIf="

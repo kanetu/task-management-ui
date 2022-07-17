@@ -27,6 +27,7 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
   destroyed$ = new Subject();
   openMode: string;
   projectId: string;
+  allowSubmit = false;
   payload = {
     paging: {
       pageIndex: 0,
@@ -82,6 +83,15 @@ export class TaskDetailModalComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.taskForm.valueChanges
+      .pipe(
+        takeUntil(this.destroyed$),
+        tap(() => {
+          this.allowSubmit = this.taskForm.valid;
+        }),
+      )
+      .subscribe();
+
     this.projectId =
       this.activateRoute.snapshot.paramMap.get('projectId') || '';
 

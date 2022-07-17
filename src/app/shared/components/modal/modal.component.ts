@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { saveIcon } from '../../icons';
 
 @Component({
@@ -7,23 +15,37 @@ import { saveIcon } from '../../icons';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
-  @Input() visible: boolean = false;
+  _visible = false;
+
+  @Input() set visible(value: boolean) {
+    this._visible = value;
+    if (value) {
+      setTimeout(() => {
+        this.titleRef.nativeElement.focus();
+      }, 300);
+    }
+  }
   @Input() modalWidth: string = '750px';
   @Input() allowOk = true;
   @Output() onOk = new EventEmitter<string>();
   @Output() onCancel = new EventEmitter<void>();
 
+  @ContentChild('titleRef') titleRef: ElementRef;
+
+  get visible(): boolean {
+    return this._visible;
+  }
   saveIcon = saveIcon;
   saveType = 'save';
-  firstSubmit = false;
   constructor() {}
 
   ngOnInit(): void {}
 
   handleOnOk() {
-    this.firstSubmit = true;
     this.onOk.emit(this.saveType);
   }
+
+  ngOnChanges() {}
 
   handleOnCancel() {
     this.onCancel.emit();
