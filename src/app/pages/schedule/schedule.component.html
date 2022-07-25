@@ -34,3 +34,5 @@
     ></app-schedule-detail-modal>
   </div>
 </div>
+
+<app-loading [isShow]="!(schedules$ | async)?.length"></app-loading>

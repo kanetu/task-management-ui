@@ -12,3 +12,5 @@
     ></app-form-fragment>
   </div>
 </div>
+
+<app-loading [isShow]="!(user$ | async)"></app-loading>

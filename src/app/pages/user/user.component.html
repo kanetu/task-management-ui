@@ -8,3 +8,5 @@
     ></app-user-item>
   </div>
 </div>
+
+<app-loading [isShow]="!(users$ | async)?.length"></app-loading>

@@ -10,3 +10,5 @@
     ></nz-tab>
   </nz-tabset>
 </div>
+
+<app-loading [isShow]="!(project$ | async)"></app-loading>

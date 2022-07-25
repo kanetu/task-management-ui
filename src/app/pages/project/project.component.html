@@ -7,3 +7,5 @@
     ></app-project-item>
   </div>
 </div>
+
+<app-loading [isShow]="!(projects$ | async)?.length"></app-loading>

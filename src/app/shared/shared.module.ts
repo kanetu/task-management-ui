@@ -29,6 +29,7 @@ import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { CommentItemComponent } from './components/comment-item/comment-item.component';
 import { RemoveHtmlPipe } from './pipes/remove-html.pipe';
 import { SantinizerPipe } from './pipes/santinizer.pipe';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { SantinizerPipe } from './pipes/santinizer.pipe';
     SvgIconComponent,
     RemoveHtmlPipe,
     CommentItemComponent,
+    LoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -87,6 +89,7 @@ import { SantinizerPipe } from './pipes/santinizer.pipe';
     SvgIconComponent,
     CustomDatePipe,
     SantinizerPipe,
+    LoadingComponent,
     RemoveHtmlPipe,
   ],
 })
