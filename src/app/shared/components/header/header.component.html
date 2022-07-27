@@ -7,13 +7,21 @@
     <div class="header__menus">
       <ul class="header__menus__list">
         <li class="header__menus__list__item">
-          <a routerLink="/project" routerLinkActive="active">
+          <a
+            routerLink="/project"
+            routerLinkActive="active"
+            [attr.disabled]="disabledViewProject"
+          >
             <app-svg-icon [value]="projectIcon" class="svg-icon"></app-svg-icon>
             <span>Project</span>
           </a>
         </li>
         <li class="header__menus__list__item">
-          <a routerLink="/schedule" routerLinkActive="active">
+          <a
+            routerLink="/schedule"
+            routerLinkActive="active"
+            [attr.disabled]="disabledViewSchedule"
+          >
             <app-svg-icon
               [value]="scheduleIcon"
               class="svg-icon"
@@ -22,7 +30,11 @@
           </a>
         </li>
         <li class="header__menus__list__item">
-          <a routerLink="/user" routerLinkActive="active">
+          <a
+            routerLink="/user"
+            routerLinkActive="active"
+            [attr.disabled]="disabledViewUser"
+          >
             <app-svg-icon [value]="userIcon" class="svg-icon"></app-svg-icon>
             <span>User</span>
           </a>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PERMISSIONS } from 'src/app/constants/permissions';
 import { projectIcon, scheduleIcon, userIcon } from '../../icons';
+import { hasPermission } from '../../utils/hasPermission';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +14,10 @@ export class HeaderComponent implements OnInit {
   projectIcon = projectIcon;
   userIcon = userIcon;
   scheduleIcon = scheduleIcon;
+
+  disabledViewProject = hasPermission(PERMISSIONS.VIEW_PROJECT) ? null : true;
+  disabledViewUser = hasPermission(PERMISSIONS.VIEW_USER) ? null : true;
+  disabledViewSchedule = hasPermission(PERMISSIONS.VIEW_SCHEDULE) ? null : true;
 
   constructor() {}
 

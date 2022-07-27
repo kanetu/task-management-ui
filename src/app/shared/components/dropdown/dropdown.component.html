@@ -9,8 +9,10 @@
 </a>
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <ul nz-menu class="dropdown__ul">
-    <li nz-menu-item *ngFor="let option of options" [routerLink]="option.value">
-      {{ option.text }}
+    <li nz-menu-item *ngFor="let option of options">
+      <a [routerLink]="option.value" [attr.disabled]="option.disabled">
+        {{ option.text }}
+      </a>
     </li>
   </ul>
 </nz-dropdown-menu>

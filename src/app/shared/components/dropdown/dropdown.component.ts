@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PERMISSIONS } from 'src/app/constants/permissions';
 import { configIcon } from '../../icons';
+import { hasPermission } from '../../utils/hasPermission';
 
 @Component({
   selector: 'app-dropdown',
@@ -11,6 +13,7 @@ export class DropdownComponent implements OnInit {
     {
       text: 'Account',
       value: '/account',
+      disabled: hasPermission(PERMISSIONS.VIEW_ACCOUNT) ? null : true,
     },
     {
       text: 'Logout',
