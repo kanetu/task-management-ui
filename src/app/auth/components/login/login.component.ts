@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
+import { USER_PERMISSIONS } from 'src/app/constants/user-permissions';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -33,11 +34,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   handleLogin(): void {
     this.authService
       .login(this.loginForm.value)
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((data: any) => {
-        if (data.status) {
-          this.router.navigate(['/project']);
-        }
-      });
+      .pipe(
+        takeUntil(this.destroyed$),
+        tap(({ data, status }) => {
+          const permissions = data.role.permissions
+            .filter((item) => item.active)
+            .map((item) => item.title);
+          localStorage.setItem(USER_PERMISSIONS, JSON.stringify(permissions));
+          if (status) {
+            this.router.navigate(['/']);
+          }
+        }),
+      )
+      .subscribe();
   }
 }

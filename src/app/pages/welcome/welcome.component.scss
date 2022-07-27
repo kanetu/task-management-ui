@@ -1,0 +1,12 @@
+.welcome {
+  @apply flex;
+  @apply items-center;
+  @apply flex-col;
+  h1 {
+    @apply text-4xl;
+  }
+  span {
+    @apply mt-2;
+    @apply text-2xl;
+  }
+}

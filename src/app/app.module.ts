@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { CustomInterceptor } from './interceptors/custom-interceptor';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
 
 registerLocaleData(en);
 const antDesignIcons = AllIcons as {
@@ -25,7 +26,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
 );
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, WelcomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

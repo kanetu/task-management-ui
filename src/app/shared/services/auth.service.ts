@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ILoginResponse } from '../models/responses/ILoginResponse';
 import { API, baseAPI } from './apis';
 
 @Injectable({
@@ -9,8 +10,8 @@ import { API, baseAPI } from './apis';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  login(data: any) {
-    return this.http.post(baseAPI + API.login, data);
+  login(data: any): Observable<ILoginResponse> {
+    return this.http.post<ILoginResponse>(baseAPI + API.login, data);
   }
 
   register(data: any): Observable<any> {

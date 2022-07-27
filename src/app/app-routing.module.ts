@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoleGuard } from './auth/guards/role.guard';
+import { ViewAccountGuard } from './auth/guards/view-account.guard';
+import { ViewProjectGuard } from './auth/guards/view-project.guard';
+import { ViewScheduleGuard } from './auth/guards/view-schedule.guard';
+import { ViewUserGuard } from './auth/guards/view-user.guard';
+import { USER_PERMISSIONS } from './constants/user-permissions';
+const permissions = JSON.parse(localStorage.getItem(USER_PERMISSIONS) || '[]');
 
 const routes: Routes = [
   {
@@ -16,40 +22,46 @@ const routes: Routes = [
     path: 'project',
     loadChildren: () =>
       import('./pages/project/project.module').then((m) => m.ProjectModule),
-    canActivate: [RoleGuard],
+    canActivate: [ViewProjectGuard],
     data: {
-      role: 'user',
+      permissions: permissions,
     },
   },
   {
     path: 'user',
     loadChildren: () =>
       import('./pages/user/user.module').then((m) => m.UserModule),
-    canActivate: [RoleGuard],
+    canActivate: [ViewUserGuard],
     data: {
-      role: 'user',
+      permissions: permissions,
     },
   },
   {
     path: 'schedule',
     loadChildren: () =>
       import('./pages/schedule/schedule.module').then((m) => m.ScheduleModule),
-    canActivate: [RoleGuard],
+    canActivate: [ViewScheduleGuard],
     data: {
-      role: 'user',
+      permissions: permissions,
     },
   },
   {
     path: 'account',
     loadChildren: () =>
       import('./pages/account/account.module').then((m) => m.AccountModule),
+    canActivate: [ViewAccountGuard],
     data: {
-      role: 'user',
+      permissions: permissions,
     },
   },
   {
     path: 'welcome',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./pages/welcome/welcome.module').then((m) => m.WelcomeModule),
   },
   {
     path: '**',
