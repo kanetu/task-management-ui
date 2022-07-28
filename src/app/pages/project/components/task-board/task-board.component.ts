@@ -13,12 +13,14 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { PERMISSIONS } from 'src/app/constants/permissions';
 import { TASK_STATUS } from 'src/app/constants/task-status';
 import { addIcon } from 'src/app/shared/icons';
 import { Project } from 'src/app/shared/models/project.model';
 import { Task } from 'src/app/shared/models/task.model';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { TaskService } from 'src/app/shared/services/task.service';
+import { hasPermission } from 'src/app/shared/utils/hasPermission';
 
 @Component({
   selector: 'app-task-board',
@@ -40,6 +42,8 @@ export class TaskBoardComponent implements OnInit {
   taskEdit$: Subject<Task> = new Subject<Task>();
   taskEditId: string;
   processState$ = new Subject();
+
+  disabledCreateTask = hasPermission(PERMISSIONS.CREATE_TASK) ? null : true;
 
   constructor(
     private activateRoute: ActivatedRoute,

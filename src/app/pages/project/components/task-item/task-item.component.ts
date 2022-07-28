@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
+import { PERMISSIONS } from 'src/app/constants/permissions';
 import { commentIcon, expandIcon, linkIcon } from 'src/app/shared/icons';
 import { Task } from 'src/app/shared/models/task.model';
 import detectLink from 'src/app/shared/utils/detectLink';
+import { hasPermission } from 'src/app/shared/utils/hasPermission';
 
 interface IMemberAvatar {
   id: string;
@@ -18,11 +20,15 @@ export class TaskItemComponent implements OnInit {
   @Input() data: Task;
   @Input() processState$: Subject<any>;
   @Output() editTask = new EventEmitter<any>();
+
   memberAvatars: IMemberAvatar[] = [];
   expandIcon = expandIcon;
   commentIcon = commentIcon;
   linkIcon = linkIcon;
   linkCounts = 0;
+
+  disabledViewTask = hasPermission(PERMISSIONS.VIEW_TASK) ? null : true;
+
   constructor() {}
 
   ngOnInit(): void {

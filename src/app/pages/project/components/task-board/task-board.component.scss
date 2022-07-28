@@ -14,6 +14,8 @@
     @apply text-black;
     @apply flex;
     @apply items-center;
+    @apply border-none;
+
     top: -55px;
     right: 2px;
     & .svg-icon {
@@ -23,6 +25,10 @@
       @apply uppercase;
       @apply text-xs;
       @apply ml-2;
+    }
+    &.ant-btn[disabled] {
+      @apply shadow-none;
+      color: var(--disable-color);
     }
   }
   &__wrapper {

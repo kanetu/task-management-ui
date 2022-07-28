@@ -2,8 +2,12 @@
   <div #scrollbarPseudo></div>
 </div>
 <div class="task-board">
-  <button class="task-board__btn task-board__btn--add" (click)="openAddTask()">
- 
+  <button
+    [disabled]="disabledCreateTask"
+    class="task-board__btn task-board__btn--add"
+    (click)="openAddTask()"
+    nz-button
+  >
     <app-svg-icon [value]="addIcon" class="svg-icon"></app-svg-icon>
     <span>Add Task</span>
   </button>

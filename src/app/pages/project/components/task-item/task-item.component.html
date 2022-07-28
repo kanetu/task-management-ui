@@ -1,13 +1,18 @@
 <div class="task-item">
   <span class="task-item__title">{{ data.title }}</span>
-  <span class="task-item__desc">{{ data.description | removeHtml}}</span>
-  <button class="task-item__btn" (click)="handleEditTask()">
+  <span class="task-item__desc">{{ data.description | removeHtml }}</span>
+  <button
+    class="task-item__btn"
+    nz-button
+    [disabled]="disabledViewTask"
+    (click)="handleEditTask()"
+  >
     <app-svg-icon [value]="expandIcon" class="svg-icon"></app-svg-icon>
   </button>
   <div class="task-item__others">
     <div class="task-item__others__links">
       <app-svg-icon [value]="linkIcon" class="svg-icon"></app-svg-icon>
-      <span>{{linkCounts}}</span>
+      <span>{{ linkCounts }}</span>
     </div>
     <div class="task-item__others__comments">
       <app-svg-icon [value]="commentIcon" class="svg-icon"></app-svg-icon>

@@ -2,7 +2,12 @@
   <div class="schedule__wrapper">
     <h3>
       SCHEDULE
-      <button class="btn-add-schedule" (click)="openAddSchedule()">
+      <button
+        nz-button
+        [disabled]="disabledCreateSchedule"
+        class="btn-add-schedule"
+        (click)="openAddSchedule()"
+      >
         <app-svg-icon [value]="addIcon" class="svg-icon"></app-svg-icon>
         <span>Add Schedule</span>
       </button>

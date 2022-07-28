@@ -20,6 +20,7 @@
         @apply rounded-sm;
         @apply flex;
         @apply items-center;
+        @apply border-none;
         margin-left: 4px;
         color: var(--neutral-color-black);
         & .svg-icon {
@@ -29,6 +30,10 @@
           @apply uppercase;
           @apply text-xs;
           @apply ml-2;
+        }
+        &.ant-btn[disabled] {
+          @apply shadow-none;
+          color: var(--disable-color);
         }
       }
     }
@@ -59,10 +64,36 @@
         }
       }
       .ant-picker-calendar-full {
+        .ant-fullcalendar-header {
+          .ant-picker-calendar-header {
+            .ant-radio-group {
+              .ant-radio-button-wrapper {
+                &:hover {
+                  color: var(--primary-color);
+                }
+              }
+              .ant-radio-button-wrapper-checked {
+                border-color: var(--primary-color);
+                color: var(--primary-color);
+                &:before {
+                  background-color: var(--primary-color);
+                }
+              }
+            }
+          }
+        }
         .ant-picker-panel {
           border: 1px solid rgba(229, 231, 235, 1);
           .ant-picker-calendar-date {
             max-height: 70px;
+          }
+          .ant-picker-cell-selected {
+            .ant-picker-calendar-date-value {
+              color: var(--primary-color);
+            }
+          }
+          .ant-picker-calendar-date-today {
+            border-color: var(--primary-color);
           }
           .ant-picker-calendar-date-content {
             height: 30px;

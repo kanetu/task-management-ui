@@ -14,6 +14,8 @@ import * as moment from 'moment';
 import { SYSTEM_DATE_FORMAT } from 'src/app/constants/date-format';
 import rangeDatesOfCalendar from 'src/app/shared/utils/calendar';
 import { addIcon } from 'src/app/shared/icons';
+import { hasPermission } from 'src/app/shared/utils/hasPermission';
+import { PERMISSIONS } from 'src/app/constants/permissions';
 
 export interface ICreateSchedule {
   title: string;
@@ -57,6 +59,10 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   listDataMap: {
     [key: string]: any;
   } = {};
+
+  disabledCreateSchedule = hasPermission(PERMISSIONS.CREATE_SCHEDULE)
+    ? null
+    : true;
 
   ngOnInit(): void {
     const [firstDate, lastDate] = rangeDatesOfCalendar(

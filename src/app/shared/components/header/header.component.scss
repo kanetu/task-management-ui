@@ -156,6 +156,10 @@
           @apply rounded;
           @apply flex;
           @apply items-center;
+
+          &:hover {
+            color: var(--primary-color);
+          }
           & .svg-icon {
             @apply w-6;
             @apply md:w-8;
