@@ -1,6 +1,6 @@
+@import 'scss/_mixins';
 
-
-.column-wrapper{
+.column-wrapper {
   @apply flex;
   @apply flex-wrap;
   @apply flex-row;
@@ -8,9 +8,12 @@
   @apply justify-center;
   @apply w-full;
   @apply m-auto;
+  @include screen(md) {
+    padding: 40px 10% 0 10%;
+  }
   padding: 40px 0;
 
-  & .column-left{
+  & .column-left {
     @apply w-full;
     @apply md:w-1/6;
     @apply md:h-screen;
@@ -18,7 +21,7 @@
     @apply md:p-0;
   }
 
-  & .column-right{
+  & .column-right {
     @apply w-full;
     @apply md:w-9/12;
     @apply mt-4;

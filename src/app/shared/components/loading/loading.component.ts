@@ -10,6 +10,9 @@ export class LoadingComponent implements OnInit {
     if (value) {
       setTimeout(() => {
         this.keepShowing = value;
+        setTimeout(() => {
+          this.keepShowing = !value;
+        }, 500);
       }, 500);
     }
   }

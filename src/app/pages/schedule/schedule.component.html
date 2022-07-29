@@ -14,10 +14,16 @@
     </h3>
     <div class="schedule__table">
       <div class="schedule__tasks">
-        <app-schedule-accordition
-          *ngFor="let item of schedules$ | async; trackBy: trackById"
-          [data]="item"
-        ></app-schedule-accordition>
+        <ng-container *ngIf="schedules$ | async; let schedules">
+          <app-loading [isShow]="!schedules.length"></app-loading>
+          <ng-container
+            [ngTemplateOutlet]="
+              schedules.length > 0 ? listSchedule : noSchedule
+            "
+            [ngTemplateOutletContext]="{ schedules: schedules }"
+          >
+          </ng-container>
+        </ng-container>
       </div>
       <div class="schedule__calendar">
         <nz-calendar (nzSelectChange)="selectChange($event)">
@@ -40,4 +46,10 @@
   </div>
 </div>
 
-<app-loading [isShow]="!(schedules$ | async)?.length"></app-loading>
+<ng-template #listSchedule let-schedules="schedules">
+  <app-schedule-accordition
+    *ngFor="let item of schedules; trackBy: trackById"
+    [data]="item"
+  ></app-schedule-accordition>
+</ng-template>
+<ng-template #noSchedule> There is no schedule on this day. </ng-template>
