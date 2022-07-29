@@ -39,10 +39,7 @@
                 "output": "/assets/"
               }
             ],
-            "styles": [
-              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
-              "src/scss/styles.scss"
-            ],
+            "styles": ["src/scss/styles.scss"],
             "stylePreprocessorOptions": {
               "includePaths": ["src/", "src/scss"]
             },
