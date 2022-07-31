@@ -1,11 +1,21 @@
 <div class="project">
   <h3 class="project__title">PROJECT</h3>
-  <div class="project__list" *ngIf="(projects$ | async)?.length">
+  <ng-container *ngIf="projects$ | async; let projects">
+    <app-loading [isShow]="!projects.length"></app-loading>
+
+    <ng-container
+      [ngTemplateOutlet]="projects.length > 0 ? listProject : null"
+      [ngTemplateOutletContext]="{ projects: projects }"
+    >
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #listProject let-projects="projects">
+  <div class="project__list">
     <app-project-item
-      *ngFor="let project of projects$ | async"
+      *ngFor="let project of projects"
       [project]="project"
     ></app-project-item>
   </div>
-</div>
-
-<app-loading [isShow]="!(projects$ | async)?.length"></app-loading>
+</ng-template>

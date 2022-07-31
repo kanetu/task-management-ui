@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   registerForm = this.formBuilder.group({
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         if (data) {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/welcome/login']);
         }
       });
   }

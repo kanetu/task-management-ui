@@ -1,12 +1,22 @@
 <div class="user">
   <h3>USER</h3>
-  <div class="user__wrapper" *ngIf="(users$ | async)?.length">
+  <ng-container *ngIf="users$ | async; let users">
+    <app-loading [isShow]="!users.length"></app-loading>
+
+    <ng-container
+      [ngTemplateOutlet]="users.length > 0 ? listUser : null"
+      [ngTemplateOutletContext]="{ users: users }"
+    >
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #listUser let-users="users">
+  <div class="user__wrapper">
     <app-user-item
       (editUser)="handleEditUser($event)"
-      *ngFor="let user of users$ | async"
+      *ngFor="let user of users"
       [user]="user"
     ></app-user-item>
   </div>
-</div>
-
-<app-loading [isShow]="!(users$ | async)?.length"></app-loading>
+</ng-template>

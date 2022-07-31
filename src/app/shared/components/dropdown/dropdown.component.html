@@ -10,7 +10,11 @@
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <ul nz-menu class="dropdown__ul">
     <li nz-menu-item *ngFor="let option of options">
-      <a [routerLink]="option.value" [attr.disabled]="option.disabled">
+      <a
+        [routerLink]="option.value"
+        [attr.disabled]="option.disabled"
+        (click)="option.onClick()"
+      >
         {{ option.text }}
       </a>
     </li>

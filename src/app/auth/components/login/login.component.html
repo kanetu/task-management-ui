@@ -18,7 +18,9 @@
 
     <div class="login__actions">
       <button (click)="handleLogin()">Submit</button>
-      <a routerLink="/register" routerLinkActive="active">Register now!</a>
+      <a routerLink="/welcome/register" routerLinkActive="active">Register now!</a>
     </div>
   </div>
 </div>
+
+<app-loading [isShow]="loading"></app-loading>

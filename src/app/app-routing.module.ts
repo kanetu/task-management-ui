@@ -5,7 +5,7 @@ import { ViewAccountGuard } from './auth/guards/view-account.guard';
 import { ViewProjectGuard } from './auth/guards/view-project.guard';
 import { ViewScheduleGuard } from './auth/guards/view-schedule.guard';
 import { ViewUserGuard } from './auth/guards/view-user.guard';
-import { USER_PERMISSIONS } from './constants/user-permissions';
+import { USER_PERMISSIONS } from './constants/user';
 const permissions = JSON.parse(localStorage.getItem(USER_PERMISSIONS) || '[]');
 
 const routes: Routes = [

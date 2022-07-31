@@ -36,7 +36,6 @@
         font-size: 12px;
         &:last-child {
           @apply text-gray-400;
-          @apply capitalize;
           font-size: 10px;
         }
       }

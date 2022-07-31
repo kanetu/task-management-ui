@@ -1,1 +1,2 @@
 export const USER_PERMISSIONS = 'USER_PERMISSIONS';
+export const USER_INFO = 'USER_INFO';

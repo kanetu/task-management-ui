@@ -1,4 +1,4 @@
-import { USER_PERMISSIONS } from 'src/app/constants/user-permissions';
+import { USER_PERMISSIONS } from 'src/app/constants/user';
 
 export const hasPermission = (permission: string) => {
   const permissions = JSON.parse(

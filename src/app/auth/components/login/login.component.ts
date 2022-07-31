@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
-import { USER_PERMISSIONS } from 'src/app/constants/user-permissions';
+import { USER_INFO, USER_PERMISSIONS } from 'src/app/constants/user';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   destroyed$ = new Subject();
+  loading = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,7 +41,12 @@ export class LoginComponent implements OnInit, OnDestroy {
           const permissions = data.role.permissions
             .filter((item) => item.active)
             .map((item) => item.title);
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+          };
           localStorage.setItem(USER_PERMISSIONS, JSON.stringify(permissions));
+          localStorage.setItem(USER_INFO, JSON.stringify(userInfo));
           if (status) {
             this.router.navigate(['/']);
           }
