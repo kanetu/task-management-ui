@@ -30,6 +30,7 @@ import { CommentItemComponent } from './components/comment-item/comment-item.com
 import { RemoveHtmlPipe } from './pipes/remove-html.pipe';
 import { SantinizerPipe } from './pipes/santinizer.pipe';
 import { LoadingComponent } from './components/loading/loading.component';
+import { ReversePipe } from './pipes/reverse.pipe';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     CommentComponent,
     CustomDatePipe,
     SantinizerPipe,
+    ReversePipe,
     ContenteditableValueAccessor,
     SvgIconComponent,
     RemoveHtmlPipe,
@@ -88,6 +90,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     CommentComponent,
     SvgIconComponent,
     CustomDatePipe,
+    ReversePipe,
     SantinizerPipe,
     LoadingComponent,
     RemoveHtmlPipe,

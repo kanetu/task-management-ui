@@ -10,7 +10,7 @@
   </div>
   <div class="comment__list">
     <app-comment-item
-      *ngFor="let comment of listComment"
+      *ngFor="let comment of listComment | reverse"
       [comment]="comment"
       [triggerUpdate$]="triggerUpdate$"
       [currentEditingComment$]="currentEditingComment$"
